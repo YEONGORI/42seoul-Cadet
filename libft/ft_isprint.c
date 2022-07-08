@@ -1,17 +1,20 @@
-int ft_isprint(int c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/08 18:17:06 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/08 18:17:16 by yeongele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tester.h"
+
+int	ft_isprint(int c)
 {
-    if (c >= 32 && c <= 127)
-        return (1);
-    return (0);
+	if (c >= 32 && c <= 127)
+		return (1);
+	return (0);
 }
-/*
-#include <ctype.h>
-#include <stdio.h>
-int main(void)
-{
-    printf("~ isprint? %d\n", ft_isprint('~'));
-    printf("~ isprint? %d real\n\n", isprint('~'));
-    printf("\\n isprint? %d\n", ft_isprint('\n'));
-    printf("\\n isprint? %d real\n\n", isprint('\n'));
-    return (0);
-}*/

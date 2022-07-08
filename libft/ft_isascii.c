@@ -1,18 +1,20 @@
-int ft_isascii(int c)
-{
-    if (c >= 0 && c <= 127)
-        return (1);
-    return (0);
-}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/08 18:16:33 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/08 18:16:45 by yeongele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-#include <ctype.h>
-#include <stdio.h>
-int main(void)
+#include "tester.h"
+
+int	ft_isascii(int c)
 {
-    printf("a is ascii? %d\n", ft_isascii('a'));
-    printf("a is ascii? %d real\n\n", isascii('a'));
-    printf("250 is ascii? %d\n", ft_isascii(250));
-    printf("250 is ascii? %d real\n\n", isascii(250));
-    return (0);
-}*/
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
+}

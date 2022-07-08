@@ -1,16 +1,23 @@
-unsigned long ft_strlen(const char *str){
-    long i = 0;
-    
-    while (str[i] != 0)
-        i++;
-    return (i);
-}
-/*
-#include <string.h>
-#include <stdio.h>
-int main(void)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/08 18:22:25 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/08 18:22:57 by yeongele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tester.h"
+
+size_t	ft_strlen(const char *str)
 {
-    printf("length of GonGonGon %lu\n", ft_strlen("GonGonGon"));
-    printf("length of GonGonGon %lu real\n\n", strlen("GonGonGon"));
-    return (0);
-}*/
+	size_t	i;
+
+	i = 0;
+	while (str[i] != 0)
+		i++;
+	return (i);
+}

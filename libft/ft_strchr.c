@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 18:21:00 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 18:22:22 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:19:00 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/08 18:19:28 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t datsize)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
-	size_t	src_len;
+	int	i;
 
-	i = 0;
-	while (src[i] != 0)
-		i++;
-	src_len = i;
-	if (datsize == 0)
-		return (src_len);
 	i = -1;
-	while (src[++i] != 0 && i < datsize - 1)
-		dst[i] = src[i];
-	dst[i] = 0;
-	return (src_len);
+	while (s[++i] != 0)
+		if (s[i] == c)
+			return ((char *)(s + i));
+	if (s[i] == 0 && c == '\0')
+		return ((char *)(s + i));
+	return (0);
 }

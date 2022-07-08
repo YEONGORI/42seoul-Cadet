@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 18:21:00 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 18:22:22 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:25:56 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/08 19:15:15 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t datsize)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
-	size_t	src_len;
+	size_t				i;
+	unsigned char		c_un;
+	const unsigned char	*s_un;
 
-	i = 0;
-	while (src[i] != 0)
-		i++;
-	src_len = i;
-	if (datsize == 0)
-		return (src_len);
 	i = -1;
-	while (src[++i] != 0 && i < datsize - 1)
-		dst[i] = src[i];
-	dst[i] = 0;
-	return (src_len);
+	c_un = (unsigned char)c;
+	s_un = (const unsigned char *)s;
+	while (++i < n)
+		if (s_un[i] == c_un)
+			return ((unsigned char *)(s_un + i));
+	return (NULL);
 }
