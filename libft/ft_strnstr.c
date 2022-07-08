@@ -6,13 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:36:18 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 20:10:27 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/08 20:32:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	int		flag;
 	size_t	i;
@@ -20,9 +20,9 @@ char	*strnstr(const char *haystack, const char *needle, size_t len)
 
 	flag = 0;
 	i = -1;
-	if (needle == 0)
-		return (haystack);
-	while (haystack[++i] != 0 && flag == 0)
+	if (*needle == 0)
+		return ((char *)haystack);
+	while (haystack[++i] != 0 && flag == 0 && i < len)
 	{
 		if (haystack[i] == needle[0])
 		{
@@ -36,5 +36,5 @@ char	*strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	if (flag == 0)
 		return (0);
-	return ((char *)haystack + i);
+	return ((char *)haystack + i - 1);
 }

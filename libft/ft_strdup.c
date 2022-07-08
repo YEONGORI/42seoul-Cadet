@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 18:25:10 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 22:14:25 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 22:06:11 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/08 22:14:49 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdlib.h>
+char	*ft_strdup(const char *s1)
+{
+	int		i;
+	char	*str;
 
-void	ft_bzero(void *s, size_t n);
-
-#endif
+	i = -1;
+	str = (char *) malloc(sizeof(char) * (sizeof(s1) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[++i] != 0)
+		str[i] = s1[i];
+	str[i] = '\0';
+	return (str);
+}

@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 18:25:10 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 22:14:25 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 21:17:01 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/08 22:02:17 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
+#include "tester.h"
 
-# include <stdlib.h>
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
 
-void	ft_bzero(void *s, size_t n);
-
-#endif
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count * size);
+	return (ptr);
+}

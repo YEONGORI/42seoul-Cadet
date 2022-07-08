@@ -126,6 +126,7 @@ void test_ft_strlcpy(void) {
 
 	printf("ft_strlcpy: %s\n", dest1);
 	printf("strlcpy: %s\n", dest2);
+
 }
 void test_ft_strlcat(void) {
 	char	dest1[100] = {'W','h','o',' ','a', 'i', '?', ':', '\0'};
@@ -229,7 +230,49 @@ void test_ft_strnstr(void) {
 	printf("ft_strnstr: %s\n", ft_strnstr("This is Good to Cadet!", "tq", 20));
 	printf("strnstr: %s\n", strnstr("This is Good to Cadet!", "tq", 20));
 }
-// void test_ft_atoi(void);
+void test_ft_atoi(void) {
+	printf("ft_atoi: %d\n", ft_atoi("       -2137483648++"));
+	printf("atoi: %d\n", atoi("       -2137483648++"));
+
+	printf("ft_atoi: %d\n", ft_atoi(" +2137483647"));
+	printf("atoi: %d\n", atoi(" +2137483647"));
+
+	printf("ft_atoi: %d\n", ft_atoi("    +   -2137483648++"));
+	printf("atoi: %d\n", atoi("    +   -2137483648++"));
+
+	printf("ft_atoi: %d\n", ft_atoi("       -21374 83648++"));
+	printf("atoi: %d\n", atoi("       -21374 83648++"));
+
+	printf("ft_atoi: %d\n", ft_atoi("       2137483648-"));
+	printf("atoi: %d\n", atoi("       2137483648-"));
+
+	printf("ft_atoi: %d\n", ft_atoi("       +-2137483648-"));
+	printf("atoi: %d\n", atoi("       +-2137483648-"));
+
+	printf("ft_atoi: %d\n", ft_atoi("       --2137483648-"));
+	printf("atoi: %d\n", atoi("       --2137483648-"));
+}
+void	test_ft_calloc() {
+	printf("ft_calloc: %p\n", ft_calloc(5, 4));
+	printf("calloc: %p\n", calloc(5, 4));
+
+	printf("ft_calloc: %p\n", ft_calloc(0, 4));
+	printf("calloc: %p\n", calloc(0, 4));
+
+	printf("ft_calloc: %p\n", ft_calloc(5, 0));
+	printf("calloc: %p\n", calloc(5, 0));
+}
+
+void    test_ft_strdup() {
+	printf("ft_strdup: %s\n", ft_strdup(src1));
+	printf("strdup: %s\n", strdup(src1));
+
+	printf("ft_strdup: %s\n", ft_strdup(src5));
+	printf("strdup: %s\n", strdup(src5));
+
+	printf("ft_strdup: %s\n", ft_strdup(""));
+	printf("strdup: %s\n", strdup(""));
+}
 
 int main(void)
 {
@@ -313,7 +356,15 @@ int main(void)
     printf("\n\n----- Test ft_strnstr -----\n");
     test_ft_strnstr();
     
-    // /* Test ft_atoi */
-    // printf("\n\n----- Test ft_atoi -----\n");
-    // test_ft_atoi();
+    /* Test ft_atoi */
+    printf("\n\n----- Test ft_atoi -----\n");
+    test_ft_atoi();
+
+	/* Test ft_calloc */
+    printf("\n\n----- Test ft_calloc -----\n");
+    test_ft_calloc();
+
+	/* Test ft_strdup */
+    printf("\n\n----- Test ft_strdup -----\n");
+    test_ft_strdup();
 }

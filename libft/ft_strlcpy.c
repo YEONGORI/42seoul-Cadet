@@ -6,13 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:21:00 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 18:22:22 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/08 21:27:06 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t datsize)
+size_t	ft_strlcpy(char *dest, const char *src, size_t datsize)
 {
 	size_t	i;
 	size_t	src_len;
@@ -25,7 +25,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t datsize)
 		return (src_len);
 	i = -1;
 	while (src[++i] != 0 && i < datsize - 1)
-		dst[i] = src[i];
-	dst[i] = 0;
+		dest[i] = src[i];
+	dest[i] = 0;
 	return (src_len);
 }
