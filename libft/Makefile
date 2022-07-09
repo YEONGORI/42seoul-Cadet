@@ -1,61 +1,29 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -Werror
-OBJS=tester.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_strchr.o ft_strrchr.o ft_toupper.o ft_tolower.o ft_strncmp.o ft_memchr.o ft_memcmp.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o
-TARGET=tester
+NAME = libft.a
 
-all: $(TARGET)
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_toupper.c ft_tolower.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c
+
+OBJS = $(SRCS:.c=.o)
+
+INCS = libft.h
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS)
+
+all : $(NAME)
+		ar rsc $(NAME) $(OBJS)
+
+$(NAME) : $(OBJS)
 
 clean:
-	rm -f *.o
-	rm -f $(TARGET)
+		rm -f $(OBJS)
 
-$(TARGET): $(OBJS)
-	$(CC) -o $@ $(OBJS)
+fclean:	clean
+		rm -f $(NAME)
 
-tester.o: tester.h tester.c
+re : fclean all
 
-ft_isalpha.o: tester.h ft_isalpha.c
-
-ft_isdigit.o: tester.h ft_isdigit.c
-
-ft_isalnum.o: tester.h ft_isalnum.c
-
-ft_isascii.o: tester.h ft_isascii.c
-
-ft_isprint.o: tester.h ft_isprint.c
-
-ft_strlen.o: tester.h ft_strlen.c
-
-ft_memset.o: tester.h ft_memset.c
-
-ft_bzero.o: tester.h ft_bzero.c
-
-ft_memcpy.o: tester.h ft_memcpy.c
-
-ft_memmove.o: tester.h ft_memmove.c
-
-ft_strlcpy.o: tester.h ft_strlcpy.c
-
-ft_strlcat.o: tester.h ft_strlcat.c
-
-ft_toupper.o: tester.h ft_toupper.c
-
-ft_tolower.o: tester.h ft_tolower.c
-
-ft_strchr.o: tester.h ft_strchr.c
-
-ft_strrchr.o: tester.h ft_strrchr.c
-
-ft_strncmp.o: tester.h ft_strncmp.c
-
-ft_memchr.o: tester.h ft_memchr.c
-
-ft_memcmp.o: tester.h ft_memcmp.c
-
-ft_strnstr.o: tester.h ft_strnstr.c
-
-ft_atoi.o: tester.h ft_atoi.c
-
-ft_calloc.o: tester.h ft_calloc.c
-
-ft_strdup.o: tester.h ft_strdup.c
+.PHONY:	all	clean	fclean	re

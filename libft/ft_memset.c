@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:18:17 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 18:18:54 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:36:16 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "libft.h"
 
 void	*ft_memset(void *dest, int c, size_t count)
 {
@@ -21,7 +21,6 @@ void	*ft_memset(void *dest, int c, size_t count)
 	i = 0;
 	uc_c = (unsigned char)c;
 	tmp = (unsigned char *)dest;
-
 	while (i < count)
 		tmp[i++] = uc_c;
 	return (tmp);

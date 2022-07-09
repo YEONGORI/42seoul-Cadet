@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:18:01 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 19:33:00 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/09 17:38:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -24,11 +24,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	while (++i < n)
 	{
 		if (s1_un[i] != s2_un[i])
-		{
-			if (s1_un[i] > s2_un[i])
-				return (1);
-			return (-1);
-		}
+			return (s1_un[i] - s2_un[i]);
 	}
 	return (0);
 }

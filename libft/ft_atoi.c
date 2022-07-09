@@ -6,11 +6,23 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:33:36 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 21:16:27 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/09 17:21:55 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+int	check(char c, int *sign)
+{
+	if (c != '+' && c != '-' && !((c >= 9 && c <= 13) || c == 32) \
+	&& !(c >= '0' && c <= '9'))
+		return (-1);
+	if (c == '+' || c == '-')
+	{
+		if (*sign != 44)
+			return (-1);
+		*sign -= c;
+	}
+	return (0);
+}
 
 int	ft_atoi_ch(const char *str)
 {
@@ -40,12 +52,8 @@ int	ft_atoi(const char *str)
 	{
 		if ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 			return (0);
-		if (str[i] == '+' || str[i] == '-')
-		{
-			if (sign != 44)
-				return (0);
-			sign -= str[i];
-		}
+		if (check(str[i], &sign) < 0)
+			return (0);
 		if (str[i] >= '0' && str[i] <= '9')
 			res = ft_atoi_ch(str + i);
 		i++;

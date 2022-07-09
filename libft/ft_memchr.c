@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:25:56 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 19:15:15 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:35:55 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

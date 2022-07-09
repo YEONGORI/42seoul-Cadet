@@ -6,15 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:17:06 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 18:17:16 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/09 13:31:02 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
-
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 127)
+	if (c >= 32 && c <= 126)
 		return (1);
 	return (0);
 }

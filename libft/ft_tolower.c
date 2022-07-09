@@ -6,11 +6,9 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:24:25 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 18:24:37 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:22:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "tester.h"
 
 int	ft_tolower(int c)
 {

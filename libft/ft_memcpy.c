@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:17:19 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 18:18:05 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:36:00 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t num)
 {

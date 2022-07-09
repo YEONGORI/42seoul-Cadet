@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:21:00 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/08 21:27:06 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/09 13:09:55 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t datsize)
 {

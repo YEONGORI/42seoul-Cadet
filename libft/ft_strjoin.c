@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 18:22:25 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/09 12:36:26 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/09 12:56:43 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/09 12:59:07 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != 0)
-		i++;
-	return (i);
+	
 }
