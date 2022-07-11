@@ -6,20 +6,20 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:29:52 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/10 17:17:10 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:28:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_del(char c, char del)
+static int	is_del(char c, char del)
 {
 	if (c == del)
 		return (1);
 	return (0);
 }
 
-int	cnt_str(char const *s, char del)
+static int	cnt_str(char const *s, char del)
 {
 	int		i;
 	int		cnt;
@@ -35,25 +35,35 @@ int	cnt_str(char const *s, char del)
 			cnt++;
 		}
 	}
-	return (cnt);
+	return (cnt + 1);
 }
 
-char	*ft_strcpy(char *dest, const char *src, char del)
+static char	*ft_strcpy(char *dest, const char *src, char del)
 {
 	int	i;
 
 	i = -1;
-	while (src[++i] || src[i] != del)
+	while (src[++i] && src[i] != del)
 		dest[i] = src[i];
 	dest[i] = 0;
 	return (dest);
 }
 
+static int	ft__strlen(const char *s, char del)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != del)
+		i++;
+	return (i);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
+	int		len;
 	int		cnt;
-	char	*tmp;
 	char	**res;
 
 	i = -1;
@@ -66,26 +76,27 @@ char	**ft_split(char const *s, char c)
 	{
 		while (is_del(*s, c))
 			s++;
-		tmp = ft_strcpy(tmp, s, c);
-		res[i] = strdup(tmp);
+		len = ft__strlen(s, c);
+		res[i] = (char *) malloc(sizeof(char) * (len + 1));
 		if (!res[i])
 			return (NULL);
-		s += ft_strlen(res[i]);
+		res[i] = ft_strcpy(res[i], s, c);
+		s += len;
 	}
 	return (res);
 }
-
+/*
 int	main(void)
 {
-	char const *str = "This is me Bro ! 123 \t ";
+	char const *str = "";
 	char **res = ft_split(str, ' ');
 
 	for (int i = 0; i < 7; i++)
 	{
-		char *tmp = res[i];
-		for (int j = 0; tmp[j]; j++)
-			printf("%c", tmp[j]);
+		for (int j = 0; j < (int)strlen(res[i]); j++)
+			printf("%c ", res[i][j]);
 		printf("\n");
 	}
 	return (0);
 }
+*/

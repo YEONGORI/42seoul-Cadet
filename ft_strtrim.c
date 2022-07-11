@@ -6,53 +6,54 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:51:28 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/10 17:17:11 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/11 22:56:33 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_set(char c, const char *set)
+static int	is_set(char c, char const *set)
 {
 	int	i;
 
 	i = -1;
 	while (set[++i])
-		if (set[i] == c)
+		if (c == set[i])
 			return (1);
 	return (0);
 }
 
-void	start_trim(char const *s1, char const *set, char *new)
+static int	get_len(char const *s1, char const *set)
 {
 	int	i;
-	int	j;
+	int	len;
 
-	i = 0;
-	j = 0;
-	while (is_set(s1[i], set))
-		i++;
-	while (s1[i])
-		new[j++] = s1[i++];
-	while (is_set(new[--j], set))
-		;
-	new[j + 1] = '\0';
+	i = -1;
+	len = ft_strlen(s1);
+	while (is_set(s1[++i], set))
+		len--;
+	i = ft_strlen(s1);
+	while (len > 0 && is_set(s1[--i], set))
+		len--;
+	return (len);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		len;
-	char	*new;
+	char	*res;
 
-	len = ft_strlen(s1);
-	new = (char *) malloc(sizeof(char) * (len + 1));
-	if (!new || !set)
+	if (!s1 || !set)
 		return (NULL);
-	if (*s1 == 0)
-	{
-		*new = 0;
-		return (new);
-	}
-	start_trim(s1, set, new);
-	return (new);
+	if (!ft_strlen(s1))
+		return (ft_strdup(s1));
+	res = (char *) malloc(sizeof(char) * (get_len() + 1));
+	return (NULL);
+}
+
+int	main(void)
+{
+	char const *s1 = "   \t\t\n  aa \t   \n ";
+	char const set[3] = {'\t', ' ', '\n'};
+	ft_strtrim(s1, set);
+	return (0);
 }
