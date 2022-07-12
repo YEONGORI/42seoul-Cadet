@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 20:28:46 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/11 20:34:49 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/12 14:45:04 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/12 14:51:41 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (n > 0)
+	if (s)
 	{
-		
+		ft_putstr_fd(s, fd);
+		write(fd, "\n", 1);
 	}
-	else
-	{
-		
-	}
-	
 }
