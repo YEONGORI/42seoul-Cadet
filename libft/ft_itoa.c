@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:28:46 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/12 15:27:56 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:52:02 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,64 @@
 
 static int	get_digit(int n)
 {
-	int	res;
+	int			res;
+	long long	l_n;
 
 	res = 0;
-	while (n > 0)
+	l_n = (long long)n;
+	if (n < 0)
+		l_n *= -1;
+	if (n == 0)
+		res = 1;
+	while (l_n > 0)
 	{
 		res++;
+		l_n /= 10;
+	}
+	return (res);
+}
+
+static char	*itoa_plus(int n)
+{
+	int		d;
+	char	*res;
+
+	d = get_digit(n);
+	res = (char *) ft_calloc(d + 1, sizeof(char));
+	if (!res)
+		return (NULL);
+	while (d--)
+	{
+		res[d] = n % 10 + '0';
 		n /= 10;
+	}
+	return (res);
+}
+
+static char	*itoa_minus(int n)
+{
+	int			d;
+	long long	l_n;
+	char		*res;
+
+	d = get_digit(n);
+	l_n = (long long)n * -1;
+	res = (char *) ft_calloc(d + 2, sizeof(char));
+	if (!res)
+		return (NULL);
+	res[0] = '-';
+	while (d > 0)
+	{
+		res[d--] = l_n % 10 + '0';
+		l_n /= 10;
 	}
 	return (res);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*res;
-	int		len;
-	int		m;
-
-	m = 0;
-	len = get_digit(n);
-	if (n < 0)
-		m = 1;
-	res = (char *) malloc(sizeof(char) * (len + 1 + m));
-	ft_bzero(res, ft_strlen(res));
-	printf("len %d\n", len);
-	// res[len + m] = 0;
-	while (n > 0)
-	{
-		res[len-- + m] = n % 10;
-		n /= 10;
-	}
-	if (n < 0)
-		res[0] = '-';
-	return (res);
-}
-
-int main(void)
-{
-	printf("%s\n", ft_itoa(2137483647));
-	return (0);
+	if (n >= 0)
+		return (itoa_plus(n));
+	else
+		return (itoa_minus(n));
 }

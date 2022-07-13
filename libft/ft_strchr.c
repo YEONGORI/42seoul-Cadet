@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:19:00 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/11 22:18:31 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/13 19:53:56 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = -1;
+	if (!s)
+		return (0);
 	while (s[++i] != 0)
 		if (s[i] == c)
 			return ((char *)(s + i));

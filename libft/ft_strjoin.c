@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 12:56:43 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/10 16:02:24 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:53:43 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = -1;
 	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
 	str = (char *) malloc(sizeof(char) * (len + 1));
 	if (!str)

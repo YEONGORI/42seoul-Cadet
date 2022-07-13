@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 14:52:14 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/12 14:52:30 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:21:05 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	
+	write(fd, &c, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:51:28 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/12 12:35:34 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:05:36 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	if (!ft_strlen(s1))
 		return (ft_strdup(s1));
-	res = (char *) malloc(sizeof(char) * (get_len(s1, set) + 1));
+	res = (char *) ft_calloc(get_len(s1, set) + 1, sizeof(char));
 	if (!res)
 		return (NULL);
 	if (!get_len(s1, set))

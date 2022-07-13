@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:29:52 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/12 16:06:50 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:29:54 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ static int	is_del(char c, char del)
 	return (0);
 }
 
-static int	cnt_str(char const *s, char del)
+static int	cnt_word(char const *s, char del)
 {
 	int		i;
 	int		cnt;
 
 	i = 0;
 	cnt = 0;
+	if (!s || !del)
+		return (0);
 	while (s[i])
 	{
 		while (s[i] && is_del(s[i], del))
@@ -35,7 +37,6 @@ static int	cnt_str(char const *s, char del)
 		while (s[i] && !is_del(s[i], del))
 			i++;
 	}
-	printf("cnt:  %d\n", cnt);
 	return (cnt);
 }
 
@@ -63,18 +64,20 @@ static int	ft__strlen(const char *s, char del)
 char	**ft_split(char const *s, char c)
 {
 	int		i;
+	int		len;
 	char	**res;
 
 	i = -1;
-	res = (char **) malloc (sizeof(char *) * (cnt_str(s, c) + 1));
+	len = cnt_word(s, c);
+	res = (char **) ft_calloc ((len + 1), sizeof(char *));
 	if (!res)
 		return (NULL);
-	res[cnt_str(s, c)] = 0;
-	while (*s)
+	res[len] = 0;
+	while (++i < len)
 	{
 		while (*s && is_del(*s, c))
 			s++;
-		res[++i] = (char *) malloc(sizeof(char) * (ft__strlen(s, c) + 1));
+		res[i] = (char *) malloc(sizeof(char) * (ft__strlen(s, c) + 1));
 		if (!res[i])
 		{
 			while (i > 0)
@@ -82,34 +85,7 @@ char	**ft_split(char const *s, char c)
 			return (NULL);
 		}
 		res[i] = ft_strcpy(res[i], s, c);
-		s += ft__strlen(s, c);
+		s += ft__strlen(res[i], c);
 	}
 	return (res);
-}
-
-int	ft_count(char **str)
-{
-	int	i = 0;
-
-	while (str[i] != NULL)
-		i++;
-	if (str[i] == NULL)
-		i++;
-	return (i);
-}
-
-int	main(void)
-{
-	char **res = ft_split("split    ||this|for|me|||||!|", '|');
-	printf("len = %d\n", ft_count(res));
-	for (int i = 0; i < 6; i++)
-	{
-		for (int j = 0; j < (int)strlen(res[i]); j++)
-		{
-			if (res[i] != NULL)
-				printf("%c", res[i][j]);
-		}
-		printf("\n");
-	}
-	return (0);
 }
