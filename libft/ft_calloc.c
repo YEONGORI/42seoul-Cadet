@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 21:17:01 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/11 21:07:18 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:52:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
-	if (count * size >= SIZE_MAX)
+	if (count == SIZE_MAX || size == SIZE_MAX)
 		return (NULL);
 	ptr = malloc(count * size);
 	if (!ptr)

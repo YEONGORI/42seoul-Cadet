@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:29:52 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/13 18:29:54 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/14 18:46:05 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	**ft_split(char const *s, char c)
 	res = (char **) ft_calloc ((len + 1), sizeof(char *));
 	if (!res)
 		return (NULL);
-	res[len] = 0;
 	while (++i < len)
 	{
 		while (*s && is_del(*s, c))
@@ -87,5 +86,6 @@ char	**ft_split(char const *s, char c)
 		res[i] = ft_strcpy(res[i], s, c);
 		s += ft__strlen(res[i], c);
 	}
+	res[len] = 0;
 	return (res);
 }

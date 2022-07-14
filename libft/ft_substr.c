@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 12:46:14 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/13 20:04:45 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:16:45 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	i = -1;
-	if (len > ft_strlen(s) || ft_strlen(s) == 0 || start >= ft_strlen(s))
+	if (ft_strlen(s) == 0 || start >= ft_strlen(s))
 		len = 0;
+	if (len > ft_strlen(s))
+		len = ft_strlen(s);
 	ptr = (char *) ft_calloc(len + 1, sizeof(char));
 	if (!ptr)
 		return (NULL);

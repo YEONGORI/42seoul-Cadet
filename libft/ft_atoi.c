@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:33:36 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/09 17:21:55 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:53:21 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,21 @@ int	check(char c, int *sign)
 	return (0);
 }
 
-int	ft_atoi_ch(const char *str)
+long long	ft_atoi_ch(const char *str, int sign)
 {
-	int	res;
+	long long	res;
 
 	res = 0;
+	if (sign != 44 && sign != 1)
+		sign = -1;
 	while (*str >= '0' && *str <= '9')
 	{
 		res *= 10;
 		res += *(str++) - '0';
+		if (res >= 999999999999999999)
+			return (-1);
+		else if (res * sign <= -99999999999999999)
+			return (0);
 	}
 	return (res);
 }
@@ -48,14 +54,17 @@ int	ft_atoi(const char *str)
 	res = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	while (str[i] != 0 && res == 0)
+	while (str[i] != 0)
 	{
 		if ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 			return (0);
 		if (check(str[i], &sign) < 0)
 			return (0);
 		if (str[i] >= '0' && str[i] <= '9')
-			res = ft_atoi_ch(str + i);
+		{
+			res = ft_atoi_ch(str + i, sign);
+			break ;
+		}
 		i++;
 	}
 	return (res * (sign / 44 + sign % 44));
