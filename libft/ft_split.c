@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:29:52 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/14 18:46:05 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:28:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	cnt_word(char const *s, char del)
 
 	i = 0;
 	cnt = 0;
-	if (!s || !del)
+	if (!s)
 		return (0);
 	while (s[i])
 	{

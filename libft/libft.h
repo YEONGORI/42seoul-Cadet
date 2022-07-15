@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 13:08:14 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/14 19:15:17 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/15 15:36:02 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIBFT_H
 
 # include <unistd.h>
-# include <ctype.h>
 # include <stdlib.h>
 
 typedef struct s_list

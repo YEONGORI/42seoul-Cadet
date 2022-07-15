@@ -6,13 +6,13 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/14 18:50:04 by yeongele          #+#    #+#              #
-#    Updated: 2022/07/14 18:57:34 by yeongele         ###   ########.fr        #
+#    Updated: 2022/07/15 16:03:32 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = cc
+CC = gcc # 이부분 cc로 바꾸자
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -23,28 +23,41 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c \
 	ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 	ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-	ft_putnbr_fd.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
-	ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
-	ft_lstiter.c ft_lstmap.c
+	ft_putnbr_fd.c
+	
+B_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstadd_back.c \
+	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_lstlast.c
 
 OBJS = $(SRCS:.c=.o)
 
-INCS = libft.h
+B_OBJS = $(B_SRCS:.c=.o)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS)
+INCS = libft.h
+ifdef FLAG
+	OBJS_TOTAL = $(OBJS) $(B_OBJS)
+else
+	OBJS_TOTAL = $(OBJS)
+endif
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-	ar rsc $(NAME) $(OBJS)
-
 clean:
-		rm -f $(OBJS)
+	@rm -f $(OBJS) $(B_OBJS)
+
 
 fclean:	clean
-		rm -f $(NAME)
+	@rm -f $(NAME)
 
-re: fclean all
+re: 
+	make fclean
+	make all
 
-.PHONY:	all	clean	fclean	re
+bonus:
+	@make FLAG=1 all
+	
+$(NAME) : $(OBJS_TOTAL)
+	ar rsc $@ $^
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -I $(INCS)
+
+.PHONY:	all clean fclean re bonus
