@@ -6,13 +6,13 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/14 18:50:04 by yeongele          #+#    #+#              #
-#    Updated: 2022/07/15 16:03:32 by yeongele         ###   ########.fr        #
+#    Updated: 2022/07/17 18:03:52 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc # 이부분 cc로 바꾸자
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 

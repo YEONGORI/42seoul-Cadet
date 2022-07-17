@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:43 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/17 15:10:30 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/17 16:25:06 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
-# define BUFFER_SIZE 7
-
 
 char	*get_next_line(int fd);
 char	*ft_strjoin_re(char const *s1, char const *s2);

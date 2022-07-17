@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:15:08 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/09 12:36:12 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/17 18:04:11 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t num)
 {
-	char		*d;
-	const char	*s;
+	unsigned char		*d;
+	const unsigned char	*s;
 
 	d = dest;
 	s = src;
