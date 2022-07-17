@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:45 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/17 13:31:13 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/17 15:10:17 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,30 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-static char	*make_result(char *backup, int eol)
+char	*res_new_line(char *backup)
 {
-	int		i;
 	char	*res;
+	int		i;
 
-	i = -1;
-	res = (char *) malloc(sizeof(char) * (eol + 1));
+	i = ft_strchr_re(backup, '\n');
+	res = (char *) malloc(sizeof(char) * (ft_strlen(backup) - i + 1));
 	if (!res)
 		return (NULL);
-	while (++i <= eol)
-		res[i] = backup[i];
-	res[i] = 0;
+	ft_strlcpy(res, backup, i + 2);
 	free(backup);
 	return (res);
 }
 
-static int	ch_new_line(char *backup)
+char	*res_end_of_file(char *backup)
 {
-	int	i;
+	char	*res;
 
-	i = -1;
-	while (++i)
-		if (backup[i] == '\n' || backup[i] == '\0')
-			return (i);
-	return (0);
+	res = (char *) malloc(sizeof(char) * (ft_strlen(backup) + 1));
+	if (!res)
+		return (NULL);
+	ft_strlcpy(res, backup, ft_strlen(backup));
+	free(backup);
+	return (res);
 }
 
 char	*get_next_line(int fd)
@@ -49,25 +48,32 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	size = read(fd, &buf, BUFFER_SIZE);
-	while (size >= 0)
+	backup = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!backup)
+		return (NULL);
+	while (1)
 	{
-		backup = ft_strjoin(backup, buf);
-		if (backup == NULL)
-			return (NULL);
-		size = ch_new_line(backup);
-		printf("hi");
-		if (size > 0)
-			return (make_result(backup, size));
 		size = read(fd, &buf, BUFFER_SIZE);
+		if (size < 0)
+			return (NULL);
+		backup = ft_strjoin_re(backup, buf);
+		if (!backup)
+			return (NULL);
+		if (ft_strchr_re(buf, '\n') >= 0)
+			break ;
+		if (size < BUFFER_SIZE)
+			break ;
 	}
-	return (NULL);
+	printf("buf: %s", buf);
+	printf("bau: %s", backup);
+	printf("idx: %d\n", ft_strchr_re(buf, '\n'));
+	if (ft_strchr_re(buf, '\n') >= 0)
+		return (res_new_line(backup));
+	return (res_end_of_file(backup));
 }
-
 
 int main(void)
 {
 	int fd = open("test", O_RDONLY);
-	printf("%d\n", fd);
 	printf("%s", get_next_line(fd));
 }
