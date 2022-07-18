@@ -6,12 +6,16 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:45 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/17 16:25:01 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:03:53 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+void	free_all(char *backup)
+{
+	
+}
 
 char	*res_new_line(char *backup)
 {
