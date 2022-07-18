@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:47 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/18 11:41:42 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:41:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strjoin_re(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
 	int		j;
@@ -34,7 +34,7 @@ char	*ft_strjoin_re(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *) malloc(sizeof(char) * (len + 1));
+	str = (char *) ft_calloc((len + 1), sizeof(char));
 	if (!str)
 		return (NULL);
 	while (s1[++i] != 0)
@@ -42,12 +42,12 @@ char	*ft_strjoin_re(char const *s1, char const *s2)
 	i = -1;
 	while (s2[++i] != 0)
 		str[j++] = s2[i];
-	str[j++] = 0;
+	str[j] = 0;
 	free((void *)s1);
 	return (str);
 }
 
-int	ft_strchr_re(const char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
 	int				i;
 	unsigned char	tmp;
@@ -62,16 +62,26 @@ int	ft_strchr_re(const char *s, int c)
 	return (-1);
 }
 
-void	ft_strlcpy(char *dest, const char *src, size_t datsize)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
+	char	*ptr;
 
-	if (datsize == 0)
-		return ;
+	if (!s)
+		return (NULL);
 	i = -1;
-	while (src[++i] != 0 && i < datsize - 1)
-		dest[i] = src[i];
-	dest[i] = 0;
+	if (ft_strlen(s) == 0 || start >= ft_strlen(s))
+		len = 0;
+	if (len >= ft_strlen(s))
+		len = ft_strlen(s);
+	ptr = (char *) ft_calloc((len + 1), sizeof(char));
+	if (!ptr)
+		return (NULL);
+	while (++i < len && s[start + i] != 0)
+		ptr[i] = s[start + i];
+	ptr[i] = 0;
+	free((void *)s);
+	return (ptr);
 }
 
 void	*ft_calloc(size_t count, size_t size)
