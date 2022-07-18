@@ -6,12 +6,12 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:47 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/17 14:55:27 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:41:42 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
+
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -62,20 +62,32 @@ int	ft_strchr_re(const char *s, int c)
 	return (-1);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t datsize)
+void	ft_strlcpy(char *dest, const char *src, size_t datsize)
 {
 	size_t	i;
-	size_t	src_len;
 
-	i = 0;
-	while (src[i] != 0)
-		i++;
-	src_len = i;
 	if (datsize == 0)
-		return (src_len);
+		return ;
 	i = -1;
 	while (src[++i] != 0 && i < datsize - 1)
 		dest[i] = src[i];
 	dest[i] = 0;
-	return (src_len);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	size_t			i;
+	unsigned char	*tmp;
+	void			*ptr;
+
+	if (count == SIZE_MAX || size == SIZE_MAX)
+		return (NULL);
+	i = 0;
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	tmp = (unsigned char *)ptr;
+	while (i < count * size)
+		tmp[i++] = 0;
+	return (ptr);
 }
