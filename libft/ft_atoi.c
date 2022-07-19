@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:33:36 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/17 18:05:11 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:54:22 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ long long	ft_atoi_ch(const char *str, int sign)
 	{
 		res *= 10;
 		res += *(str++) - '0';
-		if (res >= __LONG_LONG_MAX__)
+		if (res >= 999999999999999999)
 			return (-1);
-		else if (res * sign <= __LONG_LONG_MAX__ * -1)
+		else if (res * sign <= -99999999999999999)
 			return (0);
 	}
 	return (res);

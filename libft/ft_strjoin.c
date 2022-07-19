@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 12:56:43 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/13 17:53:43 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/19 11:18:55 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = -1;
 	while (s2[++i] != 0)
 		str[j++] = s2[i];
-	str[j++] = 0;
+	str[j] = 0;
 	return (str);
 }

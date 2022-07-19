@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:43 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/18 17:17:06 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:24:05 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define BUFFER_SIZE 42
-
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len, int do_free);
 
 #endif
