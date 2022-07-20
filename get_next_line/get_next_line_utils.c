@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:47 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/19 16:23:59 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:01:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*str;
 
 	i = -1;
-	j = 0;
+	j = -1;
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
@@ -38,13 +38,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!str)
 		return (NULL);
 	while (s1[++i] != 0)
-		str[j++] = s1[i];
+		str[++j] = s1[i];
 	i = -1;
 	while (s2[++i] != 0)
-		str[j++] = s2[i];
-	str[j] = 0;
-	if (s1)
-		free((void *)s1);
+		str[++j] = s2[i];
+	free((void *)s1);
 	return (str);
 }
 
@@ -58,12 +56,10 @@ int	ft_strchr(const char *s, int c)
 	while (s[++i] != 0)
 		if (s[i] == tmp)
 			return (i);
-	if (s[i] == 0 && tmp == '\0')
-		return (i);
 	return (-1);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len, int do_free)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*ptr;
@@ -80,9 +76,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len, int do_free)
 		return (NULL);
 	while (++i < len && s[start + i] != 0)
 		ptr[i] = s[start + i];
-	ptr[i] = 0;
-	if (do_free)
-		free((void *)s);
 	return (ptr);
 }
 
