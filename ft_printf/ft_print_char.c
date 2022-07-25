@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_up.c                                  :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:41:37 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/21 20:42:05 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/21 19:06:54 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/25 21:15:02 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_print_hex_up()
+#include "./ft_printf.h"
+
+int	ft_print_char(char c)
 {
-	
+	return (ft_putchar(c));
 }

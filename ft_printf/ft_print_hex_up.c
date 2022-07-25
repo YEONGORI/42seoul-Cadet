@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_print_hex_up.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 19:06:54 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/21 20:41:24 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/21 20:41:37 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/25 21:17:07 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
-
-int	ft_print_char(char c)
+int	ft_print_hex_low(unsigned int n)
 {
-	int	t;
+	int	i;
 
-	t += write(1, &c, 1);
-	return (t);
+	i = print_ptr((long long)n, "0123456789ABCDEF", 1);
+	return (i);
 }
