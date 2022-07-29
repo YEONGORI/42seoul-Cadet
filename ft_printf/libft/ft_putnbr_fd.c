@@ -1,48 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_dec.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:02:33 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 11:54:47 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/12 14:30:47 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/15 15:46:42 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	d_recursive(int n, int *t)
+static void	recursive(n, fd)
 {
 	char	conv;
 
 	if (n < 10)
 	{
 		conv = n + '0';
-		*t += write(1, &conv, 1);
+		write(fd, &conv, 1);
 	}
 	else
 	{
-		d_recursive(n / 10, t);
-		d_recursive(n % 10, t);
+		recursive(n / 10, fd);
+		recursive(n % 10, fd);
 	}
 }
 
-int	ft_print_dec(int n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	t;
-
-	t = 0;
+	if (fd < 0)
+		return ;
 	if (n == -2147483648)
 	{
-		t += (int)write(1, "-2147483648", 11);
-		return (t);
+		write(fd, "-2147483648", 11);
+		return ;
 	}
 	else if (n < 0)
 	{
-		t += write(1, "-", 1);
+		write(fd, "-", 1);
 		n *= -1;
 	}
-	d_recursive(n, &t);
-	return (t);
+	recursive(n, fd);
 }

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:24:46 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/09 13:21:45 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_print_hex_low(unsigned int n)
+int	ft_toupper(int c)
 {
-	int	i;
-
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }

@@ -6,11 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 20:41:37 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/25 21:17:07 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/29 12:10:23 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_print_hex_low(unsigned int n)
+#include "ft_printf.h"
+
+int	ft_print_hex_up(unsigned int n)
 {
 	int	i;
 

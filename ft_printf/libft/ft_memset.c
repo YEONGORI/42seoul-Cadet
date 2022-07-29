@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:18:17 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/15 15:46:08 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+void	*ft_memset(void *dest, int c, size_t count)
 {
-	int	i;
+	size_t			i;
+	unsigned char	uc_c;
+	unsigned char	*tmp;
 
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	i = 0;
+	uc_c = (unsigned char)c;
+	tmp = (unsigned char *)dest;
+	while (i < count)
+		tmp[i++] = uc_c;
+	return (tmp);
 }

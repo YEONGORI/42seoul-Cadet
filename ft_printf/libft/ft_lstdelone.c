@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/13 22:24:33 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/14 13:52:01 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	int	i;
-
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	if (!lst || !del)
+		return ;
+	del(lst -> content);
+	free(lst);
 }

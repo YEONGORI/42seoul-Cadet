@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 20:02:33 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/21 21:19:18 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:54:42 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 void	i_recursive(int n, int *t)
 {

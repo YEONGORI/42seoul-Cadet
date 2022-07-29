@@ -1,48 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_dec.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:02:33 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 11:54:47 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/13 21:19:34 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/15 17:25:29 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	d_recursive(int n, int *t)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char	conv;
+	t_list	*tmp;
 
-	if (n < 10)
-	{
-		conv = n + '0';
-		*t += write(1, &conv, 1);
-	}
+	if (!new)
+		return ;
+	else if (!lst)
+		lst = &new;
+	else if (!(*lst))
+		*lst = new;
 	else
 	{
-		d_recursive(n / 10, t);
-		d_recursive(n % 10, t);
+		tmp = *lst;
+		while (tmp -> next)
+			tmp = tmp -> next;
+		tmp -> next = new;
 	}
-}
-
-int	ft_print_dec(int n)
-{
-	int	t;
-
-	t = 0;
-	if (n == -2147483648)
-	{
-		t += (int)write(1, "-2147483648", 11);
-		return (t);
-	}
-	else if (n < 0)
-	{
-		t += write(1, "-", 1);
-		n *= -1;
-	}
-	d_recursive(n, &t);
-	return (t);
 }

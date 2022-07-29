@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/13 16:49:14 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/13 18:49:51 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	unsigned int	i;
+	char			*res;
 
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	i = -1;
+	if (!s)
+		return (NULL);
+	res = (char *)ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!res)
+		return (NULL);
+	while (s[++i])
+		res[i] = f(i, s[i]);
+	return (res);
 }

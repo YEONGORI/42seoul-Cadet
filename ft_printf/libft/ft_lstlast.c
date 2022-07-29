@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/13 21:17:40 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/14 13:34:06 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int	i;
+	t_list	*tmp;
 
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	tmp = lst;
+	if (!lst)
+		return (NULL);
+	while (tmp -> next)
+		tmp = tmp -> next;
+	return (tmp);
 }

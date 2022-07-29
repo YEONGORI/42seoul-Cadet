@@ -1,48 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_dec.c                                     :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:02:33 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 11:54:47 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:23:00 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/09 14:01:07 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	d_recursive(int n, int *t)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	conv;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	if (n < 10)
+	i = -1;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (str1 == 0 && str2 == 0)
+		return (0);
+	while (++i < n && !(str1[i] == 0 && str2[i] == 0))
 	{
-		conv = n + '0';
-		*t += write(1, &conv, 1);
+		if (str1[i] != str2[i])
+		{
+			if (str1[i] > str2[i])
+				return (1);
+			return (-1);
+		}
 	}
-	else
-	{
-		d_recursive(n / 10, t);
-		d_recursive(n % 10, t);
-	}
-}
-
-int	ft_print_dec(int n)
-{
-	int	t;
-
-	t = 0;
-	if (n == -2147483648)
-	{
-		t += (int)write(1, "-2147483648", 11);
-		return (t);
-	}
-	else if (n < 0)
-	{
-		t += write(1, "-", 1);
-		n *= -1;
-	}
-	d_recursive(n, &t);
-	return (t);
+	return (0);
 }

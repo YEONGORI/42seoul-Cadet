@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 19:18:01 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/09 17:38:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*s1_un;
+	unsigned char	*s2_un;
 
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	i = -1;
+	s1_un = (unsigned char *)s1;
+	s2_un = (unsigned char *)s2;
+	while (++i < n)
+	{
+		if (s1_un[i] != s2_un[i])
+			return (s1_un[i] - s2_un[i]);
+	}
+	return (0);
 }

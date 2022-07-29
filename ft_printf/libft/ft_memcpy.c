@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:17:19 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/09 12:36:00 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+void	*ft_memcpy(void *dest, const void *src, size_t num)
 {
-	int	i;
+	size_t				i;
+	unsigned char		*d;
+	unsigned const char	*s;
 
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	i = -1;
+	d = dest;
+	s = src;
+	if (num == 0 || dest == src)
+		return (dest);
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	while (++i < num)
+		d[i] = s[i];
+	return (dest);
 }

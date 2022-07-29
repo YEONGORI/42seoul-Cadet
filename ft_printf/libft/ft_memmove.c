@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:15:08 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/17 18:04:11 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+void	*ft_memmove(void *dest, const void *src, size_t num)
 {
-	int	i;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	d = dest;
+	s = src;
+	if (s < d)
+		while (num-- > 0)
+			*(d + num) = *(s + num);
+	else if (s != d)
+		while (num-- > 0)
+			*d++ = *s++;
+	return (dest);
 }

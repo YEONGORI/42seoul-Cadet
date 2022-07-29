@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/14 11:54:29 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/14 13:51:38 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+void	ft_lstclear(t_list	**lst, void (*del)(void *))
 {
-	int	i;
+	t_list	*cur;
+	t_list	*nxt;
 
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	if (!lst || !del)
+		return ;
+	cur = *lst;
+	while (cur)
+	{
+		nxt = cur -> next;
+		ft_lstdelone(cur, del);
+		cur = nxt;
+	}
+	*lst = NULL;
 }

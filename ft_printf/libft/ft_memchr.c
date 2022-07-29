@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_low.c                                 :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 20:42:38 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:10 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:25:56 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/10 15:59:32 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_hex_low(unsigned int n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	size_t				i;
+	unsigned char		c_un;
+	const unsigned char	*s_un;
 
-	i = print_ptr((long long)n, "0123456789abcdef", 1);
-	return (i);
+	i = -1;
+	c_un = (unsigned char)c;
+	s_un = (const unsigned char *)s;
+	while (++i < n)
+		if (s_un[i] == c_un)
+			return ((unsigned char *)(s_un + i));
+	return (NULL);
 }
