@@ -6,12 +6,12 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/14 18:50:04 by yeongele          #+#    #+#              #
-#    Updated: 2022/07/29 11:47:51 by yeongele         ###   ########.fr        #
+#    Updated: 2022/07/29 16:17:17 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC_PREF = ft_

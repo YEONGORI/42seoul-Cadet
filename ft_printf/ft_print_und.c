@@ -6,13 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 11:35:08 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:13:41 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/07/29 16:18:05 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	i_recursive(unsigned int n, int *t)
+void	u_recursive(unsigned int n, int *t)
 {
 	char	conv;
 
@@ -23,8 +23,8 @@ void	i_recursive(unsigned int n, int *t)
 	}
 	else
 	{
-		i_recursive(n / 10, t);
-		i_recursive(n % 10, t);
+		u_recursive(n / 10, t);
+		u_recursive(n % 10, t);
 	}
 }
 
@@ -33,6 +33,6 @@ int	ft_print_und(unsigned int n)
 	int	t;
 
 	t = 0;
-	i_recursive(n, &t);
+	u_recursive(n, &t);
 	return (t);
 }
