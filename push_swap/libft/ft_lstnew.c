@@ -23,5 +23,5 @@ twll	*ft_lstnew(int val)
 	new -> next = NULL;
 	new -> prev = NULL;
 	
-	return new;
+	return (new);
 }
