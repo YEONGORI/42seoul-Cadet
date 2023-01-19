@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:04:44 by yeongele          #+#    #+#             */
-/*   Updated: 2022/08/19 16:15:33 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:32:44 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ typedef struct twll
 
 int		init_stack(int ac, char *av[], twll **a);
 void	ft_lstadd_front(twll **lst, twll *new);
+void	ft_lstadd_back(twll **lst, twll *new);
 int		ft_lstclear(twll **lst);
 void	ft_lstdelone(twll *lst);
 twll	*ft_lstnew(int val);
+int	ft_lstsize(twll *lst);
 
 #endif

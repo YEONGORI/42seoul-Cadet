@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 16:51:06 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/19 16:51:08 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/19 15:45:56 by yeongele          #+#    #+#             */
+/*   Updated: 2023/01/19 16:51:16 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-twll	*ft_lstnew(int val)
+int	ft_lstsize(twll *lst)
 {
-	twll	*new;
+	int		i;
 
-	new = malloc(sizeof(twll));
-	if (!new)
-		return (NULL);
-	new -> data = val;
-	new -> next = NULL;
-	new -> prev = NULL;
-	
-	return (new);
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		lst = lst -> next;
+		i++;
+	}
+	return (i);
 }

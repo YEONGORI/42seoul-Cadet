@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   op_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 16:51:06 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/19 16:51:08 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/19 15:58:37 by yeongele          #+#    #+#             */
+/*   Updated: 2023/01/19 16:16:51 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-twll	*ft_lstnew(int val)
+void	push(twll **push_ll, twll **pop_ll)
 {
-	twll	*new;
+	twll	*tmp;
 
-	new = malloc(sizeof(twll));
-	if (!new)
-		return (NULL);
-	new -> data = val;
-	new -> next = NULL;
-	new -> prev = NULL;
-	
-	return (new);
-}
+	tmp = (*pop_ll) -> next;
+	ft_lstadd_front(push_ll, ft_lstnew((*pop_ll) -> data));
+	ft_lstdelone(*pop_ll); // 여기서 모든 리스트가 지워지진 않을지 의심
+	*pop_ll = tmp;
+	(*pop_ll) -> prev = NULL;
+} 

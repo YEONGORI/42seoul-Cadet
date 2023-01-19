@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 16:51:06 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/19 16:51:08 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/19 16:49:59 by yeongele          #+#    #+#             */
+/*   Updated: 2023/01/19 17:45:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-twll	*ft_lstnew(int val)
+void	sort(twll **a, twll **b)
 {
-	twll	*new;
 
-	new = malloc(sizeof(twll));
-	if (!new)
-		return (NULL);
-	new -> data = val;
-	new -> next = NULL;
-	new -> prev = NULL;
-	
-	return (new);
 }
