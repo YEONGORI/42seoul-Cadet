@@ -18,7 +18,7 @@ void	push(twll **push_ll, twll **pop_ll)
 
 	tmp = (*pop_ll) -> next;
 	ft_lstadd_front(push_ll, ft_lstnew((*pop_ll) -> data));
-	ft_lstdelone(*pop_ll); // 여기서 모든 리스트가 지워지진 않을지 의심
+	ft_lstdelone(*pop_ll); // 여기서 모든 리스트가 지워지진 않을지 의심됨
 	*pop_ll = tmp;
 	(*pop_ll) -> prev = NULL;
 } 

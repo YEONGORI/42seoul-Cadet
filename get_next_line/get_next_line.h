@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:43 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/20 17:41:53 by yeongele         ###   ########.fr       */
+/*   Updated: 2022/08/26 12:00:36 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
-# include <fcntl.h>
-# include <stdio.h>
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
