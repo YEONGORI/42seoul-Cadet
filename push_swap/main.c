@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:04:23 by yeongele          #+#    #+#             */
-/*   Updated: 2022/08/19 16:04:29 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:05:42 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int main(int argc, char *argv[])
 {
-	twll	*a;
-	twll	*b;
+	s_stack	*a;
 
-	a = malloc(sizeof(twll));
-	if (init_stack(argc, argv, &a))
-		return (0);
-	
+	a = NULL;
+	if (argc < 2)
+		exit(1);
+	else
+	{
+		init_stack(argc, argv, &a);
+		sort_stack(&a);
+	}
+	return (0);
 }
