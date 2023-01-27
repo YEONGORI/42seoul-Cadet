@@ -1,46 +1,46 @@
 #include "../push_swap.h"
 
-void	rotate_a(s_stack **lst)
+void	rotate_a(s_stack **lst) // 첫번째 원소를 가장 마지막으로
 {
 	s_stack	*tmp;
+	s_stack *bottom;
 
-	tmp = ft_lstnew((*lst) -> data);
-	ft_lstadd_back(lst, tmp);
-	tmp = (*lst) -> next;
-	ft_lstdelone(*lst);
-	*lst = tmp;
-	(*lst) -> prev = NULL;
+	tmp = *lst;
+	*lst = (*lst) -> next;
+	bottom = get_bottom(*lst);
+	tmp -> next = NULL;
+	bottom -> next = tmp;
 	write(1, "ra\n", 4);
 }
 
 void	rotate_b(s_stack **lst)
 {
 	s_stack	*tmp;
+	s_stack *bottom;
 
-	tmp = ft_lstnew((*lst) -> data);
-	ft_lstadd_back(lst, tmp);
-	tmp = (*lst) -> next;
-	ft_lstdelone(*lst);
-	*lst = tmp;
-	(*lst) -> prev = NULL;
+	tmp = *lst;
+	*lst = (*lst) -> next;
+	bottom = get_bottom(*lst);
+	tmp -> next = NULL;
+	bottom -> next = tmp;
 	write(1, "rb\n", 4);
 }
 
 void	rotate_both(s_stack **a, s_stack **b)
 {
 	s_stack	*tmp;
+	s_stack *bottom;
 
-	tmp = ft_lstnew((*a) -> data);
-	ft_lstadd_back(a, tmp);
-	tmp = (*a) -> next;
-	ft_lstdelone(*a);
-	*a = tmp;
-	(*a) -> prev = NULL;
-	tmp = ft_lstnew((*b) -> data);
-	ft_lstadd_back(b, tmp);
-	tmp = (*b) -> next;
-	ft_lstdelone(*b);
-	*b = tmp;
-	(*b) -> prev = NULL;
+	tmp = *a;
+	*a = (*a) -> next;
+	bottom = get_bottom(*a);
+	tmp -> next = NULL;
+	bottom -> next = tmp;
+
+	tmp = *b;
+	*b = (*b) -> next;
+	bottom = get_bottom(*b);
+	tmp -> next = NULL;
+	bottom -> next = tmp;
 	write(1, "rr\n", 4);
 }

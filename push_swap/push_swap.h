@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:04:44 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/27 21:38:43 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:32:54 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ typedef struct t_stack
 	struct	t_stack *next;
 	struct	t_stack *prev;
 	int		data;
-	int		index;
-	int		cur_pos;
+	int		index; // 인덱스(스택 원소들 간의 크기 순위를 나타낸 것)를 사용해 비교를 진행한다.
+	int		cur_pos; // 
 	int		target_pos;
 	int		cost_a;
 	int		cost_b;
@@ -43,14 +43,17 @@ int		is_sorted(s_stack **a);
 int		get_max_index(s_stack *s);
 int		get_size(s_stack **a);
 void	init_stack(int ac, char **av, s_stack **a);
+void	set_index(s_stack *s, int size);
 
 /* utils */
 int		to_int(char *av);
 int		to_abs(int n);
+s_stack	*get_bottom(s_stack *s);
+s_stack *get_before_bottom(s_stack *s);
 
 /* operations */
 void	push_a(s_stack **a, s_stack **b);
-void	push_b(s_stack **b, s_stack **a);
+void	push_b(s_stack **a, s_stack **b);
 void	reverse_a(s_stack **lst);
 void	reverse_b(s_stack **lst);
 void	reverse_both(s_stack **a, s_stack **b);
@@ -80,7 +83,7 @@ void	resolve_b(s_stack **b, int *cost_b);
 /* sort.c */
 void	sort_three_param(s_stack **a);
 void	sort_params(s_stack **a, s_stack **b);
-void	sort_stack(s_stack **s);
+void	sort_stack(s_stack **a, s_stack **b);
 void	push_params_to_b(s_stack **a, s_stack **b);
 
 /* libft */

@@ -25,10 +25,18 @@ void	get_cost(s_stack **a, s_stack **b)
 
 void	move_start(s_stack **a, s_stack **b, int cost_a, int cost_b)
 {
+	printf("HIHIHIH\n");
 	if (cost_a < 0 && cost_b < 0)
+	{
+		printf("QQQQ\n");
 		rev_resolve_both(a, b, &cost_a, &cost_b);
+	}
 	else if (cost_a > 0 && cost_b > 0)
+	{
+		printf("WWWW\n");
 		resolve_both(a, b, &cost_a, &cost_b);
+	}
+	printf("EEEE\n");
 	resolve_a(a, &cost_a);
 	resolve_b(b, &cost_b);
 	push_a(a, b);
@@ -53,5 +61,6 @@ void	move_cheapest(s_stack **a, s_stack **b)
 		}
 		tmp = tmp -> next;
 	}
+	printf("@\n");
 	move_start(a, b, cost_a, cost_b);
 }

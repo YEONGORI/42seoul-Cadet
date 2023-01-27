@@ -16,7 +16,9 @@ void	resolve_both(s_stack **a, s_stack **b, int *cost_a, int *cost_b)
 	{
 		(*cost_a)--;
 		(*cost_b)--;
+		printf("h\n");
 		rotate_both(a, b);
+		printf("j\n");
 	}
 }
 

@@ -15,14 +15,14 @@ void	sort_three_param(s_stack **a)
 
 void	push_params_to_b(s_stack **a, s_stack **b)
 {
+	int i;
 	int	size_a;
 	int push_cnt;
-	int i;
 
+	i = 0;
 	size_a = get_size(a);
 	push_cnt = 0;
-	i = 0;
-	while (size_a >= 5 && i < size_a && push_cnt < size_a / 2)
+	while (size_a > 6 && i < size_a && push_cnt < size_a / 2)
 	{
 		if ((*a) -> index <= size_a / 2)
 		{
@@ -31,13 +31,13 @@ void	push_params_to_b(s_stack **a, s_stack **b)
 		}
 		else
 			rotate_a(a);
+		i++;
 	}
 	while (size_a - push_cnt > 3)
 	{
 		push_b(a, b);
 		push_cnt++;
 	}
-	
 }
 
 void	shift_a(s_stack **a)
@@ -69,23 +69,36 @@ void	sort_params(s_stack **a, s_stack **b)
 {
 	push_params_to_b(a, b);
 	sort_three_param(a);
+	// while (*a)
+	// {
+	// 	printf("%d ", (*a) -> data);
+	// 	(*a) = (*a) -> next;
+	// }
 	while (*b)
 	{
+		printf("1\n");
 		get_target_position(a, b);
+		printf("2\n");
 		get_cost(a, b);
+		printf("3\n");
 		move_cheapest(a, b);
+		printf("4\n");
 	}
 	if (!is_sorted(a))
 		shift_a(a);
+	while (*a)
+	{
+		printf("%d ", (*a) -> data);
+		(*a) = (*a) -> next;
+	}
+	printf("\nFINISHED!!\n");
 }
 
-void	sort_stack(s_stack **a)
+void	sort_stack(s_stack **a, s_stack **b)
 {
 	int		len;
-	s_stack	**b;
 
 	len = get_size(a);
-	b = NULL;
 	if (len == 2)
 		swap_a(a);
 	else if (len == 3)

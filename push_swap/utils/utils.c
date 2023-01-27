@@ -29,3 +29,17 @@ int to_abs(int n)
 		return (n * -1);
 	return (n);
 }
+
+s_stack	*get_bottom(s_stack *s)
+{
+	while (s && s -> next)
+		s = s -> next;
+	return (s);
+}
+
+s_stack *get_before_bottom(s_stack *s)
+{
+	while (s && s -> next && s -> next -> next)
+		s = s -> next;
+	return (s);
+}

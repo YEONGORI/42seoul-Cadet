@@ -6,12 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:28:21 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/27 21:43:26 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:09:31 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
 
 int	get_max_index(s_stack *s)
 {
@@ -42,14 +41,12 @@ int	get_size(s_stack **a)
 	return (len);
 }
 
-void	set_index(s_stack *s)
+void	set_index(s_stack *s, int size)
 {
 	s_stack *ptr;
 	s_stack *maximum;
 	int		data;
-	int		size;
 
-	size = (get_size(&s) + 1);
 	while (size-- > 0)
 	{
 		ptr = s;
@@ -63,7 +60,7 @@ void	set_index(s_stack *s)
 			{
 				data = ptr -> data;
 				maximum = ptr;
-				ptr = s;
+				ptr = s; // 이건 왜 필요하지?
 			}
 			else
 				ptr = ptr -> next;
@@ -72,7 +69,6 @@ void	set_index(s_stack *s)
 			maximum -> index = size;
 	}
 }
-
 
 void	init_stack(int ac, char **av, s_stack **a)
 {
@@ -91,6 +87,6 @@ void	init_stack(int ac, char **av, s_stack **a)
 	}
 	if (is_sorted(a))
 		exit(0);
-	set_index(*a);
+	set_index(*a, get_size(a) + 1);
 	return;
 }
