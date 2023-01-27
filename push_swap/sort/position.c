@@ -14,11 +14,33 @@ void	get_position(s_stack **s)
 	}
 }
 
+int	get_lowest_index_position(s_stack **s)
+{
+	s_stack	*tmp;
+	int		idx;
+	int		pos;
+
+	tmp = *s;
+	idx = -2147483638;
+	get_position(s);
+	pos = tmp -> cur_pos;
+	while (tmp)
+	{
+		if (tmp -> index < idx)
+		{
+			idx = tmp -> index;
+			pos = tmp -> cur_pos;
+		}
+		tmp = tmp -> next;
+	}
+	return (pos);
+}
+
 int	get_target(s_stack **a, int b_idx, int target_idx, int target_pos)
 {
 	s_stack *a_tmp;
 
-	a_tmp = a;
+	a_tmp = *a;
 	while (a_tmp)
 	{
 		if (a_tmp -> index < target_idx && a_tmp -> index > b_idx)
@@ -43,7 +65,7 @@ int	get_target(s_stack **a, int b_idx, int target_idx, int target_pos)
 	return (target_pos);
 }
 
-int	get_target_position(s_stack **a, s_stack **b)
+void	get_target_position(s_stack **a, s_stack **b)
 {
 	s_stack *tmp_b;
 	int		target_pos;

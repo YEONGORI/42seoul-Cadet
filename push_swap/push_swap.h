@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:04:44 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/27 14:37:20 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/27 21:38:43 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ typedef struct t_stack
 	int		index;
 	int		cur_pos;
 	int		target_pos;
+	int		cost_a;
+	int		cost_b;
 }	s_stack;
 
 
-#include <stdio.h>
-#include <string.h>
+#include <stdio.h> // 이거 지워야함
+#include <string.h> // 이거 지워야함
 
-#include <stdlib.h>
-#include <unistd.h>
+#include <stdlib.h> // malloc, free 주석 제거
+#include <unistd.h> // read, write 주석 제거
 
 /* checker.c */
 void	is_parameter_specified(char **av);
@@ -37,34 +39,49 @@ void	is_number(char *str);
 void	is_integer(long long n);
 int		is_sorted(s_stack **a);
 
-/* init_stack.c */
+/* init.c */
 int		get_max_index(s_stack *s);
 int		get_size(s_stack **a);
-int		to_int(char *av);
 void	init_stack(int ac, char **av, s_stack **a);
 
-/* sort stack.c */
-void	sort_stack(s_stack **s);
+/* utils */
+int		to_int(char *av);
+int		to_abs(int n);
 
 /* operations */
-void	push_a(s_stack **push_ll, s_stack **pop_ll);
-void	push_b(s_stack **push_ll, s_stack **pop_ll);
+void	push_a(s_stack **a, s_stack **b);
+void	push_b(s_stack **b, s_stack **a);
 void	reverse_a(s_stack **lst);
 void	reverse_b(s_stack **lst);
+void	reverse_both(s_stack **a, s_stack **b);
 void	rotate_a(s_stack **lst);
 void	rotate_b(s_stack **lst);
+void	rotate_both(s_stack **a, s_stack **b);
 void	swap_a(s_stack **lst);
 void	swap_b(s_stack **lst);
+
+/* move.c */
+void	get_cost(s_stack **a, s_stack **b);
+void	move_start(s_stack **a, s_stack **b, int cost_a, int cost_b);
+void	move_cheapest(s_stack **a, s_stack **b);
+
+/* position.c */
+void	get_target_position(s_stack **a, s_stack **b);
+int		get_target(s_stack **a, int b_idx, int target_idx, int target_pos);
+void	get_position(s_stack **s);
+int		get_lowest_index_position(s_stack **s);
+
+/* resolve.c */
+void	rev_resolve_both(s_stack **a, s_stack **b, int *cost_a, int *cost_b);
+void	resolve_both(s_stack **a, s_stack **b, int *cost_a, int *cost_b);
+void	resolve_a(s_stack **a, int *cost_a);
+void	resolve_b(s_stack **b, int *cost_b);
 
 /* sort.c */
 void	sort_three_param(s_stack **a);
 void	sort_params(s_stack **a, s_stack **b);
-
-/* position.c */
-int		get_target_position(s_stack **a, s_stack **b);
-int		get_target(s_stack **a, int b_idx, int target_idx, int target_pos);
-void	get_position(s_stack **s);
-
+void	sort_stack(s_stack **s);
+void	push_params_to_b(s_stack **a, s_stack **b);
 
 /* libft */
 void	ft_lstadd_front(s_stack **lst, s_stack *new);

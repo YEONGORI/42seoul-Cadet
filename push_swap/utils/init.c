@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:28:21 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/27 14:22:15 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/27 21:43:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 
 int	get_max_index(s_stack *s)
@@ -40,29 +40,6 @@ int	get_size(s_stack **a)
 		tmp = tmp->next;
 	}
 	return (len);
-}
-
-int	to_int(char *av)
-{
-	long long	i;
-	long long	r;
-	long long	m;
-
-	i = -1;
-	r = 0;
-	m = 1;
-	if (av[0] == '-')
-	{
-		m = -1;
-		i++;
-	}
-	while (av[++i])
-	{
-		r *= 10;
-		r += (av[i] - '0');
-	}
-	is_integer(r * m);
-	return (r * m);
 }
 
 void	set_index(s_stack *s)

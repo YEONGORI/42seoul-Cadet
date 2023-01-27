@@ -25,3 +25,22 @@ void	rotate_b(s_stack **lst)
 	(*lst) -> prev = NULL;
 	write(1, "rb\n", 4);
 }
+
+void	rotate_both(s_stack **a, s_stack **b)
+{
+	s_stack	*tmp;
+
+	tmp = ft_lstnew((*a) -> data);
+	ft_lstadd_back(a, tmp);
+	tmp = (*a) -> next;
+	ft_lstdelone(*a);
+	*a = tmp;
+	(*a) -> prev = NULL;
+	tmp = ft_lstnew((*b) -> data);
+	ft_lstadd_back(b, tmp);
+	tmp = (*b) -> next;
+	ft_lstdelone(*b);
+	*b = tmp;
+	(*b) -> prev = NULL;
+	write(1, "rr\n", 4);
+}

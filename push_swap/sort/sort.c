@@ -15,16 +15,16 @@ void	sort_three_param(s_stack **a)
 
 void	push_params_to_b(s_stack **a, s_stack **b)
 {
-	int	a_size;
+	int	size_a;
 	int push_cnt;
 	int i;
 
-	a_size = get_size(a);
+	size_a = get_size(a);
 	push_cnt = 0;
 	i = 0;
-	while (a_size >= 5 && i < a_size && push_cnt < a_size / 2)
+	while (size_a >= 5 && i < size_a && push_cnt < size_a / 2)
 	{
-		if ((*a) -> index <= a_size / 2)
+		if ((*a) -> index <= size_a / 2)
 		{
 			push_b(a, b);
 			push_cnt++;
@@ -32,12 +32,37 @@ void	push_params_to_b(s_stack **a, s_stack **b)
 		else
 			rotate_a(a);
 	}
-	while (a_size - push_cnt > 3)
+	while (size_a - push_cnt > 3)
 	{
 		push_b(a, b);
 		push_cnt++;
 	}
 	
+}
+
+void	shift_a(s_stack **a)
+{
+	int	pos;
+	int	size;
+
+	pos = get_lowest_index_position(a);
+	size = get_size(a);
+	if (pos > size / 2)
+	{
+		while (pos < size)
+		{
+			reverse_a(a);
+			pos++;
+		}
+	}
+	else
+	{
+		while (pos > 0)
+		{
+			rotate_a(a);
+			pos--;
+		}
+	}
 }
 
 void	sort_params(s_stack **a, s_stack **b)
@@ -48,8 +73,23 @@ void	sort_params(s_stack **a, s_stack **b)
 	{
 		get_target_position(a, b);
 		get_cost(a, b);
-		do_cheapest_move(a, b);
+		move_cheapest(a, b);
 	}
-	// if (!is_sorted(*a))
-	// 	shift_stack(a);
+	if (!is_sorted(a))
+		shift_a(a);
+}
+
+void	sort_stack(s_stack **a)
+{
+	int		len;
+	s_stack	**b;
+
+	len = get_size(a);
+	b = NULL;
+	if (len == 2)
+		swap_a(a);
+	else if (len == 3)
+		sort_three_param(a);
+	else
+		sort_params(a, b);
 }
