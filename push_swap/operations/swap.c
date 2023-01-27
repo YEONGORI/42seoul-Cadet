@@ -5,7 +5,7 @@ void	swap_a(s_stack **lst)
 	int	size;
 	int	tmp;
 	
-	size = get_len(lst);
+	size = get_size(lst);
 	if (size <= 1)
 		return;
 	tmp = (*lst) -> data;
@@ -19,7 +19,7 @@ void	swap_b(s_stack **lst)
 	int	size;
 	int	tmp;
 	
-	size = get_len(lst);
+	size = get_size(lst);
 	if (size <= 1)
 		return;
 	tmp = (*lst) -> data;

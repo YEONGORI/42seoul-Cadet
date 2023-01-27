@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:04:44 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/26 18:00:59 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:37:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ typedef struct t_stack
 	struct	t_stack *next;
 	struct	t_stack *prev;
 	int		data;
+	int		index;
+	int		cur_pos;
+	int		target_pos;
 }	s_stack;
 
 
@@ -35,7 +38,7 @@ void	is_integer(long long n);
 int		is_sorted(s_stack **a);
 
 /* init_stack.c */
-int		get_max_data(s_stack *s);
+int		get_max_index(s_stack *s);
 int		get_size(s_stack **a);
 int		to_int(char *av);
 void	init_stack(int ac, char **av, s_stack **a);
@@ -53,8 +56,15 @@ void	rotate_b(s_stack **lst);
 void	swap_a(s_stack **lst);
 void	swap_b(s_stack **lst);
 
-/* sort */
+/* sort.c */
 void	sort_three_param(s_stack **a);
+void	sort_params(s_stack **a, s_stack **b);
+
+/* position.c */
+int		get_target_position(s_stack **a, s_stack **b);
+int		get_target(s_stack **a, int b_idx, int target_idx, int target_pos);
+void	get_position(s_stack **s);
+
 
 /* libft */
 void	ft_lstadd_front(s_stack **lst, s_stack *new);
