@@ -6,16 +6,16 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:54:29 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/26 17:06:45 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/29 15:01:57 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_lstclear(s_stack	**lst)
+int	ft_lstclear(t_stack	**lst)
 {
-	s_stack	*cur;
-	s_stack	*nxt;
+	t_stack	*cur;
+	t_stack	*nxt;
 
 	if (!lst)
 		return (0);
@@ -23,7 +23,7 @@ int	ft_lstclear(s_stack	**lst)
 	while (cur)
 	{
 		nxt = cur -> next;
-		ft_lstdelone(cur);
+		free(cur);
 		cur = nxt;
 	}
 	*lst = NULL;

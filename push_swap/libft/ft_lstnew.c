@@ -6,17 +6,17 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:51:06 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/27 20:28:13 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/29 15:02:10 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-s_stack	*ft_lstnew(int data)
+t_stack	*ft_lstnew(int data)
 {
-	s_stack	*new;
+	t_stack	*new;
 
-	new = malloc(sizeof(s_stack));
+	new = malloc(sizeof(t_stack));
 	if (!new)
 		return (NULL);
 	new -> data = data;

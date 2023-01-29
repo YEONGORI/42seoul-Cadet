@@ -1,52 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rev_rotate.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/29 15:02:55 by yeongele          #+#    #+#             */
+/*   Updated: 2023/01/29 16:52:26 by yeongele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	reverse_a(s_stack **lst) // 마지막 원소를 가장 첫번째로
+void	reverse_a(t_stack **lst)
 {
-	s_stack	*tmp;
-	s_stack	*bottom;
-	s_stack	*before_bottom;
+	t_stack	*tmp;
+	t_stack	*bottom;
+	t_stack	*before_bottom;
 
 	bottom = get_bottom(*lst);
 	before_bottom = get_before_bottom(*lst);
 	tmp = *lst;
 	*lst = bottom;
-	(*lst) -> next = tmp;
+	(*lst)-> next = tmp;
 	before_bottom -> next = NULL;
-	write(1, "rra\n", 5);
+	write(1, "rra\n", 4);
 }
 
-void	reverse_b(s_stack **lst)
+void	reverse_b(t_stack **lst)
 {
-	s_stack	*tmp;
-	s_stack	*bottom;
-	s_stack	*before_bottom;
+	t_stack	*tmp;
+	t_stack	*bottom;
+	t_stack	*before_bottom;
 
 	bottom = get_bottom(*lst);
 	before_bottom = get_before_bottom(*lst);
 	tmp = *lst;
 	*lst = bottom;
-	(*lst) -> next = tmp;
+	(*lst)-> next = tmp;
 	before_bottom -> next = NULL;
-	write(1, "rrb\n", 5);
+	write(1, "rrb\n", 4);
 }
 
-void	reverse_both(s_stack **a, s_stack **b)
+void	reverse_both(t_stack **a, t_stack **b)
 {
-	s_stack	*tmp;
-	s_stack	*bottom;
-	s_stack	*before_bottom;
+	t_stack	*tmp;
+	t_stack	*bottom;
+	t_stack	*before_bottom;
 
 	bottom = get_bottom(*a);
 	before_bottom = get_before_bottom(*a);
 	tmp = *a;
 	*a = bottom;
-	(*a) -> next = tmp;
+	(*a)-> next = tmp;
 	before_bottom -> next = NULL;
 	bottom = get_bottom(*b);
 	before_bottom = get_before_bottom(*b);
 	tmp = *b;
 	*b = bottom;
-	(*b) -> next = tmp;
+	(*b)-> next = tmp;
 	before_bottom -> next = NULL;
-	write(1, "rrr\n", 5);
+	write(1, "rrr\n", 4);
 }

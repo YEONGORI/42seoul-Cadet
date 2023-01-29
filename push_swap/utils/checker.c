@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/29 15:10:34 by yeongele          #+#    #+#             */
+/*   Updated: 2023/01/29 17:11:40 by yeongele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 void	is_parameter_specified(char **av)
@@ -23,7 +35,7 @@ void	is_parameter_unique(char **av)
 			{
 				free(tmp);
 				tmp = NULL;
-				write(1, "Error: some arguments are duplicated\n", 38);
+				write(2, "Error\n", 6);
 				exit(1);
 			}
 			j++;
@@ -32,47 +44,44 @@ void	is_parameter_unique(char **av)
 	}
 }
 
-void	is_number(char *str)
+void	is_number(char *str, t_stack **a)
 {
 	int	i;
 
 	i = -1;
 	if (!str)
 	{
-		write(1, "Error: some arguments aren't number\n", 37);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	while (str[++i])
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != '-')
+		if (str[i] == '-')
 		{
-			write(1, "Error: some arguments aren't number\n", 37);
-			exit(1);
+			if (str[i + 1] == '-')
+				exit_error(a, NULL);
 		}
+		if ((str[i] < '0' || str[i] > '9') && str[i] != '-')
+			exit_error(a, NULL);
 	}
 }
 
-void	is_integer(long long n)
+void	is_integer(long long n, t_stack **s)
 {
-	if (n > 2147483647 || n < -2147483648)
-	{
-		write(1, "Error: some arguments aren't integers\n", 39);
-		exit(1);
-	}
+	if (n > C_INT_MAX || n < C_INT_MIN)
+		exit_error(s, NULL);
 }
 
-int	is_sorted(s_stack **a)
+int	is_sorted(t_stack **a)
 {
-	s_stack	*tmp;
-	int		cur;
+	t_stack	*tmp;
 
 	tmp = *a;
-	cur = tmp->data;
 	while (tmp -> next)
 	{
-		tmp = tmp -> next;
-		if (cur > tmp->data)
+		if (tmp -> data > tmp -> next -> data)
 			return (0);
+		tmp = tmp -> next;
 	}
 	return (1);
 }

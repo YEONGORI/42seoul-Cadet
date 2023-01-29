@@ -1,47 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/29 15:12:45 by yeongele          #+#    #+#             */
+/*   Updated: 2023/01/29 17:11:23 by yeongele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int to_int(char *av)
+int	to_int(char *av, t_stack **s)
 {
-    long long i;
-    long long r;
-    long long m;
+	long long	i;
+	long long	r;
+	long long	m;
 
-    i = -1;
-    r = 0;
-    m = 1;
-    if (av[0] == '-')
-    {
-        m = -1;
-        i++;
-    }
-    while (av[++i])
-    {
-        r *= 10;
-        r += (av[i] - '0');
-    }
-    is_integer(r * m);
-    return (r * m);
+	i = -1;
+	r = 0;
+	m = 1;
+	if (av[0] == '-')
+	{
+		m = -1;
+		i++;
+	}
+	while (av[++i])
+	{
+		r *= 10;
+		r += (av[i] - '0');
+	}
+	is_integer(r * m, s);
+	return (r * m);
 }
 
-int to_abs(int n)
+void	free_stack(t_stack **s)
 {
-    if (n == -2147483648)
-        return (2147483647);
-    if (n < 0)
-        return (n * -1);
-    return (n);
+	t_stack	*tmp;
+
+	if (!s || !(*s))
+		return ;
+	while (*s)
+	{
+		tmp = (*s)->next;
+		free(*s);
+		*s = tmp;
+	}
+	*s = NULL;
 }
 
-s_stack *get_bottom(s_stack *s)
+void	exit_error(t_stack **a, t_stack **b)
 {
-    while (s && s->next)
-        s = s->next;
-    return (s);
+	if (a == NULL || *a != NULL)
+		free_stack(a);
+	if (b == NULL || *b != NULL)
+		free_stack(b);
+	write(2, "Error\n", 6);
+	exit (1);
 }
 
-s_stack *get_before_bottom(s_stack *s)
+t_stack	*get_bottom(t_stack *s)
 {
-    while (s && s->next && s->next->next)
-        s = s->next;
-    return (s);
+	while (s && s->next)
+		s = s->next;
+	return (s);
+}
+
+t_stack	*get_before_bottom(t_stack *s)
+{
+	while (s && s->next && s->next->next)
+		s = s->next;
+	return (s);
 }

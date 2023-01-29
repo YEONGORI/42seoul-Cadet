@@ -6,87 +6,97 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:28:21 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/27 23:09:31 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/29 17:08:32 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int get_max_index(s_stack *s)
+int	to_abs(int n)
 {
-    int index;
-
-    index = s->index;
-    while (s)
-    {
-        if (s->index > index)
-            index = s->index;
-        s = s->next;
-    }
-    return (index);
+	if (n < 0)
+		return (n * -1);
+	return (n);
 }
 
-int get_size(s_stack **a)
+int	get_max_index(t_stack *s)
 {
-    int len;
-    s_stack *tmp;
+	int	index;
 
-    len = 1;
-    tmp = *a;
-    while (tmp->next)
-    {
-        len++;
-        tmp = tmp->next;
-    }
-    return (len);
+	index = s->index;
+	while (s)
+	{
+		if (s->index > index)
+			index = s->index;
+		s = s->next;
+	}
+	return (index);
 }
 
-void set_index(s_stack *s, int size)
+int	get_size(t_stack **a)
 {
-    s_stack *ptr;
-    s_stack *maximum;
-    int data;
+	int		len;
+	t_stack	*tmp;
 
-    while (size-- > 0)
-    {
-        ptr = s;
-        data = -2147483648;
-        maximum = NULL;
-        while (ptr)
-        {
-            if (ptr->index == 0 && ptr->data == -2147483648)
-                ptr->index = 1;
-            if (ptr->index == 0 && ptr->data > data)
-            {
-                data = ptr->data;
-                maximum = ptr;
-                ptr = s; // 이건 왜 필요하지?
-            }
-            else
-                ptr = ptr->next;
-        }
-        if (maximum != NULL)
-            maximum->index = size;
-    }
+	len = 1;
+	tmp = *a;
+	while (tmp->next)
+	{
+		len++;
+		tmp = tmp->next;
+	}
+	return (len);
 }
 
-void init_stack(int ac, char **av, s_stack **a)
+void	set_index(t_stack *s, int size)
 {
-    s_stack *new;
+	t_stack	*ptr;
+	t_stack	*maximum;
+	int		data;
 
-    new = NULL;
-    is_parameter_specified(av);
-    is_parameter_unique(av);
-    for (int i = ac - 1; i > 0; i--)
-    {
-        is_number(av[i]);
-        new = ft_lstnew(to_int(av[i]));
-        if (!new)
-            ft_lstclear(a);
-        ft_lstadd_front(a, new);
-    }
-    if (is_sorted(a))
-        exit(0);
-    set_index(*a, get_size(a) + 1);
-    return;
+	while (size-- > 0)
+	{
+		ptr = s;
+		data = C_INT_MIN;
+		maximum = NULL;
+		while (ptr)
+		{
+			if (ptr->index == 0 && ptr->data == C_INT_MIN)
+				ptr->index = 1;
+			if (ptr->index == 0 && ptr->data > data)
+			{
+				data = ptr->data;
+				maximum = ptr;
+				ptr = s;
+			}
+			else
+				ptr = ptr->next;
+		}
+		if (maximum != NULL)
+			maximum->index = size;
+	}
+}
+
+void	init_stack(int ac, char **av, t_stack **a)
+{
+	int		i;
+	t_stack	*new;
+
+	i = ac - 1;
+	new = NULL;
+	is_parameter_specified(av);
+	is_parameter_unique(av);
+	while (i > 0)
+	{
+		is_number(av[i], a);
+		new = ft_lstnew(to_int(av[i], a));
+		if (!new)
+			ft_lstclear(a);
+		ft_lstadd_front(a, new);
+		i--;
+	}
+	if (is_sorted(a))
+		exit(0);
+	set_index(*a, get_size(a) + 1);
+	return ;
 }

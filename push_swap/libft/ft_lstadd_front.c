@@ -6,13 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 20:42:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/26 15:06:30 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/01/29 15:01:50 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_lstadd_front(s_stack **a, s_stack *new)
+void	ft_lstadd_front(t_stack **a, t_stack *new)
 {
 	if (!new)
 		return ;
@@ -23,7 +23,7 @@ void	ft_lstadd_front(s_stack **a, s_stack *new)
 	else
 	{
 		new -> next = *a;
-		(*a) -> prev = new;
+		(*a)-> prev = new;
 		*a = new;
 	}
 }
