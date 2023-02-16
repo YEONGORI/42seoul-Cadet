@@ -6,7 +6,7 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/19 14:04:28 by yeongele          #+#    #+#              #
-#    Updated: 2023/01/29 18:18:18 by yeongele         ###   ########.fr        #
+#    Updated: 2023/02/16 13:09:41 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	@rm -rf *.o
-	@rm -rf libft/*.o
-	@rm -rf operations/*.o
-	@rm -rf sort/*.o
-	@rm -rf utils/*.o
+	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -f $(NAME)
