@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:42:45 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/16 16:58:06 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:12:00 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,9 @@ void	sig_handler(int snum)
 
 int	main(void)
 {
-	struct sigaction	act;
-
 	write(1, "SERVER PID : ", 13);
 	ft_putnbr((int) getpid());
 	write(1, "\n", 1);
-	act.sa_handler = sig_handler;
 	signal(SIGUSR1, sig_handler);
 	signal(SIGUSR2, sig_handler);
 	while (1)
