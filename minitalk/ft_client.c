@@ -43,7 +43,5 @@ int	main(int argc, char **argv)
 	if (argc != 3 || !argv[2])
 		return (1);
 	action(ft_atoi(argv[1]), argv[2]);
-	while (1)
-		pause();
 	return (0);
 }
