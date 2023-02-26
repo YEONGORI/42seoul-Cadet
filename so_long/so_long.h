@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/26 21:33:41 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/02/26 22:05:45 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 typedef struct s_map
 {
 	int		height;
-	int		weight;
+	int		width;
 	int		fox_pos_x;
 	int		fox_pos_y;
 	int		score;
@@ -32,7 +32,7 @@ typedef struct s_map
 	void	*hole;
 	void	*forest;
 
-	char	**mappdata;
+	char	**map_data;
 	void	*window;
 	void	*mlx;
 }	t_map;

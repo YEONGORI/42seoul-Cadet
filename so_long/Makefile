@@ -6,38 +6,81 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/19 14:04:28 by yeongele          #+#    #+#              #
-#    Updated: 2023/02/26 21:51:35 by yeongele         ###   ########.fr        #
+#    Updated: 2023/02/26 22:26:14 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		= cc
-CFLAGS	= -Wall -Werror -Wextra
-MLX		= -L mlx -lmlx -framework OpenGL -framework AppKit
-NAME	= so_long
+CC       = cc
+CFLAGS   = -Wall -Werror -Wextra
+NAME     = so_long
 
-GNG_DIR = ./get_next_line
-LIBFT_DIR = ./libft
-INC_DIRS = -I$(GNL_DIR) -I
+GNG_DIR  = ./get_next_line
+LIBFT_DIR= ./libft
+INC_DIRS = -I$(GNL_DIR) -I$(LIBFT_DIR)
 
-SRC		= so_long.c map.c map_checker.c \
-		  $(GNG_DIR)/get_next_line.c $(GNG_DIR)/get_next_line_utils.c \
-		  $(LIBFT_DIR)/ft_split.c $(LIBFT_DIR)/ft_strdup.c
-OBJ		= $(SRC:.c=.o)
+SRC      = so_long.c map.c map_checker.c \
+           $(GNG_DIR)/get_next_line.c $(GNG_DIR)/get_next_line_utils.c \
+           $(LIBFT_DIR)/ft_split.c $(LIBFT_DIR)/ft_strdup.c
+OBJ      = $(SRC:.c=.o)
 
-all: $(OBJ) $(NAME)
+MLX_DIR  = mlx
+MLX_LIB  = $(MLX_DIR)/libmlx.a
+MLX_INC  = -I$(MLX_DIR)
+MLX_LNK  = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(INC_DIRS) -c $< -o $@
+SUBDIRS  = $(MLX_DIR)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME) 
+all: $(SUBDIRS) $(NAME)
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+
+$(NAME): $(OBJ) $(MLX_LIB)
+	$(CC) $(CFLAGS) $(OBJ) $(MLX_LNK) -o $(NAME)
+
+$(MLX_LIB):
+	$(MAKE) -C $(MLX_DIR)
 
 clean:
-	@rm -rf $(OBJ)
+	$(MAKE) -C $(MLX_DIR) clean
+	rm -rf $(OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
+	$(MAKE) -C $(MLX_DIR) clean
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(SUBDIRS)
+
+# CC		= cc
+# CFLAGS	= -Wall -Werror -Wextra
+# MLX		= -L mlx -lmlx -framework OpenGL -framework AppKit
+# NAME	= so_long
+
+# GNG_DIR = ./get_next_line
+# LIBFT_DIR = ./libft
+# INC_DIRS = -I$(GNL_DIR) -I
+
+# SRC		= so_long.c map.c map_checker.c \
+# 		  $(GNG_DIR)/get_next_line.c $(GNG_DIR)/get_next_line_utils.c \
+# 		  $(LIBFT_DIR)/ft_split.c $(LIBFT_DIR)/ft_strdup.c
+# OBJ		= $(SRC:.c=.o)
+
+# all: $(OBJ) $(NAME)
+
+# %.o: %.c
+# 	$(CC) $(CFLAGS) $(INC_DIRS) -c $< -o $@
+
+# $(NAME): $(OBJ)
+# 	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME) 
+
+# clean:
+# 	@rm -rf $(OBJ)
+
+# fclean: clean
+# 	@rm -f $(NAME)
+
+# re: fclean all
+
+# .PHONY: all clean fclean re

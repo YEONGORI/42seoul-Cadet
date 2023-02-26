@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:58:45 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/26 21:26:10 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/02/26 21:59:38 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_opened(int fd)
 	return (1);
 }
 
-char	**download_map(char *file)
+char	**create_map(char *file)
 {
 	int		fd;
 	char	*line;
