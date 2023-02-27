@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:53:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/27 13:03:08 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:47:02 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ static int	is_contains(char *map)
 	{
 		if (map[i] == 'E')
 			hole_cnt++;
-		if (map[i] == 'C')
+		else if (map[i] == 'C')
 			carrot_cnt++;
-		if (map[i] == 'P')
+		else if (map[i] == 'P')
 			fox_cnt++;
+		else if (map[i] == '1' || map[i] == '0' || map[i] == '\n')
+			;
+		else
+			return (0);
 	}
 	if (hole_cnt != 1 || carrot_cnt == 0 || fox_cnt != 1)
 		return (0);

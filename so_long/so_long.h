@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/27 13:10:20 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:22:49 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <fcntl.h>
 
 # include <stdio.h> // 삭제 예정
+
+# define KEY_ESC		53
+# define KEY_W			13
+# define KEY_A			0
+# define KEY_S			1
+# define KEY_D			2
 
 typedef struct s_map
 {
@@ -48,11 +54,28 @@ void		*ft_calloc(size_t count, size_t size);
 /* libft */
 char		*ft_strdup(const char *s1);
 char		**ft_split(char const *s, char c);
+char		*ft_itoa(int n);
 
 /* map */
-char		**create_map(char *file);
+void		set_map(t_map *map);
+char		**get_map(char *file);
 int			map_checker(char *line_map, char **rect_map);
 void		parse_map(t_map *map);
 
+/* key */
+void		apply_key(t_map *map);
+void		go_up(t_map *map);
+void		go_down(t_map *map);
+void		go_left(t_map *map);
+void		go_right(t_map *map);
+
+int			is_tree(t_map *map);
+int			is_hole(t_map *map);
+int			is_coin(t_map *map);
+
+
+/* utils */
+void		show_steps(t_map *map);
+void		free_struct(t_map *map);
 
 #endif
