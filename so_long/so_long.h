@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/26 22:05:45 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:10:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+
+# include <stdio.h> // 삭제 예정
 
 typedef struct s_map
 {
@@ -30,7 +32,7 @@ typedef struct s_map
 	void	*carrot;
 	void	*tree;
 	void	*hole;
-	void	*forest;
+	void	*grass;
 
 	char	**map_data;
 	void	*window;
@@ -47,8 +49,10 @@ void		*ft_calloc(size_t count, size_t size);
 char		*ft_strdup(const char *s1);
 char		**ft_split(char const *s, char c);
 
-/* map.c && map_checker.c */
+/* map */
 char		**create_map(char *file);
 int			map_checker(char *line_map, char **rect_map);
+void		parse_map(t_map *map);
+
 
 #endif

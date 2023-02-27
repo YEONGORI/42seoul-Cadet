@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:58:45 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/26 21:59:38 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:03:49 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,13 @@ char	**create_map(char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		line_map = ft_strjoin(line, line_map);
+		line_map = ft_strjoin(line_map, line);
+		free((void *)line);
 	}
 	rect_map = ft_split(line_map, '\n');
 	if (!map_checker(line_map, rect_map))
 		exit(0);
 	close(fd);
-	free(line_map);
+	free((void *)line_map);
 	return (rect_map);
 }

@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/26 21:31:46 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:49:43 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[++i] != 0)
 		str[++j] = s2[i];
 	free((void *)s1);
-	free((void *)s2);
 	return (str);
 }
 
