@@ -6,7 +6,7 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/19 14:04:28 by yeongele          #+#    #+#              #
-#    Updated: 2023/02/27 16:08:29 by yeongele         ###   ########.fr        #
+#    Updated: 2023/03/03 18:08:14 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ GNG_DIR = ./get_next_line
 LIBFT_DIR = ./libft
 INC_DIRS = -I$(GNL_DIR) -I
 
-SRC		= so_long.c map.c map_checker.c map_parser.c key.c key_checker.c key_move.c utils.c\
+SRC		= so_long.c map.c map_checker.c map_parser.c key.c key_checker.c key_move.c algorithm.c stack.c utils.c\
 		  $(GNG_DIR)/get_next_line.c $(GNG_DIR)/get_next_line_utils.c \
 		  $(LIBFT_DIR)/ft_split.c $(LIBFT_DIR)/ft_strdup.c $(LIBFT_DIR)/ft_itoa.c
 OBJ		= $(SRC:.c=.o)

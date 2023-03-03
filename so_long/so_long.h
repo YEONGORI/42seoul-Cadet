@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/27 15:22:49 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:07:45 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@
 # define KEY_A			0
 # define KEY_S			1
 # define KEY_D			2
+
+typedef struct s_pair
+{
+	int	x;
+	int	y;
+}	t_pair;
+
+typedef struct s_node
+{
+	t_pair			data;
+	struct s_node	*up;
+}	t_node;
+
+typedef struct s_stack
+{
+	t_node	*top;
+}	t_stack;
 
 typedef struct s_map
 {
@@ -73,9 +90,19 @@ int			is_tree(t_map *map);
 int			is_hole(t_map *map);
 int			is_coin(t_map *map);
 
+/* algorithm */
+int			clearable(char **rect, t_pair st, t_pair en, int coin);
+
+/* stack */
+void		s_init(t_stack *s);
+int			s_isempty(t_stack *s);
+void		s_push(t_stack *s, t_pair data);
+void		s_pop(t_stack *s);
 
 /* utils */
 void		show_steps(t_map *map);
 void		free_struct(t_map *map);
+void		free_char(char	**rect_map);
+t_pair		make_pair(int i, int j);
 
 #endif

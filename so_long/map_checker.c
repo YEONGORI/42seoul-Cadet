@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:53:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/27 16:47:02 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:34:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,56 @@ static int	is_surrounded(char **rect_map)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (rect_map[++i])
+	j = -1;
+	while (rect_map[++j])
 	{
-		j = -1;
-		while (++j < ft_strlen(rect_map[i]) && rect_map[i][j])
+		i = -1;
+		while (++i < ft_strlen(rect_map[j]) && rect_map[j][i])
 		{
-			if (i == 0 || j == 0 || j == ft_strlen(rect_map[i]) - 1)
-				if (rect_map[i][j] != '1')
+			if (i == 0 || j == 0 || i == ft_strlen(rect_map[j]) - 1)
+				if (rect_map[j][i] != '1')
 					return (0);
 		}
 	}
 	return (1);
 }
 
+static int	is_clearable(char **rect_map)
+{
+	int		i;
+	int		j;
+	int		coin;
+	t_pair	st;
+	t_pair	en;
+
+	j = -1;
+	coin = 0;
+	while (rect_map[++j])
+	{
+		i = -1;
+		while (rect_map[j][++i])
+		{
+			if (rect_map[j][i] == 'P')
+				st = make_pair(i, j);
+			if (rect_map[j][i] == 'E')
+				en = make_pair(i, j);
+			if (rect_map[j][i] == 'C')
+				coin++;
+		}
+	}
+	if (!clearable(rect_map, st, en, coin))
+		return (0);
+	return (1);
+}
+
 int	map_checker(char *line_map, char **rect_map)
 {
 	if (!is_contains(line_map) || !is_retangular(rect_map) || \
-		!is_surrounded(rect_map))
+		!is_surrounded(rect_map) || !is_clearable(rect_map))
 	{
 		write(2, "Map is wrong -> Error\n", 22);
+		free((void *) line_map);
+		free_char(rect_map);
 		return (0);
 	}
 	return (1);
