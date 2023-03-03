@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:33:34 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/27 16:29:55 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:34:55 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	key_down(int key_code, t_map *map)
 	if (key_code == 'W' || key_code == KEY_W)
 		go_up(map);
 	else if (key_code == 'A' || key_code == KEY_A)
-		go_down(map);
-	else if (key_code == 'S' || key_code == KEY_S)
 		go_left(map);
+	else if (key_code == 'S' || key_code == KEY_S)
+		go_down(map);
 	else if (key_code == 'D' || key_code == KEY_D)
 		go_right(map);
 	else if (key_code == KEY_ESC)

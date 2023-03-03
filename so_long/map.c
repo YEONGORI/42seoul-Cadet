@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:58:45 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/27 16:38:34 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:45:41 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,17 @@ void	set_map(t_map *map)
 	int	width;
 	int	height;
 
-	x = -1;
-	width = 0;
+	y = -1;
+	width = ft_strlen(map -> map_data[0]);
 	height = 0;
-	while (map -> map_data[0][width])
-		width++;
 	while (map -> map_data[height])
 		height++;
-	while (map -> map_data[++x])
+	while (map -> map_data[++y])
 	{
-		y = -1;
-		while (map -> map_data[x][y])
+		x = -1;
+		while (map -> map_data[y][++x])
 		{
-			if (map -> map_data[x][y] == 'P')
+			if (map -> map_data[y][x] == 'P')
 			{
 				map -> fox_pos_x = x;
 				map -> fox_pos_y = y;

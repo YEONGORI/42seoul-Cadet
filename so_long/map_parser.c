@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 22:09:03 by yeongele          #+#    #+#             */
-/*   Updated: 2023/02/27 15:44:34 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:35:15 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ void	parse_map(t_map *map)
 	int	x;
 	int	y;
 
-	x = -1;
+	y = -1;
 	create_img(map);
-	while (map -> map_data[++x])
+	while (map -> map_data[++y])
 	{
-		y = -1;
-		while (map -> map_data[x][++y] && map -> map_data[x][y] != '\n')
-			parse_img(map, map -> map_data[x][y], y, x);
+		x = -1;
+		while (map -> map_data[y][++x] && map -> map_data[y][x] != '\n')
+		{
+			parse_img(map, map -> map_data[y][x], x, y);
+		}
 	}
 }
