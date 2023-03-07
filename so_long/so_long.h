@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/03 18:07:45 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:32:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,22 @@
 
 typedef struct s_pair
 {
-	int	x;
-	int	y;
+	int	hei;
+	int	wid;
 }	t_pair;
 
 typedef struct s_node
 {
 	t_pair			data;
-	struct s_node	*up;
+	struct s_node	*next;
 }	t_node;
 
-typedef struct s_stack
+typedef struct s_queue
 {
-	t_node	*top;
-}	t_stack;
+	t_node	*front;
+	t_node	*back;
+	int		count;
+}	t_queue;
 
 typedef struct s_map
 {
@@ -76,7 +78,7 @@ char		*ft_itoa(int n);
 /* map */
 void		set_map(t_map *map);
 char		**get_map(char *file);
-int			map_checker(char *line_map, char **rect_map);
+void		map_checker(char *line_map, char **rect_map);
 void		parse_map(t_map *map);
 
 /* key */
@@ -93,16 +95,18 @@ int			is_coin(t_map *map);
 /* algorithm */
 int			clearable(char **rect, t_pair st, t_pair en, int coin);
 
-/* stack */
-void		s_init(t_stack *s);
-int			s_isempty(t_stack *s);
-void		s_push(t_stack *s, t_pair data);
-void		s_pop(t_stack *s);
+/* queue */
+void		q_init(t_queue *q);
+int			q_is_empty(t_queue *q);
+void		q_push(t_queue *q, t_pair data, int init);
+void		q_pop(t_queue *q);
+int			q_clear(t_queue *q);
 
 /* utils */
 void		show_steps(t_map *map);
 void		free_struct(t_map *map);
-void		free_char(char	**rect_map);
+void		free_char(char	**rect, int max_height);
+void		init_char(char	**rect, int m_hei, int m_wid);
 t_pair		make_pair(int i, int j);
 
 #endif

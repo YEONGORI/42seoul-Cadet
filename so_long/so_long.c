@@ -6,13 +6,17 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:46:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/03 16:31:28 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:44:39 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./mlx/mlx.h"
 #include "so_long.h"
-#include "stdio.h"
+
+static void	leaks(void)
+{
+	system("leaks so_long");
+}
 
 int	main(int ac, char **av)
 {
@@ -27,4 +31,8 @@ int	main(int ac, char **av)
 			map.width * 64, map.height * 64, "so_long");
 	parse_map(&map);
 	apply_key(&map);
+	// atexit(leaks);
+	// exit (0);
+	// free_struct(&map);
+	// mlx_destroy_window(map.mlx, map.window);
 }

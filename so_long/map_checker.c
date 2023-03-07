@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:53:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/03 17:34:26 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:32:05 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,24 @@ static int	is_surrounded(char **rect_map)
 
 static int	is_clearable(char **rect_map)
 {
-	int		i;
-	int		j;
+	int		wid;
+	int		hei;
 	int		coin;
 	t_pair	st;
 	t_pair	en;
 
-	j = -1;
+	hei = -1;
 	coin = 0;
-	while (rect_map[++j])
+	while (rect_map[++hei])
 	{
-		i = -1;
-		while (rect_map[j][++i])
+		wid = -1;
+		while (rect_map[hei][++wid])
 		{
-			if (rect_map[j][i] == 'P')
-				st = make_pair(i, j);
-			if (rect_map[j][i] == 'E')
-				en = make_pair(i, j);
-			if (rect_map[j][i] == 'C')
+			if (rect_map[hei][wid] == 'P')
+				st = make_pair(hei, wid);
+			if (rect_map[hei][wid] == 'E')
+				en = make_pair(hei, wid);
+			if (rect_map[hei][wid] == 'C')
 				coin++;
 		}
 	}
@@ -103,15 +103,19 @@ static int	is_clearable(char **rect_map)
 	return (1);
 }
 
-int	map_checker(char *line_map, char **rect_map)
+void	map_checker(char *line_map, char **rect_map)
 {
+	int	height;
+
+	height = 0;
+	while (rect_map[height])
+		height++;
 	if (!is_contains(line_map) || !is_retangular(rect_map) || \
 		!is_surrounded(rect_map) || !is_clearable(rect_map))
 	{
 		write(2, "Map is wrong -> Error\n", 22);
 		free((void *) line_map);
-		free_char(rect_map);
-		return (0);
+		free_char(rect_map, height);
+		exit (1);
 	}
-	return (1);
 }

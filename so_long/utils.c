@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:22:31 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/03 17:34:06 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:38:19 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,35 @@ void	free_struct(t_map *map)
 	free((void *) map -> grass);
 }
 
-void	free_char(char	**rect_map)
+void	free_char(char	**rect, int max_height)
 {
 	int	i;
 
-	i = -1;
-	while (rect_map[++i])
-		free((void *) rect_map[i]);
-	free((void *) rect_map);
+	i = 0;
+	while (i < max_height)
+		free((void *) rect[i++]);
+	free((void *) rect);
 }
 
-t_pair	make_pair(int i, int j)
+void	init_char(char	**rect, int m_hei, int m_wid)
+{
+	int	hei;
+	int	wid;
+
+	hei = -1;
+	while (++hei < m_hei)
+	{
+		wid = -1;
+		while (++wid < m_wid)
+			rect[hei][wid] = 0;
+	}
+}
+
+t_pair	make_pair(int hei, int wid)
 {
 	t_pair	p;
 
-	p.x = i;
-	p.y = j;
+	p.hei = hei;
+	p.wid = wid;
 	return (p);
 }
