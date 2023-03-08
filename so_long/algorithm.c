@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static int	is_continue(char **rect, char **vis, t_pair tmp)
+static int	is_continue(char **rect, char **vis, t_pair tmp, int obtain)
 {
 	int	m_wid;
 	int	m_hei;
@@ -22,6 +22,8 @@ static int	is_continue(char **rect, char **vis, t_pair tmp)
 	while (rect[m_hei])
 		m_hei++;
 	if (vis[tmp.hei][tmp.wid] || rect[tmp.hei][tmp.wid] == '1')
+		return (1);
+	else if (obtain && rect[tmp.hei][tmp.wid] == 'E')
 		return (1);
 	else if (tmp.wid < 0 || tmp.hei < 0 || tmp.wid >= m_wid || tmp.hei >= m_hei)
 		return (1);
@@ -59,7 +61,7 @@ static int	go_endpoint(char **rect, char **vis, t_pair st, t_pair en)
 		while (++i < 4)
 		{
 			tmp = go_every_direction(cur, i);
-			if (is_continue(rect, vis, tmp))
+			if (is_continue(rect, vis, tmp, 0))
 				continue ;
 			if (tmp.wid == en.wid && tmp.hei == en.hei)
 				return (q_clear(&q));
@@ -88,7 +90,7 @@ static int	is_obtain(char **rect, char **vis, t_pair st, int coin_cnt)
 		while (++i < 4)
 		{
 			tmp = go_every_direction(cur, i);
-			if (is_continue(rect, vis, tmp))
+			if (is_continue(rect, vis, tmp, 1))
 				continue ;
 			if (rect[tmp.hei][tmp.wid] == 'C')
 				coin_cnt++;

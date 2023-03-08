@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:53:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/07 13:32:05 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:08:36 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ static int	is_contains(char *map)
 			carrot_cnt++;
 		else if (map[i] == 'P')
 			fox_cnt++;
-		else if (map[i] == '1' || map[i] == '0' || map[i] == '\n')
-			;
-		else
+		else if (map[i] != '1' && map[i] != '0' && map[i] != '\n'
+			&& map[i] != 13)
 			return (0);
 	}
 	if (hole_cnt != 1 || carrot_cnt == 0 || fox_cnt != 1)
@@ -69,7 +68,7 @@ static int	is_surrounded(char **rect_map)
 		{
 			if (i == 0 || j == 0 || i == ft_strlen(rect_map[j]) - 1)
 				if (rect_map[j][i] != '1')
-					return (0);
+					return (1);
 		}
 	}
 	return (1);
@@ -116,6 +115,6 @@ void	map_checker(char *line_map, char **rect_map)
 		write(2, "Map is wrong -> Error\n", 22);
 		free((void *) line_map);
 		free_char(rect_map, height);
-		exit (1);
+		exit(EXIT_FAILURE);
 	}
 }

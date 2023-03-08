@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/07 13:32:26 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:43:01 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		go_left(t_map *map);
 void		go_right(t_map *map);
 
 int			is_tree(t_map *map);
-int			is_hole(t_map *map);
+void		is_hole(t_map *map);
 int			is_coin(t_map *map);
 
 /* algorithm */
