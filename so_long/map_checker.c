@@ -6,11 +6,12 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:53:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/08 13:08:36 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:51:37 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 static int	is_contains(char *map)
 {
@@ -47,7 +48,7 @@ static int	is_retangular(char **line_map)
 
 	i = 0;
 	width = ft_strlen(line_map[0]);
-	while (!line_map[++i])
+	while (line_map[++i])
 	{
 		if (ft_strlen(line_map[i]) != width)
 			return (0);
@@ -63,12 +64,13 @@ static int	is_surrounded(char **rect_map)
 	j = -1;
 	while (rect_map[++j])
 	{
-		i = -1;
-		while (++i < ft_strlen(rect_map[j]) && rect_map[j][i])
+		i = 0;
+		while (i < ft_strlen(rect_map[j]) && rect_map[j][i])
 		{
 			if (i == 0 || j == 0 || i == ft_strlen(rect_map[j]) - 1)
 				if (rect_map[j][i] != '1')
-					return (1);
+					return (0);
+			i++;
 		}
 	}
 	return (1);

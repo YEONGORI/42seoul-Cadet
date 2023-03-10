@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:46:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/08 12:30:12 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:22:11 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	map.map_data = get_map(av[1]);
-	set_map(&map);
+	set_map(&map, 0, 0, 0);
 	map.mlx = mlx_init();
 	map.window = mlx_new_window(map.mlx,
 			map.width * 64, map.height * 64, "so_long");

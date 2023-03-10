@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/08 10:43:01 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:21:42 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
-# include <stdio.h> // 삭제 예정
 
 # define KEY_ESC		53
 # define KEY_W			13
@@ -52,6 +50,7 @@ typedef struct s_map
 	int		fox_pos_y;
 	int		score;
 	int		steps;
+	int		coin_cnt;
 
 	void	*fox;
 	void	*carrot;
@@ -76,7 +75,7 @@ char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 
 /* map */
-void		set_map(t_map *map);
+void		set_map(t_map *map, int width, int height, int coin);
 char		**get_map(char *file);
 void		map_checker(char *line_map, char **rect_map);
 void		parse_map(t_map *map);

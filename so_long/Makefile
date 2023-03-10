@@ -6,38 +6,49 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/19 14:04:28 by yeongele          #+#    #+#              #
-#    Updated: 2023/03/08 13:00:46 by yeongele         ###   ########.fr        #
+#    Updated: 2023/03/10 11:46:32 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		= cc
-CFLAGS	= -Wall -Werror -Wextra
-MLX		= -L mlx -lmlx -framework OpenGL -framework AppKit
-NAME	= so_long
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+NAME = so_long
 
-GNG_DIR = ./get_next_line
-LIBFT_DIR = ./libft
-INC_DIRS = -I$(GNL_DIR) -I
+GNL_DIR = gnl
+GNL = -L$(GNL_DIR) -lgnl
+LIBFT_DIR = libft
+LIBFT = -L$(LIBFT_DIR) -lft
 
-SRC		= so_long.c map.c map_checker.c map_parser.c key.c key_checker.c key_move.c algorithm.c queue.c utils.c\
-		  $(GNG_DIR)/get_next_line.c $(GNG_DIR)/get_next_line_utils.c \
-		  $(LIBFT_DIR)/ft_split.c $(LIBFT_DIR)/ft_strdup.c $(LIBFT_DIR)/ft_itoa.c
-OBJ		= $(SRC:.c=.o)
+SRCS = so_long.c map.c map_checker.c map_parser.c \
+key.c key_checker.c key_move.c algorithm.c queue.c utils.c
+OBJS = $(SRCS:.c=.o)
 
-all: $(OBJ) $(NAME)
+.PHONY: all clean fclean re libft gnl
+
+all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INC_DIRS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME) 
+$(NAME): libft gnl $(OBJS)
+	@$(CC) -o $@ $(OBJS) $(MLX) $(GNL) $(LIBFT)
+
+
+libft:
+	make -C $(LIBFT_DIR)
+
+gnl:
+	make -C $(GNL_DIR)
 
 clean:
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJS)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(GNL_DIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(GNL_DIR) fclean
 
 re: fclean all
-
-.PHONY: all clean fclean re

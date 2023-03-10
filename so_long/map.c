@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:58:45 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/07 13:32:34 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:31:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,14 @@ static int	is_opened(int fd)
 	return (1);
 }
 
-void	set_map(t_map *map)
+void	set_map(t_map *map, int width, int height, int coin)
 {
 	int	x;
 	int	y;
-	int	width;
-	int	height;
 
 	y = -1;
 	width = ft_strlen(map -> map_data[0]);
-	height = 0;
+	map -> coin_cnt = 0;
 	while (map -> map_data[height])
 		height++;
 	while (map -> map_data[++y])
@@ -57,10 +55,13 @@ void	set_map(t_map *map)
 				map -> fox_pos_x = x;
 				map -> fox_pos_y = y;
 			}
+			if (map -> map_data[y][x] == 'C')
+				coin++;
 		}
 	}
 	map -> width = width;
 	map -> height = height;
+	map -> coin_cnt = coin;
 }
 
 char	**get_map(char *file)
