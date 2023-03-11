@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/10 10:21:42 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:33:34 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		*ft_calloc(size_t count, size_t size);
 char		*ft_strdup(const char *s1);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
+void		ft_putnbr(int n);
 
 /* map */
 void		set_map(t_map *map, int width, int height, int coin);
@@ -102,10 +103,10 @@ void		q_pop(t_queue *q);
 int			q_clear(t_queue *q);
 
 /* utils */
-void		show_steps(t_map *map);
 void		free_struct(t_map *map);
 void		free_char(char	**rect, int max_height);
 void		init_char(char	**rect, int m_hei, int m_wid);
 t_pair		make_pair(int i, int j);
+void		map_error(void);
 
 #endif

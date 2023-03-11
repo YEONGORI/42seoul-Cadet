@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:58:45 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/09 10:31:20 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:33:58 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	**get_map(char *file)
 	line = "";
 	line_map = ft_strdup("");
 	if (!is_ber(file) || !is_opened(fd))
-		exit(0);
+		map_error();
 	while (line)
 	{
 		line = get_next_line(fd);

@@ -6,12 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:53:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/10 11:51:37 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:34:27 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 static int	is_contains(char *map)
 {
@@ -60,14 +59,19 @@ static int	is_surrounded(char **rect_map)
 {
 	int	i;
 	int	j;
+	int	w;
 
 	j = -1;
+	w = -1;
+	while (rect_map[++w])
+		;
 	while (rect_map[++j])
 	{
 		i = 0;
 		while (i < ft_strlen(rect_map[j]) && rect_map[j][i])
 		{
-			if (i == 0 || j == 0 || i == ft_strlen(rect_map[j]) - 1)
+			if (i == 0 || i == ft_strlen(rect_map[j]) - 1
+				|| j == 0 || j == w - 1)
 				if (rect_map[j][i] != '1')
 					return (0);
 			i++;
@@ -114,9 +118,8 @@ void	map_checker(char *line_map, char **rect_map)
 	if (!is_contains(line_map) || !is_retangular(rect_map) || \
 		!is_surrounded(rect_map) || !is_clearable(rect_map))
 	{
-		write(2, "Map is wrong -> Error\n", 22);
 		free((void *) line_map);
 		free_char(rect_map, height);
-		exit(EXIT_FAILURE);
+		map_error();
 	}
 }

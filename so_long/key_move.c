@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:01:09 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/08 10:43:33 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:22:51 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	go_down(t_map *map)
 		map -> fox_pos_x * 64, map -> fox_pos_y * 64);
 	is_hole(map);
 	map -> steps += 1;
-	show_steps(map);
+	ft_putnbr(map -> steps);
 }
 
 void	go_up(t_map *map)
@@ -48,7 +48,7 @@ void	go_up(t_map *map)
 		map -> fox_pos_x * 64, map -> fox_pos_y * 64);
 	is_hole(map);
 	map -> steps += 1;
-	show_steps(map);
+	ft_putnbr(map -> steps);
 }
 
 void	go_left(t_map *map)
@@ -67,7 +67,7 @@ void	go_left(t_map *map)
 		map -> fox_pos_x * 64, map -> fox_pos_y * 64);
 	is_hole(map);
 	map -> steps += 1;
-	show_steps(map);
+	ft_putnbr(map -> steps);
 }
 
 void	go_right(t_map *map)
@@ -86,5 +86,5 @@ void	go_right(t_map *map)
 		map -> fox_pos_x * 64, map -> fox_pos_y * 64);
 	is_hole(map);
 	map -> steps += 1;
-	show_steps(map);
+	ft_putnbr(map -> steps);
 }

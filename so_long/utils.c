@@ -6,23 +6,12 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:22:31 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/08 13:02:03 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:34:58 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "./mlx/mlx.h"
-
-void	show_steps(t_map *map)
-{
-	char	*s;
-
-	mlx_put_image_to_window(map -> mlx, map -> window, map -> tree, 0, 0);
-	s = ft_itoa(map -> steps);
-	mlx_string_put(map->mlx, map->window, 32, 32, 0x000000ff,
-		s);
-	free(s);
-}
 
 void	free_struct(t_map *map)
 {
@@ -71,4 +60,10 @@ t_pair	make_pair(int hei, int wid)
 	p.hei = hei;
 	p.wid = wid;
 	return (p);
+}
+
+void	map_error(void)
+{
+	write(2, "Map Error\n", 10);
+	exit (EXIT_FAILURE);
 }

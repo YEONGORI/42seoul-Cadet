@@ -6,7 +6,7 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/19 14:04:28 by yeongele          #+#    #+#              #
-#    Updated: 2023/03/10 11:46:32 by yeongele         ###   ########.fr        #
+#    Updated: 2023/03/11 15:54:55 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,11 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): libft gnl $(OBJS)
-	@$(CC) -o $@ $(OBJS) $(MLX) $(GNL) $(LIBFT)
-
+ifdef $(NAME)
+	$(CC) -o $@ $(OBJS) $(MLX) $(LIBFT) $(GNL)
+else
+	
+endif
 
 libft:
 	make -C $(LIBFT_DIR)
