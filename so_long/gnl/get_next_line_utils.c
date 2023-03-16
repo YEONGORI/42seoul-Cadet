@@ -6,11 +6,10 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:50:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/08 12:25:07 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:14:02 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "../so_long.h"
 
 int	ft_strlen(const char *str)

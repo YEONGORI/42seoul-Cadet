@@ -6,7 +6,7 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/19 14:04:28 by yeongele          #+#    #+#              #
-#    Updated: 2023/03/11 15:54:55 by yeongele         ###   ########.fr        #
+#    Updated: 2023/03/16 13:01:15 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,23 +20,27 @@ GNL = -L$(GNL_DIR) -lgnl
 LIBFT_DIR = libft
 LIBFT = -L$(LIBFT_DIR) -lft
 
-SRCS = so_long.c map.c map_checker.c map_parser.c \
-key.c key_checker.c key_move.c algorithm.c queue.c utils.c
-OBJS = $(SRCS:.c=.o)
+SRCS_M = so_long.c map.c map_checker.c map_parser.c key.c key_checker.c key_move.c algorithm.c queue.c utils.c
+SRCS_B = so_long.c map.c map_checker.c map_parser.c key.c key_checker.c key_move_bonus.c algorithm.c queue.c utils.c
 
-.PHONY: all clean fclean re libft gnl
+OBJS_M = $(SRCS_M:.c=.o)
+OBJS_B = $(SRCS_B:.c=.o)
+
+INCS = so_long.h
+ifdef FLAG
+	OBJS = $(OBJS_B)
+else
+	OBJS = $(OBJS_M)
+endif
 
 all: $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
 $(NAME): libft gnl $(OBJS)
-ifdef $(NAME)
 	$(CC) -o $@ $(OBJS) $(MLX) $(LIBFT) $(GNL)
-else
-	
-endif
+
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -I$(INCS)
 
 libft:
 	make -C $(LIBFT_DIR)
@@ -44,8 +48,12 @@ libft:
 gnl:
 	make -C $(GNL_DIR)
 
+bonus:
+	@make FLAG=1 all
+
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJS_M)
+	@rm -rf $(OBJS_B)
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(GNL_DIR) clean
 
@@ -55,3 +63,5 @@ fclean: clean
 	@make -C $(GNL_DIR) fclean
 
 re: fclean all
+
+.PHONY: all clean fclean re libft gnl

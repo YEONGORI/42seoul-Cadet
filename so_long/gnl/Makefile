@@ -11,10 +11,10 @@ OBJS = ${SRCS:.c=.o}
 all: ${NAME}
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	${CC} ${CFLAGS} -c $^ -o $@
 
 ${NAME}: ${OBJS}
-		ar rsc $@ ${OBJS}
+	ar rsc $@ ${OBJS}
 
 clean:
 	@rm -f ${OBJS}

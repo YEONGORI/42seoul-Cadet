@@ -6,12 +6,14 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:06:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/11 15:33:34 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:20:34 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define BUFFER_SIZE 1024
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -64,10 +66,12 @@ typedef struct s_map
 }	t_map;
 
 /* get_next_line */
+int			ft_strchr(const char *s, int c);
 char		*get_next_line(int fd);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strlen(const char *str);
 void		*ft_calloc(size_t count, size_t size);
+char		*ft_substr(char const *s, unsigned int start, int len);
 
 /* libft */
 char		*ft_strdup(const char *s1);
