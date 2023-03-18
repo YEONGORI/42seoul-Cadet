@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/17 13:10:22 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/18 11:54:55 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	is_digit(char **av)
 {
 	int		i;
 	int		j;
-	char	c;
 
 	i = 0;
 	while (av[++i])
@@ -24,17 +23,44 @@ int	is_digit(char **av)
 		j = -1;
 		while (av[i][++j])
 		{
-			if ((av[i][j] < '0' || av[i][j] > '9')
-				&& (av[i][j] != '+' || av[i][j] != '-')) // ㅇㅕ기 수정
+			if ((av[i][j] < '0' || av[i][j] > '9') && av[i][j] != '+')
 				return (0);
-			else if (av[i][j] == '-' || av[i][j] == '+')
+			else if (av[i][j] == '+')
 			{
-				if (av[i][j + 1]
-					&& (av[i][j + 1] == '-' || av[i][j + 1] == '+'))
+				if (av[i][j + 1] && av[i][j + 1] == '+')
+					return (0);
+				if (av[i][j - 1] && (av[i][j - 1] > 47 && av[i][j - 1] < 58))
 					return (0);
 				continue ;
 			}
 		}
 	}
 	return (1);
+}
+
+int	ft_atoi(const char *s)
+{
+	long long	res;
+
+	res = 0;
+	if (*s == '-')
+		return (-1);
+	while (*s)
+	{
+		if (res > INT_MAX)
+			return (-1);
+		else if (*s >= '0' && *s <= '9')
+			res = res * 10 + (*s - '0');
+		s++;
+	}
+	return (res);
+}
+
+long long	set_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		return (-1);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
