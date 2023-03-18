@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/18 11:54:55 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:08:01 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	is_digit(char **av)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (av[++i])
@@ -38,7 +38,7 @@ int	is_digit(char **av)
 	return (1);
 }
 
-int	ft_atoi(const char *s)
+int	char_to_int(const char *s)
 {
 	long long	res;
 
@@ -63,4 +63,9 @@ long long	set_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 		return (-1);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	philo_print(int id, int status, t_info *info)
+{
+	
 }

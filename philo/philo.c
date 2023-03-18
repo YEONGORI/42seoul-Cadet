@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:13:24 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/18 11:33:29 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:09:37 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 int	main(int ac, char **av)
 {
 	t_info	info;
+	t_philo	*philo;
 
 	if ((ac != 5 && ac != 6) || !is_digit(av))
 		return (printf("ERROR: Invalid Parameters\n"));
-	if (set_info(ac, av, &info))
+	if (init_info(ac, av, &info))
 		return (printf("ERROR: Invalid Info\n"));
+	if (init_philo(&info, &philo))
+		return (printf("ERROR: Malloc Failed\n"));
+	if (init_mutex(&info))
+		return (printf("ERROR: Mutex Not Created\n"));
+	if (start_action(&info, philo))
+		return (printf("ERROR: Dining Failed\n"));
+	return (0);
 }
