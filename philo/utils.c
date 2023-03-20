@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/18 16:08:01 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:41:54 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,4 @@ long long	set_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 		return (-1);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-void	philo_print(int id, int status, t_info *info)
-{
-	
 }
