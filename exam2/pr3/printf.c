@@ -1,6 +1,18 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+int 	ft_isdigit(char c) {
+	if (c >= '0' && c <= '9')
+		return 1;
+	return 0;
+}
+
+int		max_value(int n1, int n2) {
+	if (n1 > n2)
+		return n1;
+	return n2;
+}
+
 int		ft_strlen(char *s) {
 	if (!s)
 		return 0;
@@ -8,6 +20,16 @@ int		ft_strlen(char *s) {
 	while (s[i])
 		i++;
 	return (i);
+}
+
+int		read_integer(char **fmt) {
+	int res = **fmt - '0';
+	*fmt = ++(*fmt);
+	while (ft_isdigit(**fmt)) {
+		res = (res * 10) + (**fmt - '0');
+		*fmt = ++(*fmt);
+	}
+	return res;
 }
 
 char	*ft_strchr(char *s, char c) {
@@ -21,64 +43,41 @@ char	*ft_strchr(char *s, char c) {
 
 int		print_str(char *s, int len) {
 	write(1, s, len);
-	return (len);
+	return len;
 }
 
-int 	ft_isdigit(char c) {
-	if (c >= '0' && c <= '9')
-		return 1;
-	return 0;
-}
-
-int		read_integer(char **fmt) {
-	int result = **fmt - '0';
-	*fmt = ++(*fmt);
-	while (ft_isdigit(**fmt)) {
-		result = result * 10 + (**fmt - '0');
-		*fmt = ++(*fmt);
-	}
-	return result;
-}
-
-int		max_value(int n1, int n2) {
-	if (n1 > n2)
-		return n1;
-	return n2;
-}
-
-int		print_width_prec(int pad, int len) {
+int 	print_width_prec(int pad, int len) {
 	int cnt = 0;
-
 	if (len > 0)
 		while (cnt++ < len)
 			write(1, &pad, 1);
 	return len;
 }
 
-int		process(char **fmt, va_list arg) {
-	int			cnt = 0;
-	int			width = -1;
-	int 		prec = -1;
-	int			pad = ' ';
-	int			base = 10;
-	int			is_neg = 0;
-	char		*word;
-	int			len;
-	long long	tmp_num;
-	unsigned long long num;
+int 	process(char **fmt, va_list ap) {
+	int				cnt = 0;
+	int				width = -1;
+	int				prec = -1;
+	int				pad = ' ';
+	int				base = 10;
+	int				is_neg;
+	char			*word;
+	int				len;
+	long long		tmp_num;
+	unsigned long long	num;
 
 	*fmt = ++(*fmt);
 	if (ft_isdigit(**fmt))
 		width = read_integer(fmt);
-	if (**fmt == '.') {
+	if (*fmt == '.') {
 		*fmt = ++(*fmt);
 		if (ft_isdigit(**fmt))
 			prec = read_integer(fmt);
 		else
-			prec = -2;
+			prec = -2;;
 	}
 	if (**fmt == 's') {
-		word = va_arg(arg, char *);
+		word = va_arg(ap, char *);
 		if (!word)
 			word = "(null)";
 		len = ft_strlen(word);
@@ -87,18 +86,18 @@ int		process(char **fmt, va_list arg) {
 		else if (prec == -2)
 			len = 0;
 		width = max_value(0, width - len);
-		cnt += print_width_prec(pad, width);
+		cnt += printf_width_prec(pad, width);
 		cnt += print_str(word, len);
 	}
 	else {
 		if (**fmt == 'd') {
-			tmp_num = va_arg(arg, int);
-			is_neg = tmp_num < 0 ? 1 : 0;
-			num = is_neg ? (-tmp_num) : (tmp_num);
+			tmp_num = va_arg(ap, int);
+			is_neg = tmp_num<0 ? 1 : 0;
+			num = is_neg ? (-tmp_num) : tmp_num;
 			base = 10;
 		}
 		else {
-			num = va_arg(arg, unsigned int);
+			num = va_arg(ap, unsigned int);
 			is_neg = 0;
 			base = 16;
 		}
@@ -108,7 +107,7 @@ int		process(char **fmt, va_list arg) {
 				len = 0;
 			}
 			else {
-				word = "";
+				word == "";
 				len = 1;
 			}
 		}
@@ -138,25 +137,18 @@ int		process(char **fmt, va_list arg) {
 }
 
 int		ft_printf(const char *str, ...) {
-	va_list	arg;
-	int		cnt = 0;
-	char	*start = (char*) str;;
+	va_list ap;
+	int	 	cnt = 0;
+	char	*start = (char *) str;
 	char	*target;
 
-	va_start(arg, str);
+	va_start(ap, str);
 	while ((target = ft_strchr(start, '%'))) {
-		cnt += print_str(start, start - target);
-		cnt += process(&target, arg);
+		cnt += print_str(target, start-target);
+		cnt += process(&target, ap);
 		start = target;
 	}
 	cnt += print_str(start, ft_strlen(start));
-	va_end(arg);
-	return (cnt);
-}
-
-#include <stdio.h>
-int main(void) {
-	int n1 = ft_printf("%2.8shihihihihi\n", "HIHIHIHIHI");
-	int n2 = printf("%2.8shihihihihi\n", "HIHIHIHIHI");
-	printf("%d | %d\n", n1, n2);
+	va_end(ap);
+	return cnt;
 }
