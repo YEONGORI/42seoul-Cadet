@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:11:03 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/24 12:05:17 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:31:35 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ int	philo_check(t_info *info, t_philo *philo, int full)
 {
 	long long	t_cur;
 
-	if (full && info->n_must_eat == philo->c_eat)
+	if (full)
 	{
-		info->c_full++;
-		return (0);
+		if (info->c_full >= info->n_philo)
+			return (1);
+		else
+			return (0);
 	}
 	t_cur = set_time();
 	if (info->is_dead)

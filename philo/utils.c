@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/24 11:27:15 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:00:05 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,11 @@ void	free_all(t_info *info, t_philo **philo)
 	while (++i < info->n_philo)
 		pthread_mutex_destroy(&info->fork[i]);
 	i = -1;
-	while (++i < info->n_philo)
-		pthread_join((*philo)[i].thread, NULL);
+	if (info->n_philo == 1)
+		pthread_detach((*philo)[0].thread);
+	else
+		while (++i < info->n_philo)
+			pthread_join((*philo)[i].thread, NULL);
 	pthread_mutex_destroy(&info->l_print);
 	free(info->fork);
 	free(*philo);
