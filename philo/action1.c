@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   action_1.c                                         :+:      :+:    :+:   */
+/*   action1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:23:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/18 16:12:31 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:03:24 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static void	philo_eat(t_info *info, t_philo *philo)
 	philo_print(philo->id, philo->status, info);
 	philo_print(philo->id, philo->status, info);
 	philo_print(philo->id, philo->status, info);
+	philo->t_last_eat = set_time();
 	philo->c_eat++;
+	philo_wait((long long) philo->c_eat);
 	pthread_mutex_unlock(&info->fork[philo->left]);
 	pthread_mutex_unlock(&info->fork[philo->right]);
 	philo->status = SLEEP;
@@ -44,11 +46,13 @@ void	*philo_action(void	*argu)
 
 	philo = (t_philo *)argu;
 	info = philo->info;
-
 	if (philo->id % 2 == 1)
 		usleep(1000);
 	while (1)
 	{
+		if ((info->n_must_eat > 0 && philo->c_eat >= info->n_must_eat)
+			|| philo_check(info, philo, 0))
+			break ;
 		if (philo->status == EAT)
 			philo_eat(info, philo);
 		else if (philo->status == SLEEP)
@@ -56,6 +60,7 @@ void	*philo_action(void	*argu)
 		else if (philo->status == THINK)
 			philo_think(info, philo);
 	}
+	philo_check(info, philo, 1);
 	return (NULL);
 }
 
@@ -69,6 +74,19 @@ int	start_action(t_info *info, t_philo *philo)
 		philo[i].t_last_eat = set_time();
 		if (pthread_create(&(philo[i].thread), NULL, philo_action, &philo[i]))
 			return (1);
+	}
+	i = -1;
+	while (1)
+	{
+		if (++i >= info->n_philo)
+			i = 0;
+		if (philo_check(info, philo, 0))
+			break ;
+		if (philo_check(info, philo, 1))
+		{
+			printf("Finished Dining.\n");
+			break ;
+		}
 	}
 	return (0);
 }

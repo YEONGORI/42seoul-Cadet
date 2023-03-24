@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/18 16:41:54 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:27:15 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,19 @@ long long	set_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 		return (-1);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	free_all(t_info *info, t_philo **philo)
+{
+	int	i;
+
+	i = -1;
+	while (++i < info->n_philo)
+		pthread_mutex_destroy(&info->fork[i]);
+	i = -1;
+	while (++i < info->n_philo)
+		pthread_join((*philo)[i].thread, NULL);
+	pthread_mutex_destroy(&info->l_print);
+	free(info->fork);
+	free(*philo);
 }

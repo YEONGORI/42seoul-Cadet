@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:13:24 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/18 16:09:37 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:27:49 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	main(int ac, char **av)
 		return (printf("ERROR: Mutex Not Created\n"));
 	if (start_action(&info, philo))
 		return (printf("ERROR: Dining Failed\n"));
+	free_all(&info, &philo);
 	return (0);
 }

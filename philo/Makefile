@@ -6,7 +6,7 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 10:52:33 by yeongele          #+#    #+#              #
-#    Updated: 2023/03/18 15:40:57 by yeongele         ###   ########.fr        #
+#    Updated: 2023/03/21 17:14:35 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME =  philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = philo.c utils.c init.c action.c
+SRCS = philo.c utils.c init.c action1.c action2.c
 
 OBJS = $(SRCS:.c=.o)
 
