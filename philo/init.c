@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:53:42 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/24 11:38:27 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:13:05 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	init_info(int ac, char **av, t_info *info)
 	info->t_die = char_to_int(av[2]);
 	info->t_eat = char_to_int(av[3]);
 	info->t_sleep = char_to_int(av[4]);
-	info->n_must_eat = 0;
 	info->t_start = set_time();
+	info->n_must_eat = 0;
 	info->is_dead = 0;
 	info->c_full = 0;
 	if (ac == 6)
@@ -62,7 +62,10 @@ int	init_mutex(t_info *info)
 	while (++i < info->n_philo)
 		if (pthread_mutex_init(&info->fork[i], NULL))
 			return (1);
-	if (pthread_mutex_init(&(info->l_print), NULL))
+	if (pthread_mutex_init(&(info->m_print), NULL)
+		|| pthread_mutex_init(&(info->m_dead), NULL)
+		|| pthread_mutex_init(&(info->m_last_eat), NULL)
+		|| pthread_mutex_init(&(info->m_c_full), NULL))
 		return (1);
 	return (0);
 }

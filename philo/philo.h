@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:13:35 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/24 11:22:47 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:13:52 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,23 @@ typedef struct s_info
 	long long		t_start;
 	int				c_full;
 	int				is_dead;
-	pthread_mutex_t	l_print;
+	pthread_mutex_t	m_dead;
+	pthread_mutex_t	m_c_full;
+	pthread_mutex_t	m_last_eat;
+	pthread_mutex_t	m_print;
 	pthread_mutex_t	*fork;
 }	t_info;
 
 typedef struct s_philo
 {
-	int			id;
-	int			left;
-	int			right;
-	int			status;
-	int			c_eat;
-	long long	t_last_eat;
-	t_info		*info;
-	pthread_t	thread;
+	int				id;
+	int				left;
+	int				right;
+	int				status;
+	int				c_eat;
+	long long		t_last_eat;
+	t_info			*info;
+	pthread_t		thread;
 }	t_philo;
 
 /* utils.c */
@@ -69,6 +72,7 @@ int			init_mutex(t_info *info);
 int			start_action(t_info *info, t_philo *philo);
 void		philo_print(int id, int status, t_info *info);
 void		philo_wait(long long t);
-int			philo_check(t_info *info, t_philo *philo, int full);
+int			philo_check_death(t_info *info, t_philo *philo);
+int			philo_check_full(t_info *info);
 
 #endif

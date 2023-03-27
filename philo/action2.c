@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:11:03 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/24 12:31:35 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:30:31 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@ void	philo_print(int id, int status, t_info *info)
 {
 	long long	t_cur;
 
-	t_cur = set_time() - (info->t_start);
-	pthread_mutex_lock(&(info->l_print));
-	if (status == FORK)
-		printf("%lldms %d has taken a fork\n", t_cur, id + 1);
-	else if (status == EAT)
-		printf("%lldms %d is eating\n", t_cur, id + 1);
-	else if (status == SLEEP)
-		printf("%lldms %d is sleeping\n", t_cur, id + 1);
-	else if (status == THINK)
-		printf("%lldms %d is thinking\n", t_cur, id + 1);
-	else if (status == DIE)
-		printf("%lldms %d died\n", t_cur, id + 1);
-	pthread_mutex_unlock(&(info->l_print));
+	pthread_mutex_lock(&(info->m_dead));
+	if (!info->is_dead)
+	{
+		pthread_mutex_lock(&(info->m_print));
+		t_cur = set_time() - info->t_start;
+		if (status == FORK)
+			printf("%lld %d has taken a fork\n", t_cur, id + 1);
+		else if (status == EAT)
+			printf("%lld %d is eating\n", t_cur, id + 1);
+		else if (status == SLEEP)
+			printf("%lld %d is sleeping\n", t_cur, id + 1);
+		else if (status == THINK)
+			printf("%lld %d is thinking\n", t_cur, id + 1);
+		pthread_mutex_unlock(&(info->m_print));
+	}
+	pthread_mutex_unlock(&(info->m_dead));
 }
 
 void	philo_wait(long long t)
@@ -46,25 +49,40 @@ void	philo_wait(long long t)
 	}
 }
 
-int	philo_check(t_info *info, t_philo *philo, int full)
+int	philo_check_full(t_info *info)
+{
+	pthread_mutex_lock(&(info->m_c_full));
+	if (info->c_full >= info->n_philo)
+	{
+		pthread_mutex_unlock(&(info->m_c_full));
+		return (1);
+	}
+	pthread_mutex_unlock(&(info->m_c_full));
+	return (0);
+}
+
+
+int	philo_check_death(t_info *info, t_philo *philo)
 {
 	long long	t_cur;
 
-	if (full)
-	{
-		if (info->c_full >= info->n_philo)
-			return (1);
-		else
-			return (0);
-	}
 	t_cur = set_time();
+	pthread_mutex_lock(&(info->m_dead));
 	if (info->is_dead)
+	{
+		pthread_mutex_unlock(&(info->m_dead));
 		return (1);
+	}
+	pthread_mutex_lock(&(info->m_last_eat));
 	if (info->t_die < t_cur - philo->t_last_eat)
 	{
 		info->is_dead = 1;
-		philo_print(philo->id, DIE, info);
+		pthread_mutex_unlock(&(info->m_dead));
+		pthread_mutex_unlock(&(info->m_last_eat));
+		printf("%lldms %d died\n", t_cur - info->t_start, philo->id + 1);
 		return (1);
 	}
+	pthread_mutex_unlock(&(info->m_last_eat));
+	pthread_mutex_unlock(&(info->m_dead));
 	return (0);
 }

@@ -6,13 +6,13 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 10:52:33 by yeongele          #+#    #+#              #
-#    Updated: 2023/03/21 17:14:35 by yeongele         ###   ########.fr        #
+#    Updated: 2023/03/27 10:48:22 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =  philo
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=thread 
 
 SRCS = philo.c utils.c init.c action1.c action2.c
 
