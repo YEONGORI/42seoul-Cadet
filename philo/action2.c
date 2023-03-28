@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:11:03 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/27 13:30:31 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/03/28 09:44:17 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	philo_check_full(t_info *info)
 	pthread_mutex_unlock(&(info->m_c_full));
 	return (0);
 }
-
 
 int	philo_check_death(t_info *info, t_philo *philo)
 {

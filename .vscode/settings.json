@@ -3,7 +3,10 @@
 		"get_next_line.h": "c",
 		"stdio.h": "c",
 		"ft_printf.h": "c",
-		"push_swap.h": "c"
+		"push_swap.h": "c",
+		"__locale": "c",
+		"chrono": "c",
+		"ostream": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
