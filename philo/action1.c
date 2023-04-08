@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:23:13 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/27 12:58:03 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/04/08 09:36:15 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	start_action(t_info *info, t_philo *philo)
 	{
 		if (++i >= info->n_philo)
 			i = 0;
-		if (philo_check_death(info, philo))
+		if (philo_check_death(info, &philo[i]))
 			break ;
 		if (philo_check_full(info))
 		{

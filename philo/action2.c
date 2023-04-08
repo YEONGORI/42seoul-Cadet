@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:11:03 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/28 09:44:17 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/04/08 09:53:27 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	philo_check_death(t_info *info, t_philo *philo)
 		info->is_dead = 1;
 		pthread_mutex_unlock(&(info->m_dead));
 		pthread_mutex_unlock(&(info->m_last_eat));
-		printf("%lldms %d died\n", t_cur - info->t_start, philo->id + 1);
+		printf("%lld %d died\n", t_cur - info->t_start, philo->id + 1);
 		return (1);
 	}
 	pthread_mutex_unlock(&(info->m_last_eat));
