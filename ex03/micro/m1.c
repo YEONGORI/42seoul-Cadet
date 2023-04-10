@@ -54,17 +54,22 @@ int		is_in_rect(rect *r, float x, float y) {
 }
 
 void 	execute_one(rect *r, zone *z, int x, int y) {
+	printf("%f %f %f %f\n", r->x, r->y, r->wid, r->hei);
 	int is_in = is_in_rect(r, (float)x, (float)y);
-	if (is_in == 2 || (is_in == 1 && r->r == 'R'))
+	if (is_in == 2 || (is_in == 1 && r->r == 'R')) {
 		z->matric[x + y*z->wid] = r->c;
+		printf("%c\n", r->c);
+	}
 }
 
 int 	apply_op(rect *r, zone *z) {
-	if (r->wid <= 0.000000 || r->hei <= 0.00000000 || (r->r != 'R' && r->r != 'r'))
+	if (r->wid <= 0.00000000 || r->hei <= 0.00000000 || (r->r != 'R' && r->r != 'r'))
 		return 1;
 	for (int i=0; i<z->wid; i++) {
-		for (int j=0; j<z->hei; j++)
+		for (int j=0; j<z->hei; j++) {
 			execute_one(r, z, i, j);
+			printf("HIHI");
+		}
 	}
 	return 0;
 }
@@ -86,6 +91,7 @@ int		execute(FILE *file) {
 
 	if (!err && !get_info(file, &z)) {
 		while (!err && (i = fscanf(file, "%c %f %f %f %f %c\n", &r.r, &r.x, &r.y, &r.wid, &r.hei, &r.c)) == 6) {
+			printf("QQ\n");
 			if (apply_op(&r, &z))
 				err = 1;
 		}

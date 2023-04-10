@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:53:42 by yeongele          #+#    #+#             */
-/*   Updated: 2023/03/27 10:13:05 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/04/08 14:58:13 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ int	init_philo(t_info *info, t_philo **philo)
 	return (0);
 }
 
+int	remove_mutex(t_info *info, int n)
+{
+	if (n >= 3)
+		pthread_mutex_destroy(&info->m_c_full);
+	if (n >= 2)
+		pthread_mutex_destroy(&info->m_last_eat);
+	if (n >= 1)
+		pthread_mutex_destroy(&info->m_dead);
+	if (n >= 0)
+		pthread_mutex_destroy(&info->m_print);
+	return (1);
+}
+
 int	init_mutex(t_info *info)
 {
 	int	i;
@@ -60,12 +73,21 @@ int	init_mutex(t_info *info)
 	if (!info->fork)
 		return (1);
 	while (++i < info->n_philo)
+	{
 		if (pthread_mutex_init(&info->fork[i], NULL))
+		{
+			while (--i >= 0)
+				pthread_mutex_destroy(&info->fork[i]);
 			return (1);
-	if (pthread_mutex_init(&(info->m_print), NULL)
-		|| pthread_mutex_init(&(info->m_dead), NULL)
-		|| pthread_mutex_init(&(info->m_last_eat), NULL)
-		|| pthread_mutex_init(&(info->m_c_full), NULL))
-		return (1);
+		}
+	}
+	if (pthread_mutex_init(&(info->m_print), NULL))
+		return (remove_mutex(info, 0));
+	if (pthread_mutex_init(&(info->m_dead), NULL))
+		return (remove_mutex(info, 1));
+	if (pthread_mutex_init(&(info->m_last_eat), NULL))
+		return (remove_mutex(info, 2));
+	if (pthread_mutex_init(&(info->m_c_full), NULL))
+		return (remove_mutex(info, 3));
 	return (0);
 }
