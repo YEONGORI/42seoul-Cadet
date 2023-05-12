@@ -6,7 +6,8 @@
 		"push_swap.h": "c",
 		"__locale": "c",
 		"chrono": "c",
-		"ostream": "c"
+		"ostream": "c",
+		"ioctl_compat.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
