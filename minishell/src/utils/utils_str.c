@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:52:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 18:00:11 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 21:21:13 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,22 @@ int	ft_strhei(char **square)
 	return (hei);
 }
 
-void	free_square(char *square)
+int	ft_isnumeric(char *s)
 {
 	int	i;
 
-	i = 0;
-	if (square)
+	i = -1;
+	while (s[++i])
 	{
-		while (square[i])
-			free(square[i++]);
-		free(square);
+		if (s[i] != ' ' && s[i] != '\t'
+			&& ((s[i] != '-' && s[i] != '+')
+				&& !ft_isdigit(s[i + 1])))
+		{
+			if (!ft_isdigit(s[i]))
+				return (0);
+		}
+		if ((s[i] == '-' || s[i] == '+') && !s[i + 1])
+			return (0);
 	}
+	return (1);
 }

@@ -6,11 +6,36 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:21:44 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 20:31:54 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 21:05:06 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+char	**create_argv(t_token_list *argu, int *ac)
+{
+	int				i;
+	char			**av;
+	t_token_list	*tmp;
+
+	i = -1;
+	*ac = 0;
+	tmp = argu;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		*ac += 1;
+	}
+	av = malloc(sizeof(char *) * (*ac + 1));
+	tmp = argu;
+	while (tmp)
+	{
+		av[++i] = ft_strdup(tmp->str);
+		tmp = tmp->next;
+	}
+	av[i] = NULL;
+	return (av);
+}
 
 t_p_cmd_managed_list	*append_new_cmd(t_p_cmd_managed_list **list)
 {

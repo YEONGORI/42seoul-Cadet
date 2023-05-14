@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 12:34:14 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 20:22:20 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 21:31:45 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,13 @@ t_p_cmd_managed_list	*parse(char *input)
 	if (p_cmd_list == NULL)
 		return (NULL);
 	p_cmd_managed_list = create_p_cmd_managed_list(p_cmd_list);
-	
+	free_p_cmd_list(p_cmd_list);
+	if (exit_condition(p_cmd_managed_list)
+		&& !p_cmd_managed_list->next)
+	{
+		execute_exit(p_cmd_managed_list);
+		free_p_cmd_managed_list(p_cmd_managed_list);
+		return (NULL);
+	}
+	return (p_cmd_managed_list);
 }

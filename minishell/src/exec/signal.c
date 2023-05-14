@@ -6,11 +6,17 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:58:32 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/12 12:14:36 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 20:55:49 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	heredoc_signal(int sig)
+{
+	if (sig == SIGINT)
+		g_env.heredoc_signal = 1;
+}
 
 void	ctrl_d(char	*line)
 {
