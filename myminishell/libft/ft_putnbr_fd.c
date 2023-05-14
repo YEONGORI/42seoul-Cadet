@@ -1,48 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_str.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 11:52:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 18:00:11 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/12 14:30:47 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/15 15:46:42 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+static void	recursive(n, fd)
 {
-	int	i;
+	char	conv;
 
-	i = 0;
-	if (!s1 || !s2)
-		return (1);
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	ft_strhei(char **square)
-{
-	int	hei;
-
-	hei = 0;
-	while (square[hei])
-		hei++;
-	return (hei);
-}
-
-void	free_square(char *square)
-{
-	int	i;
-
-	i = 0;
-	if (square)
+	if (n < 10)
 	{
-		while (square[i])
-			free(square[i++]);
-		free(square);
+		conv = n + '0';
+		write(fd, &conv, 1);
 	}
+	else
+	{
+		recursive(n / 10, fd);
+		recursive(n % 10, fd);
+	}
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (fd < 0)
+		return ;
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	recursive(n, fd);
 }

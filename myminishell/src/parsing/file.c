@@ -1,48 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_str.c                                        :+:      :+:    :+:   */
+/*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 11:52:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 18:00:11 by yeongele         ###   ########.fr       */
+/*   Created: 2023/05/14 20:32:27 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/14 20:34:08 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	*open_files(t_redirect_list *redirect_list)
 {
-	int	i;
+	int	pid;
+	int	*fd;
+	int	*fd_pipe;
 
-	i = 0;
-	if (!s1 || !s2)
-		return (1);
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	ft_strhei(char **square)
-{
-	int	hei;
-
-	hei = 0;
-	while (square[hei])
-		hei++;
-	return (hei);
-}
-
-void	free_square(char *square)
-{
-	int	i;
-
-	i = 0;
-	if (square)
-	{
-		while (square[i])
-			free(square[i++]);
-		free(square);
-	}
+	g_env.heredoc_signal = 0;
+	fd = malloc(sizeof(int) * 2);
+	fd_pipe = malloc(sizeof(int) * 2);
+	pid = 0;
+	fd[0] = 0;
+	fd[1] = 0;
 }

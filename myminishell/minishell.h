@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:41:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/12 12:58:01 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 20:29:39 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ typedef struct s_token_list
 {
 	char								*str;
 	int									quotes;
-	struct s_string_list				*next;
+	struct s_token_list					*next;
 }	t_token_list;
 
-typedef strcut s_redirect_list
+typedef struct s_redirect_list
 {
 	t_direction							direction;
 	char								*file;
 	struct s_redirect_list				*next;
-}	t_redirection_list;
+}	t_redirect_list;
 
 typedef struct s_parsed_cmd
 {
 	int									is_pipe;
 	t_token_list						*arg;
-	t_redirection_list					*redirections;
+	t_redirect_list						*redirection;
 }	t_p_cmd;
 
 typedef struct s_parsed_cmd_list
@@ -101,18 +101,55 @@ void					check_signal(void);
 void					init_env(char **env);
 
 /*					parsing				*/
+char					*before_dollar(char *s);
+void					after_dollar(char *s, int *i);
+
+void					*set_env(t_token_list *token_list);
+
 t_p_cmd_managed_list	*parse(char *input);
 
+int						get_quote_len(char *input, int flag);
+int						get_end_quote(char *s, int c);
 int						quotes(char *s);
 int						empty(char *s);
 
+int						is_pipe(t_token_list *token, t_p_cmd *parsed_cmd);
+int						check_syntax(t_token_list *token_list);
+
 t_token_list			*get_token_list(char *input);
 
-/*					utils				*/
+/*					utils_char.c		*/
 int						jump_space(char	*input);
 
+/*					utils_env.c			*/
+void					copy_env_value(char *s, int i);
+void					set_env_return(char **new, char *s, int *i, int *len);
+void					set_env_return_len(char *s, int *i, int *len);
 
+/*					utils_free.c		*/
+int						free_token_list(t_token_list *token_list);
+
+/*					utils_init.c		*/
+t_p_cmd					*init_parsed_cmd(void);
+void					init_struct(t_token_list **token_head,
+							t_token_list **token_list,
+							t_p_cmd **parsed_cmd,
+							t_p_cmd_list **parsed_cmd_list);
+
+/*					utils_quote.c		*/
+int						find_quote(char *s, int len);
+char					*remove_quote(char *input, char *dest, int flag);
+int						help_quote1(char *input, int *i, int *len);
+int						help_quote2(char *input, char *dest, int *i, int *len);
+
+/*					utils_str.c			*/
+int						ft_strcmp(char *s1, char *s2);
 int						ft_strhei(char **square);
 void					free_square(char *square);
+
+/*					utils_token.c		*/
+int						get_token_len_with_redirect(int flag, t_direction type);
+int						basic_redirect_token_type(char *s);
+int						redirect_token_type(char *s, t_token_list *token);
 
 #endif

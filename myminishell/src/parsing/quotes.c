@@ -6,11 +6,51 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 12:22:06 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/12 12:33:14 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 16:27:38 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	get_quote_len(char *input, int flag)
+{
+	int	i;
+	int	len;
+
+	i = -1;
+	len = 0;
+	while (input[++i])
+	{
+		if (input[i] == '\'' || input[i] == '\"')
+		{
+			if (flag == 0)
+				flag = 1;
+			else if (flag == 1)
+				if (help_quote1(input, &i, &len))
+					break ;
+		}
+		else
+			len++;
+		if (input[i] == NULL)
+			break ;
+	}
+	return (len);
+}
+
+int	get_end_quote(char *s, int c)
+{
+	int	i;
+
+	i = -1;
+	if (!s)
+		return (-1);
+	while (s[++i])
+		if (s[i] == c)
+			return (i);
+	if (c == NULL)
+		return (i);
+	return (-1);
+}
 
 int	quotes(char *s)
 {

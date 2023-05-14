@@ -1,48 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_str.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 11:52:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 18:00:11 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:21:00 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/09 13:09:55 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+size_t	ft_strlcpy(char *dest, const char *src, size_t datsize)
 {
-	int	i;
+	size_t	i;
+	size_t	src_len;
 
 	i = 0;
-	if (!s1 || !s2)
-		return (1);
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	while (src[i] != 0)
 		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	ft_strhei(char **square)
-{
-	int	hei;
-
-	hei = 0;
-	while (square[hei])
-		hei++;
-	return (hei);
-}
-
-void	free_square(char *square)
-{
-	int	i;
-
-	i = 0;
-	if (square)
-	{
-		while (square[i])
-			free(square[i++]);
-		free(square);
-	}
+	src_len = i;
+	if (datsize == 0)
+		return (src_len);
+	i = -1;
+	while (src[++i] != 0 && i < datsize - 1)
+		dest[i] = src[i];
+	dest[i] = 0;
+	return (src_len);
 }

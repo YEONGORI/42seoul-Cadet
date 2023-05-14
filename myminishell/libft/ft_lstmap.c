@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_str.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 11:52:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 18:00:11 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/14 12:02:47 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/14 14:56:39 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	i;
+	t_list	*new;
+	t_list	*cur;
 
-	i = 0;
-	if (!s1 || !s2)
-		return (1);
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	ft_strhei(char **square)
-{
-	int	hei;
-
-	hei = 0;
-	while (square[hei])
-		hei++;
-	return (hei);
-}
-
-void	free_square(char *square)
-{
-	int	i;
-
-	i = 0;
-	if (square)
+	if (!lst || !f)
+		return (NULL);
+	new = NULL;
+	while (lst)
 	{
-		while (square[i])
-			free(square[i++]);
-		free(square);
+		cur = ft_lstnew(f(lst -> content));
+		if (!cur)
+		{
+			ft_lstclear(&lst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, cur);
+		lst = lst -> next;
 	}
+	return (new);
 }

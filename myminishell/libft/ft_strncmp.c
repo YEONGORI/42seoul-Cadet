@@ -1,48 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_str.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 11:52:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 18:00:11 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:23:00 by yeongele          #+#    #+#             */
+/*   Updated: 2022/07/09 14:01:07 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	i = 0;
-	if (!s1 || !s2)
-		return (1);
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	ft_strhei(char **square)
-{
-	int	hei;
-
-	hei = 0;
-	while (square[hei])
-		hei++;
-	return (hei);
-}
-
-void	free_square(char *square)
-{
-	int	i;
-
-	i = 0;
-	if (square)
+	i = -1;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (str1 == 0 && str2 == 0)
+		return (0);
+	while (++i < n && !(str1[i] == 0 && str2[i] == 0))
 	{
-		while (square[i])
-			free(square[i++]);
-		free(square);
+		if (str1[i] != str2[i])
+		{
+			if (str1[i] > str2[i])
+				return (1);
+			return (-1);
+		}
 	}
+	return (0);
 }

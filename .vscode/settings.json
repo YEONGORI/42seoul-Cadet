@@ -7,7 +7,8 @@
 		"__locale": "c",
 		"chrono": "c",
 		"ostream": "c",
-		"ioctl_compat.h": "c"
+		"ioctl_compat.h": "c",
+		"sstream": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
