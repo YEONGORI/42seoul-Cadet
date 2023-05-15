@@ -5,43 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/19 14:04:28 by yeongele          #+#    #+#              #
-#    Updated: 2023/05/15 13:37:34 by yeongele         ###   ########.fr        #
+#    Created: 2022/07/14 18:50:04 by yeongele          #+#    #+#              #
+#    Updated: 2023/05/15 13:33:14 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		= cc
-CFLAGS	= -Wall -Werror -Wextra
-NAME	= push_swap
+NAME = libft.a
 
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+CC = cc
 
-SRC		= main.c \
-		operations/push.c operations/rev_rotate.c operations/rotate.c operations/swap.c \
-		sort/sort.c sort/move.c sort/position.c sort/resolve.c\
-		utils/checker.c utils/init.c utils/utils.c
-		
-OBJ		= $(SRC:.c=.o)
+CFLAGS = -Wall -Wextra -Werror
 
-all: $(OBJ) $(NAME)
+SRCS = ft_lstadd_front.c ft_lstclear.c ft_lstnew.c ft_lstsize.c ft_strcmp.c ft_strdup.c ft_strlen.c \
+
+OBJS = ${SRCS:.c=.o}
+
+all: ${NAME}
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	${CC} ${CFLAGS} -c $< -o $@
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -o $(NAME)
+${NAME}: ${OBJS}
+		ar rsc $@ ${OBJS}
 
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+${OBJS}: ${SRCS}
+	${CC} ${CFLAGS} -c ${SRCS}
 
 clean:
-	@rm -rf $(OBJ)
-	@make -C $(LIBFT_DIR) clean
+	@rm -f ${OBJS}
 
 fclean: clean
-	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean
+	@rm -f ${NAME}
 
 re: fclean all
 

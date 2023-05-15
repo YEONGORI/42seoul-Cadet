@@ -6,7 +6,7 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/19 14:04:28 by yeongele          #+#    #+#              #
-#    Updated: 2023/03/17 10:49:14 by yeongele         ###   ########.fr        #
+#    Updated: 2023/05/15 13:40:52 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ NAME = so_long
 
 GNL_DIR = gnl
 GNL = $(GNL_DIR)/libgnl.a
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+
 
 SRCS_M = so_long.c map.c map_checker.c map_parser.c key.c key_checker.c key_move.c algorithm.c queue.c utils.c
 SRCS_B = so_long.c map.c map_checker.c map_parser.c key.c key_checker.c key_move_bonus.c algorithm.c queue.c utils.c
