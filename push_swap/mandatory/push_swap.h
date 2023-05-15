@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:04:44 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/15 12:42:38 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:06:42 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@
 
 # define C_INT_MAX 2147483647
 # define C_INT_MIN -2147483648
-
-/*
-void	leaks(void)
-{
-	system("leaks push_swap | grep leaked");
-}
-atexit(leaks);
-*/
 
 typedef struct s_stack
 {

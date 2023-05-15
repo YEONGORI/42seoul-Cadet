@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 20:42:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/29 15:01:50 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/14 11:54:29 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/15 20:06:22 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../mandatory/push_swap.h"
 
-void	ft_lstadd_front(t_stack **a, t_stack *new)
+int	ft_lstclear(t_stack	**lst)
 {
-	if (!new)
-		return ;
-	else if (!a)
-		a = &new;
-	else if (!(*a))
-		*a = new;
-	else
+	t_stack	*cur;
+	t_stack	*nxt;
+
+	if (!lst)
+		return (0);
+	cur = *lst;
+	while (cur)
 	{
-		new -> next = *a;
-		(*a)-> prev = new;
-		*a = new;
+		nxt = cur -> next;
+		free(cur);
+		cur = nxt;
 	}
+	*lst = NULL;
+	return (1);
 }

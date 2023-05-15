@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 15:45:56 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/15 10:13:38 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:23:00 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/15 20:06:35 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap_bonus.h"
+#include "../mandatory/push_swap.h"
 
-int	ft_lstsize(t_stack *lst)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int		i;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	i = 0;
-	if (!lst)
+	i = -1;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (str1 == 0 && str2 == 0)
 		return (0);
-	while (lst)
+	while (++i < n && !(str1[i] == 0 && str2[i] == 0))
 	{
-		lst = lst -> next;
-		i++;
+		if (str1[i] != str2[i])
+		{
+			if (str1[i] > str2[i])
+				return (1);
+			return (-1);
+		}
 	}
-	return (i);
+	return (0);
 }

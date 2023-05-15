@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 15:02:30 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/29 17:12:34 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/19 15:45:56 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/15 20:06:21 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../mandatory/push_swap.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_lstsize(t_stack *lst)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	while (s1[i] || s2[i])
+	if (!lst)
+		return (0);
+	while (lst)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		lst = lst -> next;
 		i++;
 	}
-	return (0);
+	return (i);
 }

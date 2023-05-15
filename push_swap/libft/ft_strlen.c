@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 15:02:36 by yeongele          #+#    #+#             */
-/*   Updated: 2023/01/29 15:02:38 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/29 15:02:41 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/15 20:06:31 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../mandatory/push_swap.h"
 
-char	*ft_strdup(const char *s1)
+size_t	ft_strlen(const char *str)
 {
-	int		i;
-	char	*str;
+	size_t	i;
 
-	i = -1;
-	str = (char *) malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!str)
-		return (NULL);
-	while (s1[++i] != 0)
-		str[i] = s1[i];
-	str[i] = '\0';
-	return (str);
+	i = 0;
+	while (str[i] != 0)
+		i++;
+	return (i);
 }

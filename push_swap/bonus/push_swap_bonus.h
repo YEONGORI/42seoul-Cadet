@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:04:44 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/15 13:12:43 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:08:07 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 # define C_INT_MAX 2147483647
 # define C_INT_MIN -2147483648
@@ -66,6 +65,13 @@ void	swap_a(t_stack **lst);
 void	swap_b(t_stack **lst);
 void	swap_both(t_stack **a, t_stack **b);
 
+/* gnl */
+char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_strchr(const char *s, int c);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
 /* libft */
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
 int		ft_lstclear(t_stack **lst);
@@ -75,12 +81,5 @@ char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *str);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-
-/* gnl */
-char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
-int		ft_strchr(const char *s, int c);
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

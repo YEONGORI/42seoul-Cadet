@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 20:42:26 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/15 10:13:30 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/29 15:02:30 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/15 20:06:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap_bonus.h"
+#include "../mandatory/push_swap.h"
 
-void	ft_lstadd_front(t_stack **a, t_stack *new)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (!new)
-		return ;
-	else if (!a)
-		a = &new;
-	else if (!(*a))
-		*a = new;
-	else
+	int	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		new -> next = *a;
-		(*a)-> prev = new;
-		*a = new;
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
 	}
+	return (0);
 }
