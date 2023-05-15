@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 19:06:54 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/25 21:15:02 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:07:15 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_print_char(char c)
 {

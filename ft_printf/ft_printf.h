@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 17:01:03 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/29 12:21:40 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:06:59 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int	ft_strlen(const char *str);
 int	ft_putchar(char c);
-int print_ptr(unsigned long long ptr, char *hex, int cnt);
+int	print_ptr(unsigned long long ptr, char *hex, int cnt);
 
 int	ft_printf(const char *str, ...);
 int	ft_print_char(char c);
