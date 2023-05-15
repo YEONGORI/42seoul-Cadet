@@ -35,7 +35,7 @@ void	ctrl_c(int sig)
 	rl_on_new_line();
 	rl_redisplay();
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
-	write(1, "\033[A", 3);
+	write(1, "\033[A", 3); // pin
 	g_env.ret_exit = 1;
 }
 

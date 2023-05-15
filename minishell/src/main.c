@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:41:07 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/12 12:35:19 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 22:49:24 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int ac, char *av, char ***env)
 	if (ac == 1)
 	{
 		init_env(env);
+		check_signal();
 		while (1)
 		{
-			check_signal();
 			input = readline("$ ");
 			ctrl_d(input);
 			add(input);

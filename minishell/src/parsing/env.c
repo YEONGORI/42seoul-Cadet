@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:36:21 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 18:11:40 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 22:28:23 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ char	*get_env(char *s, int len, int is_env)
 	after_dollar(char *s, int *i);
 	while (s[i])
 	{
-		if (s[*i] == '$')
+		if (s[i] == '$')
 			is_env = 1;
 		set_env_return(&new, s, &i, &len);
 		if (is_env)
 		{
 			if (ft_isdigit(new[0]))
 				ret = ft_strjoin(ret, new);
-			if (get_env(new))
-				ret = ft_strjoin(ret, get_env(new));
+			if (get_env_value(new))
+				ret = ft_strjoin(ret, get_env_value(new));
 		}
 		else
 			ret = ft_strjoin(ret, new);
@@ -78,7 +78,7 @@ void	*set_env(t_token_list *token_list)
 		if (ft_strchr(token_list->str, '$ ') && ft_strlen(token_list->str) > 1
 			&& token_list->quotes != 1)
 		{
-			if (token_list->str[0] != '$ ')
+			if (token_list->str[0] != '$')
 				before = before_dollar(token_list->str);
 			env = get_env(token_list->str, 0, 0);
 			free(token_list->str);

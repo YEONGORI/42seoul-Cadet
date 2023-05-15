@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 12:51:52 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 16:34:40 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/14 22:14:10 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_token_list	*get_token_list(char *input)
 	if (*input == NULL)
 		return (NULL);
 	len = get_token_len(input, -1, -1);
-	token = get_token(input, len); /* 에러 처리 필요 */
+	token = get_token(input, len);
 	token->next = get_token_list(input + len);
 	return (token);
 }
