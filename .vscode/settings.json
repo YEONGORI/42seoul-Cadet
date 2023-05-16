@@ -13,7 +13,8 @@
 		"algorithm": "c",
 		"checker_bonus.h": "c",
 		"push_swap_bonus.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"__cxx_version": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

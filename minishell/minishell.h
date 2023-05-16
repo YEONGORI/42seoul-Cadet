@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:41:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 21:32:58 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:34:08 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ typedef struct s_parsed_cmd_managed_list
 
 t_env 									g_env;
 
-/*					error.c				*/
+/*					builtins				*/
+int						find_line(char *str);
 void					error_redirection(char *file, int err_type);
 void					error_exit(char	*s, int err_type);
 
@@ -101,11 +102,13 @@ void					heredoc_signal(int sig);
 void					ctrl_d(char	*line);
 void					ctrl_c(int sig);
 void					check_signal(void);
+int						single_cmd(t_p_cmd_managed_list *managed);
 
 /*					parsing				*/
 char					*before_dollar(char *s);
 void					after_dollar(char *s, int *i);
 void					*set_env(t_token_list *token_list);
+char					*get_env_value(char *s);
 int						*open_files(t_redirect_list *redirect_list);
 t_p_cmd_managed_list	*create_p_cmd_managed_list(t_p_cmd_list *cmdline);
 t_p_cmd_managed_list	*parse(char *input);
