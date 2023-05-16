@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 21:28:01 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 19:36:59 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:16:49 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 21:10:31 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	env(void)
+int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = 0;
-	while (g_env.env[i])
-		ft_putendl_fd(g_env.env[i++], 1);
-	g_env.ret_exit = 0;
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

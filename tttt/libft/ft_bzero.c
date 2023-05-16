@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 21:28:01 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 19:36:59 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:14:11 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 22:36:32 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	env(void)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*tmp;
 
 	i = 0;
-	while (g_env.env[i])
-		ft_putendl_fd(g_env.env[i++], 1);
-	g_env.ret_exit = 0;
+	tmp = (unsigned char *)s;
+	while (i < n)
+		tmp[i++] = 0;
 }

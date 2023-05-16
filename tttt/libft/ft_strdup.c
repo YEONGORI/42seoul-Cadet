@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 21:28:01 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 19:36:59 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/29 15:02:36 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 21:10:36 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	env(void)
+char	*ft_strdup(const char *s1)
 {
-	int	i;
+	int		i;
+	char	*str;
 
-	i = 0;
-	while (g_env.env[i])
-		ft_putendl_fd(g_env.env[i++], 1);
-	g_env.ret_exit = 0;
+	i = -1;
+	str = (char *) malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[++i] != 0)
+		str[i] = s1[i];
+	str[i] = '\0';
+	return (str);
 }

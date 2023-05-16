@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 21:28:01 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 19:36:59 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/12 14:52:14 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 21:17:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	env(void)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	i;
-
-	i = 0;
-	while (g_env.env[i])
-		ft_putendl_fd(g_env.env[i++], 1);
-	g_env.ret_exit = 0;
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
 }

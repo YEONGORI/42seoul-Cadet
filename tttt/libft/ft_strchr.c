@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 21:28:01 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 19:36:59 by yeongele         ###   ########.fr       */
+/*   Created: 2022/07/08 18:19:00 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 22:49:17 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	env(void)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int				i;
+	unsigned char	tmp;
 
-	i = 0;
-	while (g_env.env[i])
-		ft_putendl_fd(g_env.env[i++], 1);
-	g_env.ret_exit = 0;
+	i = -1;
+	tmp = (unsigned char)c;
+	while (s[++i] != 0)
+		if (s[i] == tmp)
+			return ((char *)(s + i));
+	if (s[i] == 0 && tmp == '\0')
+		return ((char *)(s + i));
+	return (0);
 }

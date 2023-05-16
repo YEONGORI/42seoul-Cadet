@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 21:28:01 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 19:36:59 by yeongele         ###   ########.fr       */
+/*   Created: 2023/05/14 17:45:59 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 21:59:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	env(void)
+char	*before_dollar(char *s)
 {
-	int	i;
+	int		i;
+	char	*before;
 
-	i = 0;
-	while (g_env.env[i])
-		ft_putendl_fd(g_env.env[i++], 1);
-	g_env.ret_exit = 0;
+	i = -1;
+	while (s[++i] != '$')
+		;
+	before = malloc(sizeof(char) * (i + 1));
+	i = -1;
+	while (s[++i] != '$')
+		before[i] = s[i];
+	before[i] = 0;
+	return (before);
+}
+
+void	after_dollar(char *s, int *i)
+{
+	*i = 0;
+	while (s[*i] != '$')
+		*i += 1;
 }

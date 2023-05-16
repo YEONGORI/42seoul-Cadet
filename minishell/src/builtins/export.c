@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:28:12 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 13:31:14 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/16 19:31:42 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,29 @@ char	**set_export_env(char *env_name, char *value)
 {
 	int		i;
 	int		line;
-	char	**new_env;
+	char	**env;
 
 	i = -1;
 	line = find_line(env_name);
 	if (line != -1)
 	{
-		new_env = malloc(sizeof(char *) * (split_len(g_myenv.env) + 1));
+		env = malloc(sizeof(char *) * (split_len(g_myenv.env) + 1));
 		while (g_myenv.env[++i])
 		{
 			if (i == line)
-				new_env[i] = ft_strjoin(join_but_no_free(env_name, "="), value);
+				env[i] = ft_strjoin(ft_strjoin_not_free(env_name, "="), value);
 			else
-				new_env[i] = ft_strdup(g_myenv.env[i]);
+				env[i] = ft_strdup(g_myenv.env[i]);
 		}
-		new_env[i] = NULL;
-		return (new_env);
+		env[i] = NULL;
+		return (env);
 	}
-	new_env = malloc(sizeof(char *) * (split_len(g_myenv.env) + 2));
+	env = malloc(sizeof(char *) * (ft_strhei(g_myenv.env) + 2));
 	while (g_myenv.env[++i])
-		new_env[i] = ft_strdup(g_myenv.env[i]);
-	new_env[i] = ft_strjoin(join_but_no_free(env_name, "="), value);
-	new_env[i + 1] = NULL;
-	return (new_env);
+		env[i] = ft_strdup(g_myenv.env[i]);
+	env[i] = ft_strjoin(ft_strjoin_not_free(env_name, "="), value);
+	env[i + 1] = NULL;
+	return (env);
 }
 
 void	export_option(char **new_env, char **split, int option)

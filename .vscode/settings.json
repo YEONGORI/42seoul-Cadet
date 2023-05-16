@@ -14,7 +14,20 @@
 		"checker_bonus.h": "c",
 		"push_swap_bonus.h": "c",
 		"libft.h": "c",
-		"__cxx_version": "c"
+		"__cxx_version": "c",
+		"__hash_table": "c",
+		"__node_handle": "c",
+		"__split_buffer": "c",
+		"array": "c",
+		"functional": "c",
+		"iterator": "c",
+		"locale": "c",
+		"memory": "c",
+		"string": "c",
+		"string_view": "c",
+		"tuple": "c",
+		"unordered_map": "c",
+		"vector": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
