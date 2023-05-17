@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 18:13:46 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 23:01:11 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:58:55 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_pipe(t_token_list *token, t_cmd *cmd)
 	if (token->str[0] == '|')
 	{
 		if (cmd)
-			cmd->is_pipe = 1;
+			cmd->is_piped = 1;
 		return (1);
 	}
 	return (0);
@@ -77,7 +77,7 @@ int	check_syntax(t_token_list *token)
 	}
 	while (token)
 	{
-		if (redirect_token_type(token->str, token) != NO_REDIR)
+		if (redirection_token_type(token->str, token) != NO_REDIR)
 		{
 			if (!redirection_control(token))
 			{

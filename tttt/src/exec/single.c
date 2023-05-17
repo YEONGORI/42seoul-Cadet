@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:13:07 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/15 21:33:16 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 22:32:07 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int	is_builtin_cmd(char	*cmd)
 {
-	if (!strcmp(cmd, "echo"))
+	if (!ft_strcmp(cmd, "echo"))
 		return (1);
-	if (!strcmp(cmd, "cd"))
+	if (!ft_strcmp(cmd, "cd"))
 		return (1);
-	if (!strcmp(cmd, "pwd"))
+	if (!ft_strcmp(cmd, "pwd"))
 		return (1);
-	if (!strcmp(cmd, "export"))
+	if (!ft_strcmp(cmd, "export"))
 		return (1);
-	if (!strcmp(cmd, "unset"))
+	if (!ft_strcmp(cmd, "unset"))
 		return (1);
-	if (!strcmp(cmd, "env"))
+	if (!ft_strcmp(cmd, "env"))
 		return (1);
 	return (0);
 }
 
-int	redirection_cmd(t_p_cmd_managed_list *managed)
+int	redirection_cmd(t_cmd_managed_list *managed)
 {
 	if (managed->cmd->in_desc == -1 || managed->cmd->out_desc == -1)
 		return (0);
@@ -40,7 +40,7 @@ int	redirection_cmd(t_p_cmd_managed_list *managed)
 	return (1);
 }
 
-int	is_control_cmd(t_p_cmd_managed_list *managed)
+int	is_control_cmd(t_cmd_managed_list *managed)
 {
 	if (!is_builtin_cmd(managed->cmd->av[0]))
 		return (0);
@@ -49,23 +49,23 @@ int	is_control_cmd(t_p_cmd_managed_list *managed)
 	return (1);
 }
 
-void	exec_builtin(t_p_cmd_managed_list *managed, char *cmd)
+void	exec_builtin(t_cmd_managed_list *managed, char *cmd)
 {
-	if (!strcmp(cmd, "echo"))
+	if (!ft_strcmp(cmd, "echo"))
 		echo(managed->cmd->av);
-	if (!strcmp(cmd, "cd"))
+	if (!ft_strcmp(cmd, "cd"))
 		cd(managed->cmd->av[1]);
-	if (!strcmp(cmd, "pwd"))
+	if (!ft_strcmp(cmd, "pwd"))
 		pwd();
-	if (!strcmp(cmd, "export"))
+	if (!ft_strcmp(cmd, "export"))
 		export(managed->cmd->av);
-	if (!strcmp(cmd, "unset"))
+	if (!ft_strcmp(cmd, "unset"))
 		unset(managed->cmd->av);
-	if (!strcmp(cmd, "env"))
+	if (!ft_strcmp(cmd, "env"))
 		env();
 }
 
-int	single_cmd(t_p_cmd_managed_list *managed)
+int	single_cmd(t_cmd_managed_list *managed)
 {
 	int	in;
 	int	out;
@@ -77,8 +77,8 @@ int	single_cmd(t_p_cmd_managed_list *managed)
 		if (is_control_cmd(managed))
 		{
 			exec_builtin(managed, managed->cmd->av[0]);
-			dup(in, 0);
-			dup(out, 1);
+			dup2(in, 0);
+			dup2(out, 1);
 			close(in);
 			close(out);
 			return (1);
@@ -86,4 +86,5 @@ int	single_cmd(t_p_cmd_managed_list *managed)
 	}
 	close(in);
 	close(out);
+	return (0);
 }

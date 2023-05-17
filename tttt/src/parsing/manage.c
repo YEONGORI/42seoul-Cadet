@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:21:44 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 21:05:06 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:51:12 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ t_cmd_managed_list	*create_cmd_managed_list(t_cmdline *cmdline)
 		ptr = append_new_cmd(&list);
 		ptr->prev = prev;
 		ptr->cmd = malloc(sizeof(t_cmd_managed));
-		fd = open_files(cmd->redirection);
+		fd = open_files(cmd->redirections);
 		ptr->cmd->in_desc = fd[0];
 		ptr->cmd->out_desc = fd[1];
 		free(fd);
-		ptr->cmd->av = create_argv(cmd->arg, &ptr->cmd->ac);
-		ptr->cmd->is_pipe = cmd->is_pipe;
+		ptr->cmd->av = create_argv(cmd->argu, &ptr->cmd->ac);
+		ptr->cmd->is_piped = cmd->is_piped;
 		cmdline = cmdline->next;
 	}
 	return (list);

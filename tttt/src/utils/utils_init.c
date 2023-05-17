@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 18:45:07 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 23:09:29 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:48:27 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_cmd	*init_parsed_cmd(void)
 
 	cmd = (t_cmd *)malloc(sizeof(t_cmd));
 	cmd->argu = (t_token_list *)(NULL);
-	cmd->redirections = (t_token_list *)(NULL);
+	cmd->redirections = (t_redirection_list *)(NULL);
 	cmd->is_piped = 0;
 	return (cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:41:07 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 21:21:59 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 22:40:26 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ int	main(int ac, char **av, char **env)
 			if (input && !ch_quotes(input) && !ch_empty(input))
 			{
 				cmd_managed_list = parsing(input);
+				if (cmd_managed_list && g_env.heredoc_signal == 0)
+					execution(cmd_managed_list);
+				free_cmd_managed_list(cmd_managed_list);
 			}
 			free(input);
 		}

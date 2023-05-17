@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:52:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 20:39:51 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 20:20:45 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	ft_isnumeric(char *s)
 	while (s[++i])
 	{
 		if (s[i] != ' ' && s[i] != '\t'
-			&& ((s[i] != '-' && s[i] != '+')
-				&& !ft_isdigit(s[i + 1])))
+			&& ((s[i] != '-' && s[i] != '+') && !ft_isdigit(s[i + 1])))
 		{
 			if (!ft_isdigit(s[i]))
 				return (0);

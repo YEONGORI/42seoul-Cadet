@@ -6,7 +6,7 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 19:54:11 by yeongele          #+#    #+#              #
-#    Updated: 2023/05/16 23:13:10 by yeongele         ###   ########.fr        #
+#    Updated: 2023/05/17 22:18:25 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ CC		= cc
 FLAGS	= -Wall -Wextra -Werror
 
 SRC_M = minishell.c \
-		exec/signal.c \
-		parsing/parse.c parsing/quotes.c parsing/dollar.c parsing/env.c parsing/token.c \
-		utils/utils_init.c utils/utils_free.c utils/utils_str.c utils/utils_char.c utils/utils_env.c utils/utils_quote.c utils/utils_token.c utils/utils_cmd.c
+		exec/exec.c exec/signal.c exec/path.c exec/single.c \
+		builtins/error.c builtins/exit.c builtins/cd.c builtins/echo.c builtins/env.c builtins/export.c builtins/pwd.c builtins/unset.c \
+		parsing/parse.c parsing/quotes.c parsing/dollar.c parsing/env.c parsing/token.c parsing/file.c parsing/manage.c parsing/cmd.c parsing/syntax.c \
+		utils/utils.c utils/utils_init.c utils/utils_free.c utils/utils_str.c utils/utils_char.c utils/utils_env.c utils/utils_quote.c utils/utils_token.c utils/utils_cmd.c utils/utils_exec.c
 SRCS = $(addprefix src/, $(SRC_M))
 OBJS = $(SRCS:.c=.o)
 
@@ -44,7 +45,7 @@ fclean:	clean
 	@make -C $(LIBFT_DIR) fclean
 
 re: fclean
-	all
+	make all
 
 bonus:
 	@make FLAG=1 all

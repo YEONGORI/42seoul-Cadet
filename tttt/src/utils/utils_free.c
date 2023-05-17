@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 18:37:16 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 23:01:35 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 20:26:03 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,46 +39,46 @@ int	free_token_list(t_token_list *token_list)
 	return (1);
 }
 
-// void	free_redirect_list(t_redirect_list *redirect_list)
-// {
-// 	t_redirect_list	*tmp;
+void	free_redirection_list(t_redirection_list *redirect_list)
+{
+	t_redirection_list	*tmp;
 
-// 	while (redirect_list)
-// 	{
-// 		tmp = redirect_list;
-// 		redirect_list = redirect_list->next;
-// 		free(tmp->file);
-// 		free(tmp);
-// 	}
-// }
+	while (redirect_list)
+	{
+		tmp = redirect_list;
+		redirect_list = redirect_list->next;
+		free(tmp->file);
+		free(tmp);
+	}
+}
 
-// void	free_p_cmd_list(t_p_cmd_list *p_cmd_list)
-// {
-// 	t_p_cmd_list	*tmp;
+void	free_cmd_list(t_cmdline *cmd_list)
+{
+	t_cmdline	*tmp;
 
-// 	while (p_cmd_list)
-// 	{
-// 		tmp = p_cmd_list;
-// 		p_cmd_list = p_cmd_list->next;
-// 		free_token_list(tmp->cmd->arg);
-// 		free_redirection_list(tmp->cmd->redirection);
-// 		free(tmp->cmd);
-// 		free(tmp);
-// 	}
-// }
+	while (cmd_list)
+	{
+		tmp = cmd_list;
+		cmd_list = cmd_list->next;
+		free_token_list(tmp->cmd->argu);
+		free_redirection_list(tmp->cmd->redirections);
+		free(tmp->cmd);
+		free(tmp);
+	}
+}
 
-// void	free_p_cmd_managed_list(t_p_cmd_managed_list *p_cmd_managed_list)
-// {
-// 	t_p_cmd_managed_list	*tmp;
-// 	t_p_cmd_managed_list	*head;
+void	free_cmd_managed_list(t_cmd_managed_list *cmd_managed_list)
+{
+	t_cmd_managed_list	*tmp;
+	t_cmd_managed_list	*head;
 
-// 	head = p_cmd_managed_list;
-// 	while (head)
-// 	{
-// 		tmp = head;
-// 		head = head->next;
-// 		free_square(tmp->cmd->av);
-// 		free(tmp->cmd);
-// 		free(tmp);
-// 	}
-// }
+	head = cmd_managed_list;
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free_square(tmp->cmd->av);
+		free(tmp->cmd);
+		free(tmp);
+	}
+}

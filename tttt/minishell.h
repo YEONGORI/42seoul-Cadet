@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 20:02:07 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 23:14:23 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 22:13:00 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ typedef struct s_env
 
 typedef struct s_redirection_list
 {
-	t_redirection		red;
-	char				*file;
-	struct s_redir_list	*next;
+	t_redirection				red;
+	char						*file;
+	struct s_redirection_list	*next;
 }	t_redirection_list;
 
 typedef struct s_token_list
@@ -91,6 +91,19 @@ typedef struct s_cmd_managed_list
 
 t_env	g_env;
 
+/*					builtins		*/
+void				error_command(char *cmd, int err_type);
+void				error_redirection(char *file, int err_type);
+void				error_exit(char	*s, int err_type);
+void				error_cd(char *file, int err_type);
+int					check_exit_condition(t_cmd_managed_list *cmd_managed_list);
+void				execute_exit(t_cmd_managed_list *cmd_managed_list);
+void				pwd(void);
+void				export(char **argu);
+int					find_line(char *str);
+void				unset(char **argu);
+void				env(void);
+
 /*					parsing			*/
 int					ch_quotes(char *input);
 int					ch_empty(char *input);
@@ -104,13 +117,28 @@ void				after_dollar(char *s, int *i);
 int					check_syntax(t_token_list *token);
 int					is_pipe(t_token_list *token, t_cmd *cmd);
 int					more_than_one_pipe(t_token_list *token_list);
-t_cmdline	        *create_cmd_list(t_token_list *token_list);
+t_cmdline			*create_cmd_list(t_token_list *token_list);
+t_cmd_managed_list	*create_cmd_managed_list(t_cmdline *cmdline);
+int					*open_files(t_redirection_list *redirect_list);
+void				append_redir_list(t_redirection_list **redir,
+						char *file, int type);
+char				*get_env(char *s, int len, int is_env);
+char				**set_export_env(char *env_name, char *value);
 
 /*					exec			*/
 void				ch_signal(void);
 void				ctrl_d(char	*line);
 void				ctrl_c(int sig);
 int					single_cmd(t_cmd_managed_list *managed);
+void				heredoc_signal(int sig);
+void				execution(t_cmd_managed_list *list);
+void				echo(char **argu);
+int					cd(char *argu);
+void				get_path(t_cmd_managed_list *parse);
+char				*path_finder(char *cmd);
+int					redirection_cmd(t_cmd_managed_list *managed);
+int					is_builtin_cmd(char	*cmd);
+void				exec_builtin(t_cmd_managed_list *managed, char *cmd);
 
 /*					utils			*/
 void				init_env(char **env);
@@ -121,6 +149,8 @@ void				init_struct(t_token_list **token_head,
 int					ft_strhei(char **square);
 void				free_square(char **square);
 int					free_token_list(t_token_list *token_list);
+void				free_cmd_list(t_cmdline *cmd_list);
+void				free_cmd_managed_list(t_cmd_managed_list *cmd_managed_list);
 int					escape_space(char *input);
 int					get_redirection_token_type(char *s);
 int					redirection_token_type(char *s, t_token_list *token);
@@ -134,6 +164,9 @@ void				copy_env_value(char *s, int i);
 int					jump_space(char	*input);
 t_cmd				*create_cmd(void);
 t_cmdline			*create_cmd_list(t_token_list *token_list);
+void				free_with_exit(char *s);
+int					ft_isnumeric(char *s);
+void				close_files(t_cmd_managed_list *list);
 
 /*						libft			*/
 int					ft_isdigit(int c);
@@ -150,5 +183,8 @@ char				*ft_itoa(int n);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
 char				*ft_strchr(const char *s, int c);
+int					ft_atoi(const char *str);
+void				ft_putendl_fd(char *s, int fd);
+char				**ft_split(const char *s, char c);
 
 #endif

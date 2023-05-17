@@ -6,13 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 18:42:37 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 23:15:36 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:57:01 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	append_cmd_list(t_cmdline **cmd_list, t_p_cmd *cmd)
+void	append_cmd_list(t_cmdline **cmd_list, t_cmd *cmd)
 {
 	t_cmdline	*tmp;
 	t_cmdline	*new;
@@ -24,20 +24,20 @@ void	append_cmd_list(t_cmdline **cmd_list, t_p_cmd *cmd)
 		*cmd_list = new;
 	else
 	{
-		tmp = *cmd;
+		tmp = *cmd_list;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
 }
 
-void	append_token_list(t_token_list **token, char *arg)
+void	append_token_list(t_token_list **token, char *argu)
 {
 	t_token_list	*tmp;
 	t_token_list	*new;
 
 	new = (t_token_list *)malloc(sizeof(t_token_list));
-	new->str = ft_strdup(arg);
+	new->str = ft_strdup(argu);
 	new->next = NULL;
 	if (!*token)
 		*token = new;
@@ -50,14 +50,14 @@ void	append_token_list(t_token_list **token, char *arg)
 	}
 }
 
-void	append_redir_list(t_redirection_list *redir, char *file, int type)
+void	append_redir_list(t_redirection_list **redir, char *file, int type)
 {
 	t_redirection_list	*tmp;
 	t_redirection_list	*new;
 
 	new = (t_redirection_list *)malloc(sizeof(t_redirection_list));
 	new->file = ft_strdup(file);
-	new->direction = type;
+	new->red = type;
 	new->next = NULL;
 	if (!*redir)
 		*redir = new;
@@ -77,12 +77,12 @@ void	set_cmd(t_cmd *cmd,
 {
 	while (token_head)
 	{
-		if (redirect_token_type(token_head->str, token_head) == NO_REDIR)
-			append_token_list(&cmd->arg, token_head->str);
+		if (redirection_token_type(token_head->str, token_head) == NO_REDIR)
+			append_token_list(&cmd->argu, token_head->str);
 		else
 		{
-			append_redir_list(&cmd->redirection, token_head->next->str,
-				redirect_token_type(token_head->str, token_head));
+			append_redir_list(&cmd->redirections, token_head->next->str,
+				redirection_token_type(token_head->str, token_head));
 			token_head = token_head->next;
 		}
 		if (token_head == token_cur)
