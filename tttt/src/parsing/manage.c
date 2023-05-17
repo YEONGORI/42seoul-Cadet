@@ -37,12 +37,12 @@ char	**create_argv(t_token_list *argu, int *ac)
 	return (av);
 }
 
-t_p_cmd_managed_list	*append_new_cmd(t_p_cmd_managed_list **list)
+t_cmd_managed_list	*append_new_cmd(t_cmd_managed_list **list)
 {
-	t_p_cmd_managed_list	*new;
-	t_p_cmd_managed_list	*temp;
+	t_cmd_managed_list	*new;
+	t_cmd_managed_list	*temp;
 
-	new = malloc(sizeof(t_p_cmd_managed_list));
+	new = malloc(sizeof(t_cmd_managed_list));
 	new->next = NULL;
 	new->prev = NULL;
 	new->cmd = NULL;
@@ -58,13 +58,13 @@ t_p_cmd_managed_list	*append_new_cmd(t_p_cmd_managed_list **list)
 	return (new);
 }
 
-t_p_cmd_managed_list	*create_p_cmd_managed_list(t_p_cmd_list *cmdline)
+t_cmd_managed_list	*create_cmd_managed_list(t_cmdline *cmdline)
 {
-	int						*fd;
-	t_p_cmd					*cmd;
-	t_p_cmd_managed_list	*ptr;
-	t_p_cmd_managed_list	*prev;
-	t_p_cmd_managed_list	*list;
+	int					*fd;
+	t_cmd				*cmd;
+	t_cmd_managed_list	*ptr;
+	t_cmd_managed_list	*prev;
+	t_cmd_managed_list	*list;
 
 	ptr = NULL;
 	list = NULL;
@@ -74,7 +74,7 @@ t_p_cmd_managed_list	*create_p_cmd_managed_list(t_p_cmd_list *cmdline)
 		prev = ptr;
 		ptr = append_new_cmd(&list);
 		ptr->prev = prev;
-		ptr->cmd = malloc(sizeof(t_p_cmd_managed));
+		ptr->cmd = malloc(sizeof(t_cmd_managed));
 		fd = open_files(cmd->redirection);
 		ptr->cmd->in_desc = fd[0];
 		ptr->cmd->out_desc = fd[1];

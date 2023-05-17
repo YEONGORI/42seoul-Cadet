@@ -25,19 +25,19 @@ t_cmd_managed_list	*parsing(char *input)
 	set_env(token_list);
 	if (!check_syntax(token_list) && free_token_list(token_list))
 		return (NULL);
-	cmdline_list = create_cmdline_list(token_list);
+	cmdline_list = create_cmd_list(token_list);
 	free_token_list(token_list);
 	if (cmdline_list == NULL)
 		return (NULL);
-	// p_cmd_managed_list = create_p_cmd_managed_list(p_cmd_list);
+	cmd_managed_list = create_cmd_managed_list(cmdline_list);
 	// free_p_cmd_list(p_cmd_list);
-	// if (exit_condition(p_cmd_managed_list)
-	// 	&& !p_cmd_managed_list->next)
+	// if (exit_condition(cmd_managed_list)
+	// 	&& !cmd_managed_list->next)
 	// {
-	// 	execute_exit(p_cmd_managed_list);
-	// 	free_p_cmd_managed_list(p_cmd_managed_list);
+	// 	execute_exit(cmd_managed_list);
+	// 	free_p_cmd_managed_list(cmd_managed_list);
 	// 	return (NULL);
 	// }
-	// return (p_cmd_managed_list);
+	// return (cmd_managed_list);
 	return (cmd_managed_list);
 }

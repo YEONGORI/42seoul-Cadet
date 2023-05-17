@@ -12,12 +12,12 @@
 
 #include "../../minishell.h"
 
-void	append_p_cmd_list(t_p_cmd_list **cmd_list, t_p_cmd *cmd)
+void	append_cmd_list(t_cmdline **cmd_list, t_p_cmd *cmd)
 {
-	t_p_cmd_list	*tmp;
-	t_p_cmd_list	*new;
+	t_cmdline	*tmp;
+	t_cmdline	*new;
 
-	new = (t_p_cmd_list *)malloc(sizeof(t_p_cmd_list));
+	new = (t_cmdline *)malloc(sizeof(t_cmdline));
 	new->cmd = cmd;
 	new->next = NULL;
 	if (!*cmd_list)
@@ -50,20 +50,20 @@ void	append_token_list(t_token_list **token, char *arg)
 	}
 }
 
-void	append_redirect_list(t_redirect_list *redirect, char *file, int type)
+void	append_redir_list(t_redirection_list *redir, char *file, int type)
 {
-	t_redirect_list	*tmp;
-	t_redirect_list	*new;
+	t_redirection_list	*tmp;
+	t_redirection_list	*new;
 
-	new = (t_redirect_list *)malloc(sizeof(t_redirect_list));
+	new = (t_redirection_list *)malloc(sizeof(t_redirection_list));
 	new->file = ft_strdup(file);
 	new->direction = type;
 	new->next = NULL;
-	if (!*redirect)
-		*redirect = new;
+	if (!*redir)
+		*redir = new;
 	else
 	{
-		tmp = *redirect;
+		tmp = *redir;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
@@ -81,7 +81,7 @@ void	set_cmd(t_cmd *cmd,
 			append_token_list(&cmd->arg, token_head->str);
 		else
 		{
-			append_redirect_list(&cmd->redirection, token_head->next->str,
+			append_redir_list(&cmd->redirection, token_head->next->str,
 				redirect_token_type(token_head->str, token_head));
 			token_head = token_head->next;
 		}
@@ -89,7 +89,7 @@ void	set_cmd(t_cmd *cmd,
 			break ;
 		token_head = token_head->next;
 	}
-	append_p_cmd_list(cmd_list, cmd);
+	append_cmd_list(cmd_list, cmd);
 }
 
 t_cmdline	*create_cmd_list(t_token_list *token_list)

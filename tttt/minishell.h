@@ -104,6 +104,7 @@ void				after_dollar(char *s, int *i);
 int					check_syntax(t_token_list *token);
 int					is_pipe(t_token_list *token, t_cmd *cmd);
 int					more_than_one_pipe(t_token_list *token_list);
+t_cmdline	        *create_cmd_list(t_token_list *token_list);
 
 /*					exec			*/
 void				ch_signal(void);
@@ -132,6 +133,7 @@ void				create_env_return(char **new, char *s, int *i, int *len);
 void				copy_env_value(char *s, int i);
 int					jump_space(char	*input);
 t_cmd				*create_cmd(void);
+t_cmdline			*create_cmd_list(t_token_list *token_list);
 
 /*						libft			*/
 int					ft_isdigit(int c);
