@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ji-song <ji-song@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:10:18 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/18 13:41:08 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:04:57 by ji-song          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ void	choose_execution(t_cmd_managed_list *list)
 	exit(0);
 }
 
+void	close_single_files(t_cmd_managed_list *parse)
+{
+	if (parse->cmd->in_desc != 0)
+		close(parse->cmd->in_desc);
+	if (parse->cmd->out_desc != 0)
+		close(parse->cmd->out_desc);
+	if (parse->next)
+		close(parse->fd[1]);
+	if (parse->prev)
+		close(parse->prev->fd[0]);
+}
+
 void	child_execution(t_cmd_managed_list *list)
 {
 	list->pid = fork();
@@ -54,7 +66,7 @@ void	child_execution(t_cmd_managed_list *list)
 			choose_execution(list);
 		exit(0);
 	}
-	close_files(list);
+	close_single_files(list);
 }
 
 void	execution(t_cmd_managed_list *list)
@@ -70,8 +82,8 @@ void	execution(t_cmd_managed_list *list)
 	{
 		get_path(list);
 		child_execution(list);
-		free_square(g_env.path);
 		list = list->next;
+		free_square(g_env.path);
 	}
 	while (prev_list->prev)
 		prev_list = prev_list->prev;

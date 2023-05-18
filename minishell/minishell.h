@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ji-song <ji-song@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 20:02:07 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/18 09:25:13 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:10:32 by ji-song          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include <sys/stat.h>
 # include <sys/ioctl.h>
 # include <unistd.h>
+
+# include <stdint.h>
+# include <stdio.h>
+# include <errno.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef enum s_redirection
 {
