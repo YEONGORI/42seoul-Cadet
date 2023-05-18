@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:36:21 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/18 10:04:31 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 10:10:57 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	*get_env_value(char *s)
 		}
 		free(tmp);
 	}
-	printf("c1\n");
 	return (NULL);
 }
 
@@ -56,8 +55,6 @@ char	*get_env(char *s, int len, int is_env)
 		{
 			if (ft_isdigit(new[0]))
 				ret = ft_strjoin_free(ret, new);
-			printf("n: %s\n", new);
-			printf("r: %s\n", ret);
 			if (get_env_value(new))
 				ret = ft_strjoin_free(ret, get_env_value(new));
 		}
