@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ji-song <ji-song@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:58:32 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/18 19:22:53 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:18:33 by ji-song          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ctrl_c(int sig)
 	(void)sig;
 	rl_on_new_line();
 	rl_redisplay();
-	/* rk_replace_line 들어가야 함  */
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 	write(1, "\033[A", 3);
 	g_env.ret_exit = 1;

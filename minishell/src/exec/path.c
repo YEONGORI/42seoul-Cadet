@@ -6,7 +6,7 @@
 /*   By: ji-song <ji-song@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 21:30:51 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/18 21:14:52 by ji-song          ###   ########.fr       */
+/*   Updated: 2023/05/18 21:18:20 by ji-song          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*absolute_command(char *cmd)
 	}
 	return (NULL);
 }
-
 
 char	*path_finder(char *cmd)
 {
