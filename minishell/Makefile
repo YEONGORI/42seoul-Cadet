@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
+#    By: ji-song <ji-song@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 19:54:11 by yeongele          #+#    #+#              #
-#    Updated: 2023/05/18 19:15:50 by yeongele         ###   ########.fr        #
+#    Updated: 2023/05/18 21:14:25 by ji-song          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC_M = minishell.c \
 		exec/exec.c exec/signal.c exec/path.c exec/single.c \
 		builtins/error.c builtins/exit.c builtins/cd.c builtins/echo.c builtins/env.c builtins/export.c builtins/pwd.c builtins/unset.c \
 		parsing/parse.c parsing/quotes.c parsing/dollar.c parsing/env.c parsing/token.c parsing/file.c parsing/manage.c parsing/cmd.c parsing/syntax.c \
-		utils/utils.c utils/utils_init.c utils/utils_free.c utils/utils_str.c utils/utils_char.c utils/utils_env.c utils/utils_quote.c utils/utils_token.c utils/utils_cmd.c utils/utils_exec.c
+		utils/utils.c utils/utils_init.c utils/utils_free.c utils/utils_str.c utils/utils_char.c utils/utils_env.c utils/utils_quote.c utils/utils_token.c utils/utils_cmd.c utils/utils_exec.c utils/utils_path.c
 SRCS = $(addprefix src/, $(SRC_M))
 OBJS = $(SRCS:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ji-song <ji-song@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: ji-song <ji-song@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 20:02:07 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/18 16:10:32 by ji-song          ###   ########.fr       */
+/*   Updated: 2023/05/18 21:13:53 by ji-song          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,5 @@ char				*ft_strchr(const char *s, int c);
 int					ft_atoi(const char *str);
 void				ft_putendl_fd(char *s, int fd);
 char				**ft_split(const char *s, char c);
-
+char				*path_finish(char *path, char *cmd);
 #endif
