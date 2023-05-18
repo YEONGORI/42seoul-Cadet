@@ -6,11 +6,17 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 15:36:20 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 22:48:29 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 10:44:22 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	init_int(int *i, int *j)
+{
+	*i = 0;
+	*j = 0;
+}
 
 int	find_quote(char *s, int len)
 {
@@ -28,9 +34,8 @@ char	*copy_only_quotation(char *input, char *dest, int flag)
 	int	i;
 	int	j;
 
-	i = -1;
-	j = 0;
-	while (input[++i])
+	init_int(&i, &j);
+	while (input[i])
 	{
 		if (input[i] != '\'' && input[i] != '\"')
 			dest[j++] = input[i++];
@@ -45,9 +50,9 @@ char	*copy_only_quotation(char *input, char *dest, int flag)
 			}
 			else
 				break ;
+			if (input[i])
+				i++;
 		}
-		if (!input[i])
-			break ;
 	}
 	dest[j] = 0;
 	return (dest);
