@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:28:03 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/15 22:09:45 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 09:09:03 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	is_option(char *s)
 	int	i;
 
 	i = 0;
-	if (str[0] != '-')
+	if (s[0] != '-')
 		return (0);
-	while (str[++i])
+	while (s[++i])
 	{
-		if (str[i] != 'n')
+		if (s[i] != 'n')
 			return (0);
 	}
 	return (1);

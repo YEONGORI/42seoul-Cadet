@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 15:36:20 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 16:27:25 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/16 22:48:29 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	find_quote(char *s, int len)
 	int	i;
 
 	i = -1;
-	while (s[++i] && s[i] != ' ' && (len > i))
+	while (s[++i] && s[i] != ' ' && (i < len))
 		if (s[i] == '\'' || s[i] == '\"')
 			return (1);
 	return (0);
 }
 
-char	*remove_quote(char *input, char *dest, int flag)
+char	*copy_only_quotation(char *input, char *dest, int flag)
 {
 	int	i;
 	int	j;
@@ -39,12 +39,14 @@ char	*remove_quote(char *input, char *dest, int flag)
 			if (flag == 0)
 				flag = 1;
 			else if (input[(i++) + 1] != ' ')
+			{
 				if (help_quote2(input, dest, &i, &j))
 					break ;
+			}
 			else
 				break ;
 		}
-		if (input[i] == NULL)
+		if (!input[i])
 			break ;
 	}
 	dest[j] = 0;
@@ -68,7 +70,7 @@ int	help_quote1(char *input, int *i, int *len)
 	return (0);
 }
 
-int	help_quote2(char *input, char *dest, int *i, int *len)
+int	help_quote2(char *input, char *dest, int *i, int *j)
 {
 	if ((input[*i - 1] == '\"' || input[*i - 1] == '\'') && input[*i] == '|')
 		return (1);

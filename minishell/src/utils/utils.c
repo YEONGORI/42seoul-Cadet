@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 18:25:56 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/10 15:59:32 by yeongele         ###   ########.fr       */
+/*   Created: 2023/05/17 19:43:14 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/17 19:44:57 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	free_with_exit(char *s)
 {
-	size_t				i;
-	unsigned char		c_un;
-	const unsigned char	*s_un;
-
-	i = -1;
-	c_un = (unsigned char)c;
-	s_un = (const unsigned char *)s;
-	while (++i < n)
-		if (s_un[i] == c_un)
-			return ((unsigned char *)(s_un + i));
-	return (NULL);
+	free(s);
+	exit(0);
 }

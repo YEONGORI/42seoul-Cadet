@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   utils_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 21:19:34 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/15 17:25:29 by yeongele         ###   ########.fr       */
+/*   Created: 2023/05/16 23:13:15 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 23:14:13 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_cmd	*create_cmd(void)
 {
-	t_list	*tmp;
+	t_cmd	*parsed_cmd;
 
-	if (!new)
-		return ;
-	else if (!lst)
-		lst = &new;
-	else if (!(*lst))
-		*lst = new;
-	else
-	{
-		tmp = *lst;
-		while (tmp -> next)
-			tmp = tmp -> next;
-		tmp -> next = new;
-	}
+	parsed_cmd = (t_cmd *)malloc(sizeof(t_cmd));
+	parsed_cmd->argu = (t_token_list *)(NULL);
+	parsed_cmd->redirections = (t_redirection_list *)(NULL);
+	parsed_cmd->is_piped = 0;
+	return (parsed_cmd);
 }

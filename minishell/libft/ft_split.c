@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:29:52 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/17 18:05:50 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 21:07:23 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 static int	is_del(char c, char del)
 {
@@ -40,7 +40,7 @@ static int	cnt_word(char const *s, char del)
 	return (cnt);
 }
 
-static char	*ft_strcpy(char *dest, const char *src, char del)
+static char	*ft__strcpy(char *dest, const char *src, char del)
 {
 	int	i;
 
@@ -61,7 +61,7 @@ static int	ft__strlen(const char *s, char del)
 	return (i);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	int		i;
 	int		len;
@@ -84,7 +84,7 @@ char	**ft_split(char const *s, char c)
 			free(res);
 			return (NULL);
 		}
-		res[i] = ft_strcpy(res[i], s, c);
+		res[i] = ft__strcpy(res[i], s, c);
 		s += ft__strlen(res[i], c);
 	}
 	return (res);

@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:28:46 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/13 18:52:02 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/16 22:11:41 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 static int	get_digit(int n)
 {

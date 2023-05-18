@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:58:32 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 20:41:14 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/16 21:13:54 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ctrl_d(char	*line)
 	{
 		write(1, "exit\n", 5);
 		free(line);
-		free_square(g_env);
+		free_square(g_env.env);
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -40,7 +40,7 @@ void	ctrl_c(int sig)
 	g_env.ret_exit = 1;
 }
 
-void	check_signal(void)
+void	ch_signal(void)
 {
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, SIG_IGN);

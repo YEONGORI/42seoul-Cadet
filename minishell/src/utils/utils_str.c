@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:52:47 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 21:21:13 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 09:25:02 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
+}
+
+char	*ft_strncopy(char *dest, char *src, int n)
+{
+	int	i;
+
+	i = -1;
+	while (src[++i] && i < n)
+		dest[i] = src[i];
+	dest[i] = 0;
+	return (dest);
 }
 
 int	ft_strhei(char **square)
@@ -42,8 +53,7 @@ int	ft_isnumeric(char *s)
 	while (s[++i])
 	{
 		if (s[i] != ' ' && s[i] != '\t'
-			&& ((s[i] != '-' && s[i] != '+')
-				&& !ft_isdigit(s[i + 1])))
+			&& ((s[i] != '-' && s[i] != '+') && !ft_isdigit(s[i + 1])))
 		{
 			if (!ft_isdigit(s[i]))
 				return (0);

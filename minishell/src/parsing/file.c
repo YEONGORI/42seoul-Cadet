@@ -6,13 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:32:27 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 20:58:28 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:45:18 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	output_file_create(t_redirect_list *redirection, int *fd)
+void	output_file_create(t_redirection_list *redirection, int *fd)
 {
 	if (fd[1] != 0)
 		close(fd[1]);
@@ -21,7 +21,7 @@ void	output_file_create(t_redirect_list *redirection, int *fd)
 		error_redirection(redirection->file, 1);
 }
 
-void	output_file_append(t_redirect_list *redirection, int *fd)
+void	output_file_append(t_redirection_list *redirection, int *fd)
 {
 	if (fd[1] != 0)
 		close(fd[1]);
@@ -30,7 +30,7 @@ void	output_file_append(t_redirect_list *redirection, int *fd)
 		error_redirection(redirection->file, 1);
 }
 
-void	input_file(t_redirect_list *redirection, int *fd)
+void	input_file(t_redirection_list *redirection, int *fd)
 {
 	if (fd[0] != 0)
 		close(fd[0]);
@@ -39,7 +39,7 @@ void	input_file(t_redirect_list *redirection, int *fd)
 		error_redirection(redirection->file, 1);
 }
 
-void	heredoc(t_redirect_list *redirection, int *fd, int *fd_pipe, int pid)
+void	heredoc(t_redirection_list *redirection, int *fd, int *fd_pipe, int pid)
 {
 	char	*line;
 
@@ -56,10 +56,7 @@ void	heredoc(t_redirect_list *redirection, int *fd, int *fd_pipe, int pid)
 				exit(1);
 			line = readline("> ");
 			if (ft_strcmp(line, redirection->file) == 0)
-			{
-				free(line);
-				exit(0);
-			}
+				free_with_exit(line);
 			ft_putstr_fd(line, fd_pipe[1]);
 			ft_putstr_fd("\n", fd_pipe[1]);
 			free(line);
@@ -71,7 +68,7 @@ void	heredoc(t_redirect_list *redirection, int *fd, int *fd_pipe, int pid)
 	fd[0] = fd_pipe[0];
 }
 
-int	*open_files(t_redirect_list *redirect_list)
+int	*open_files(t_redirection_list *redirect_list)
 {
 	int	pid;
 	int	*fd;
@@ -85,13 +82,13 @@ int	*open_files(t_redirect_list *redirect_list)
 	fd[1] = 0;
 	while (redirect_list)
 	{
-		if (redirect_list->direction == OUTPUT_FILE_CREATE)
+		if (redirect_list->red == OUTPUT_FILE_CREATE)
 			output_file_create(redirect_list, fd);
-		else if (redirect_list->direction == OUTPUT_FILE_APPEND)
+		else if (redirect_list->red == OUTPUT_FILE_APPEND)
 			output_file_append(redirect_list, fd);
-		else if (redirect_list->direction == INPUT_FILE)
+		else if (redirect_list->red == INPUT_FILE)
 			input_file(redirect_list, fd);
-		else if (redirect_list->direction == INPUT_NEXT_LINE)
+		else if (redirect_list->red == INPUT_NEXT_LINE)
 			heredoc(redirect_list, fd, fd_pipe, pid);
 		redirect_list = redirect_list->next;
 	}

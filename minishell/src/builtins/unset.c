@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:28:16 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 19:35:48 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/17 22:15:30 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	find_line(char *str)
 	char	**split;
 
 	i = 0;
-	while (g_myenv.env[i])
+	while (g_env.env[i])
 	{
-		split = ft_split(g_myenv.env[i], '=');
+		split = ft_split(g_env.env[i], '=');
 		if (ft_strcmp(split[0], str) == 0)
 		{
 			free_square(split);

@@ -6,7 +6,7 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:21:44 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 21:05:06 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 09:03:56 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ char	**create_argv(t_token_list *argu, int *ac)
 		av[++i] = ft_strdup(tmp->str);
 		tmp = tmp->next;
 	}
-	av[i] = NULL;
+	av[i + 1] = NULL;
 	return (av);
 }
 
-t_p_cmd_managed_list	*append_new_cmd(t_p_cmd_managed_list **list)
+t_cmd_managed_list	*append_new_cmd(t_cmd_managed_list **list)
 {
-	t_p_cmd_managed_list	*new;
-	t_p_cmd_managed_list	*temp;
+	t_cmd_managed_list	*new;
+	t_cmd_managed_list	*temp;
 
-	new = malloc(sizeof(t_p_cmd_managed_list));
+	new = malloc(sizeof(t_cmd_managed_list));
 	new->next = NULL;
 	new->prev = NULL;
 	new->cmd = NULL;
@@ -58,13 +58,13 @@ t_p_cmd_managed_list	*append_new_cmd(t_p_cmd_managed_list **list)
 	return (new);
 }
 
-t_p_cmd_managed_list	*create_p_cmd_managed_list(t_p_cmd_list *cmdline)
+t_cmd_managed_list	*create_cmd_managed_list(t_cmdline *cmdline)
 {
-	int						*fd;
-	t_p_cmd					*cmd;
-	t_p_cmd_managed_list	*ptr;
-	t_p_cmd_managed_list	*prev;
-	t_p_cmd_managed_list	*list;
+	int					*fd;
+	t_cmd				*cmd;
+	t_cmd_managed_list	*ptr;
+	t_cmd_managed_list	*prev;
+	t_cmd_managed_list	*list;
 
 	ptr = NULL;
 	list = NULL;
@@ -74,13 +74,13 @@ t_p_cmd_managed_list	*create_p_cmd_managed_list(t_p_cmd_list *cmdline)
 		prev = ptr;
 		ptr = append_new_cmd(&list);
 		ptr->prev = prev;
-		ptr->cmd = malloc(sizeof(t_p_cmd_managed));
-		fd = open_files(cmd->redirection);
+		ptr->cmd = malloc(sizeof(t_cmd_managed));
+		fd = open_files(cmd->redirections);
 		ptr->cmd->in_desc = fd[0];
 		ptr->cmd->out_desc = fd[1];
 		free(fd);
-		ptr->cmd->av = create_argv(cmd->arg, &ptr->cmd->ac);
-		ptr->cmd->is_pipe = cmd->is_pipe;
+		ptr->cmd->av = create_argv(cmd->argu, &ptr->cmd->ac);
+		ptr->cmd->is_piped = cmd->is_piped;
 		cmdline = cmdline->next;
 	}
 	return (list);

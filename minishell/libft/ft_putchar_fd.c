@@ -6,11 +6,11 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 14:52:14 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/15 15:46:53 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/16 21:17:20 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

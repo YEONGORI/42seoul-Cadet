@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 22:06:11 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/09 13:36:01 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/29 15:02:36 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 21:10:36 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 char	*ft_strdup(const char *s1)
 {

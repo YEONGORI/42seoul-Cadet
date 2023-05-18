@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 22:24:33 by yeongele          #+#    #+#             */
-/*   Updated: 2022/08/19 16:12:06 by yeongele         ###   ########.fr       */
+/*   Created: 2023/05/16 21:10:09 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 21:10:21 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstdelone(t_list *lst)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (!lst)
-		return ;
-	free(lst);
+	int	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (0);
 }

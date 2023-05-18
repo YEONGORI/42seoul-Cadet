@@ -6,13 +6,13 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 14:58:29 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/14 22:32:12 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/16 22:59:52 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	get_token_len_with_redirect(int flag, t_direction type)
+int	token_len(int flag, t_redirection type)
 {
 	int	token;
 	int	redir_len;
@@ -27,7 +27,7 @@ int	get_token_len_with_redirect(int flag, t_direction type)
 	return (token);
 }
 
-int	basic_redirect_token_type(char *s)
+int	get_redirection_token_type(char *s)
 {
 	if (*s)
 	{
@@ -46,7 +46,7 @@ int	basic_redirect_token_type(char *s)
 	return (NO_REDIR);
 }
 
-int	redirect_token_type(char *s, t_token_list *token)
+int	redirection_token_type(char *s, t_token_list *token)
 {
 	if (*s && !*(s + 1))
 	{

@@ -6,7 +6,7 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/14 18:50:04 by yeongele          #+#    #+#              #
-#    Updated: 2023/03/09 11:16:06 by yeongele         ###   ########.fr        #
+#    Updated: 2023/05/17 21:10:38 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,48 +16,27 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
-	ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c \
-	ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c \
-	ft_toupper.c ft_tolower.c ft_strncmp.c ft_memchr.c ft_memcmp.c \
-	ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c \
-	ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
-	ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-	ft_putnbr_fd.c
-	
-B_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstadd_back.c \
-	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_lstlast.c
+SRCS = ft_isdigit.c ft_putchar_fd.c ft_putstr_fd.c ft_strcmp.c ft_strdup.c ft_strlen.c ft_strncmp.c ft_strjoin.c ft_itoa.c ft_bzero.c ft_calloc.c ft_strchr.c ft_atoi.c ft_putendl_fd.c ft_split.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS = ${SRCS:.c=.o}
 
-B_OBJS = $(B_SRCS:.c=.o)
+all: ${NAME}
 
-INCS = libft.h
-ifdef FLAG
-	OBJS_TOTAL = $(OBJS) $(B_OBJS)
-else
-	OBJS_TOTAL = $(OBJS)
-endif
+%.o: %.c
+	${CC} ${CFLAGS} -c $< -o $@
 
-all : $(NAME)
+${NAME}: ${OBJS}
+		ar rsc $@ ${OBJS}
+
+${OBJS}: ${SRCS}
+	${CC} ${CFLAGS} -c ${SRCS}
 
 clean:
-	@rm -f $(OBJS) $(B_OBJS)
+	@rm -rf $(OBJS)
 
-
-fclean:	clean
+fclean: clean
 	@rm -f $(NAME)
 
-re: 
-	make fclean
-	make all
+re: fclean all
 
-bonus:
-	@make FLAG=1 all
-	
-$(NAME) : $(OBJS_TOTAL)
-	ar rsc $@ $^
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -I $(INCS)
-
-.PHONY:	all clean fclean re bonus
+.PHONY: all clean fclean re

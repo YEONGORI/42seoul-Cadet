@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 18:22:25 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/09 12:36:26 by yeongele         ###   ########.fr       */
+/*   Created: 2023/01/29 15:02:41 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/16 21:10:39 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 size_t	ft_strlen(const char *str)
 {

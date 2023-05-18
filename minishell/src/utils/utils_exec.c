@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   utils_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 18:15:08 by yeongele          #+#    #+#             */
-/*   Updated: 2022/07/17 18:04:11 by yeongele         ###   ########.fr       */
+/*   Created: 2023/05/17 21:39:23 by yeongele          #+#    #+#             */
+/*   Updated: 2023/05/17 21:42:43 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t num)
+void	close_files(t_cmd_managed_list *list)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	t_cmd_managed_list	*tmp;
 
-	d = dest;
-	s = src;
-	if (s < d)
-		while (num-- > 0)
-			*(d + num) = *(s + num);
-	else if (s != d)
-		while (num-- > 0)
-			*d++ = *s++;
-	return (dest);
+	tmp = list;
+	while (tmp->prev)
+		tmp = tmp->prev;
+	while (tmp)
+	{
+		while (tmp->prev)
+		{
+			close(tmp->fd[0]);
+			close(tmp->fd[1]);
+			tmp = tmp->prev;
+		}
+		while (tmp->next)
+		{
+			close(tmp->fd[0]);
+			close(tmp->fd[1]);
+			tmp = tmp->next;
+		}
+		break ;
+	}
 }
