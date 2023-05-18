@@ -6,11 +6,25 @@
 /*   By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:46:41 by yeongele          #+#    #+#             */
-/*   Updated: 2023/05/16 22:44:23 by yeongele         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:41:56 by yeongele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	copy_stup(int *i, int *len, char **new, char *s)
+{
+	int	j;
+
+	j = 0;
+	while (j < *len)
+	{
+		(*new)[j] = s[*i];
+		j++;
+		*i += 1;
+	}
+	(*new)[j] = 0;
+}
 
 void	copy_env_value(char *s, int i)
 {
@@ -53,10 +67,8 @@ void	set_env_return_len(char *s, int *i, int *len)
 
 void	create_env_return(char **new, char *s, int *i, int *len)
 {
-	int	j;
 	int	is_env;
 
-	j = 0;
 	is_env = 0;
 	if (s[*i] == '$')
 		is_env = 1;
@@ -75,7 +87,5 @@ void	create_env_return(char **new, char *s, int *i, int *len)
 	}
 	set_env_return_len(s, i, len);
 	*new = malloc(sizeof(char) * (*len + 1));
-	while (j < *len)
-		(*new)[j++] = s[*i++];
-	(*new)[j] = 0;
+	copy_stup(i, len, new, s);
 }

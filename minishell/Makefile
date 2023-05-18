@@ -6,13 +6,13 @@
 #    By: yeongele <yeongele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 19:54:11 by yeongele          #+#    #+#              #
-#    Updated: 2023/05/18 09:49:00 by yeongele         ###   ########.fr        #
+#    Updated: 2023/05/18 19:15:50 by yeongele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= minishell
 CC		= cc
-FLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 
 SRC_M = minishell.c \
 		exec/exec.c exec/signal.c exec/path.c exec/single.c \
